@@ -1,7 +1,7 @@
 package wootrevived.woot.events.client;
 
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.locale.Language;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,7 +36,7 @@ public class GuideCacheLivingEntities {
             if(mob.isBlacklisted()) continue;
 
             EntityType<?> entityType = mob.getEntityType();
-            if(!I18n.exists(entityType.getDescriptionId()))
+            if(!Language.getInstance().has(entityType.getDescriptionId()))
                 continue;
 
             Entity entity = entityType.create(level);

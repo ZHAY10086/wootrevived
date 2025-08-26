@@ -1,6 +1,6 @@
 package wootrevived.woot.events;
 
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.locale.Language;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -46,7 +46,7 @@ public class InitServer {
                 if(mob.isBlacklisted()) continue;
 
                 EntityType<?> entityType = mob.getEntityType();
-                if(!I18n.exists(entityType.getDescriptionId()))
+                if(!Language.getInstance().has(entityType.getDescriptionId()))
                     continue;
 
                 Entity entity = entityType.create(level);

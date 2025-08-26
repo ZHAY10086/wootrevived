@@ -1,6 +1,6 @@
 package wootrevived.woot.events;
 
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.locale.Language;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,7 +45,7 @@ public class MobShardKillCheck {
 
         EntityType<?> entityType = victim.getType();
 
-        if(!I18n.exists(entityType.getDescriptionId()))
+        if(!Language.getInstance().has(entityType.getDescriptionId()))
             return;
 
         if(!WootFactoryMobsRegistry.hasFactoryMob(entityType))
