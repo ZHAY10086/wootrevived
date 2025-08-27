@@ -97,7 +97,7 @@ public class FluidInfuserBlock extends Block implements EntityBlock {
                             .append(Component.translatable("info.woot_revived.power").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                             .append(Component.literal(WootContainerScreen.formatInteger(energyTag.getInt(WootTags.ENERGY_TAG))))
                             .append(Component.literal("/").setStyle(MACHINE_STYLE))
-                            .append(WootContainerScreen.formatInteger(Config.EnchantedLiquifier.ENERGY_CAPACITY))
+                            .append(WootContainerScreen.formatInteger(Config.FluidInfuser.ENERGY_CAPACITY))
                             .append(Component.literal(" FE").setStyle(UNIT_STYLE))
             );
         }
@@ -115,7 +115,7 @@ public class FluidInfuserBlock extends Block implements EntityBlock {
                             .append(Component.translatable("info.woot_revived.input_amount").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                             .append(WootContainerScreen.formatInteger(fluid.getAmount()))
                             .append(Component.literal("/").setStyle(MACHINE_STYLE))
-                            .append(WootContainerScreen.formatInteger(Config.DyeLiquifier.OUTPUT_TANK_CAPACITY))
+                            .append(WootContainerScreen.formatInteger(Config.FluidInfuser.INPUT_TANK_CAPACITY))
                             .append(Component.literal("mB").setStyle(UNIT_STYLE))
             );
         }
@@ -133,7 +133,7 @@ public class FluidInfuserBlock extends Block implements EntityBlock {
                             .append(Component.translatable("info.woot_revived.output_amount").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                             .append(WootContainerScreen.formatInteger(fluid.getAmount()))
                             .append(Component.literal("/").setStyle(MACHINE_STYLE))
-                            .append(WootContainerScreen.formatInteger(Config.DyeLiquifier.OUTPUT_TANK_CAPACITY))
+                            .append(WootContainerScreen.formatInteger(Config.FluidInfuser.OUTPUT_TANK_CAPACITY))
                             .append(Component.literal("mB").setStyle(UNIT_STYLE))
             );
         }
