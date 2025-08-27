@@ -15,6 +15,7 @@ import wootrevived.woot.Woot;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Woot.MOD_ID, value = { Dist.CLIENT })
@@ -32,18 +33,24 @@ public class GuideCacheLivingEntities {
 
         livingEntities.clear();
 
-        for(WootFactoryMob<?> mob : WootFactoryMobsRegistry.getFactoryMobValues()){
+        for(WootFactoryMob<?> mob : List.copyOf(WootFactoryMobsRegistry.getFactoryMobValues())){
             if(mob.isBlacklisted()) continue;
 
             EntityType<?> entityType = mob.getEntityType();
-            if(!Language.getInstance().has(entityType.getDescriptionId()))
+            if(!Language.getInstance().has(entityType.getDescriptionId())) {
+                WootFactoryMobsRegistry.removeFactoryMob(entityType);
                 continue;
+            }
 
-            Entity entity = entityType.create(level);
-            if(!(entity instanceof LivingEntity livingEntity))
-                continue;
+            try {
+                Entity entity = entityType.create(level);
+                if(!(entity instanceof LivingEntity livingEntity))
+                    continue;
 
-            livingEntities.put(entityType, livingEntity);
+                livingEntities.put(entityType, livingEntity);
+            } catch(Exception ignored){
+                WootFactoryMobsRegistry.removeFactoryMob(entityType);
+            }
         }
     }
 }

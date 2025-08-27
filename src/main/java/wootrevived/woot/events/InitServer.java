@@ -42,19 +42,25 @@ public class InitServer {
 
             mobLocations.clear();
 
-            for(WootFactoryMob<?> mob : WootFactoryMobsRegistry.getFactoryMobValues()){
+            for(WootFactoryMob<?> mob : List.copyOf(WootFactoryMobsRegistry.getFactoryMobValues())){
                 if(mob.isBlacklisted()) continue;
 
                 EntityType<?> entityType = mob.getEntityType();
-                if(!Language.getInstance().has(entityType.getDescriptionId()))
+                if(!Language.getInstance().has(entityType.getDescriptionId())) {
+                    WootFactoryMobsRegistry.removeFactoryMob(entityType);
                     continue;
+                }
 
-                Entity entity = entityType.create(level);
-                if(!(entity instanceof LivingEntity))
-                    continue;
+                try {
+                    Entity entity = entityType.create(level);
+                    if(!(entity instanceof LivingEntity))
+                        continue;
 
-                ResourceLocation location = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
-                mobLocations.add(location);
+                    ResourceLocation location = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
+                    mobLocations.add(location);
+                } catch(Exception ignored){
+                    WootFactoryMobsRegistry.removeFactoryMob(entityType);
+                }
             }
         }
     }

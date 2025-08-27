@@ -63,6 +63,10 @@ public class WootFactoryMobsRegistry extends WootFactoryMobRegistration {
         return FACTORY_MOB_REGISTRY.containsKey(entityType);
     }
 
+    public static void removeFactoryMob(EntityType<?> entityType){
+        FACTORY_MOB_REGISTRY.remove(entityType);
+    }
+
     public static Collection<WootFactoryMob<?>> getFactoryMobValues(){
         return FACTORY_MOB_REGISTRY.values();
     }
