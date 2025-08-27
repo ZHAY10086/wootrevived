@@ -50,7 +50,7 @@ public class StygianAnvilRecipeBuilder {
         itemInputs.addAll(ingredients);
         recipeOutput.accept(
                 ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.STYGIAN_ANVIL_TAG + "/" + path),
-                new StygianAnvilRecipe(ingredients, output),
+                new StygianAnvilRecipe(itemInputs, output),
                 null
         );
     }

@@ -2,6 +2,9 @@
   "type": "woot_revived:stygian_anvil",
   "inputIngredients": [
     {
+      "item": "woot_revived:dye_casing_mold"
+    },
+    {
       "tag": "forge:dyes/gray"
     }
   ],

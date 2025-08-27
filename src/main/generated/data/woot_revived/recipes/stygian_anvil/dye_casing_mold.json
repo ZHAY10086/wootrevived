@@ -2,6 +2,9 @@
   "type": "woot_revived:stygian_anvil",
   "inputIngredients": [
     {
+      "tag": "forge:dyes"
+    },
+    {
       "item": "minecraft:quartz"
     },
     {

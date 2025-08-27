@@ -2,6 +2,9 @@
   "type": "woot_revived:stygian_anvil",
   "inputIngredients": [
     {
+      "item": "minecraft:prismarine_shard"
+    },
+    {
       "item": "minecraft:quartz"
     },
     {
