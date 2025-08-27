@@ -49,25 +49,25 @@ public class IngredientImportBlockEntity extends FactoryBlockBaseEntity {
 
             BlockPos blockPos = getBlockPos().relative(direction);
 
-            IItemHandler itemHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, blockPos, direction.getOpposite());
-            if(itemHandler != null){
-                for (int i = 0; i < itemHandler.getSlots(); i++) {
-                    ItemStack stack = itemHandler.getStackInSlot(i);
+            IItemHandler neighborItemHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, blockPos, direction.getOpposite());
+            if(neighborItemHandler != null){
+                for (int i = 0; i < neighborItemHandler.getSlots(); i++) {
+                    ItemStack stack = neighborItemHandler.getStackInSlot(i);
                     ItemStack result = itemHandler.insertItem(i, stack, true);
                     if(result.getCount() < stack.getCount()){
-                        itemHandler.extractItem(i, stack.getCount() - result.getCount(), false);
+                        neighborItemHandler.extractItem(i, stack.getCount() - result.getCount(), false);
                         itemHandler.insertItem(i, stack, false);
                     }
                 }
             }
 
-            IFluidHandler fluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, blockPos, direction.getOpposite());
-            if(fluidHandler != null){
-                for (int i = 0; i < fluidHandler.getTanks(); i++) {
-                    FluidStack stack = fluidHandler.getFluidInTank(i);
+            IFluidHandler neighborFluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, blockPos, direction.getOpposite());
+            if(neighborFluidHandler != null){
+                for (int i = 0; i < neighborFluidHandler.getTanks(); i++) {
+                    FluidStack stack = neighborFluidHandler.getFluidInTank(i);
                     int filled = fluidHandler.fill(stack, IFluidHandler.FluidAction.SIMULATE);
                     if(filled > 0){
-                        fluidHandler.drain(new FluidStack(stack.getFluid(), filled), IFluidHandler.FluidAction.EXECUTE);
+                        neighborFluidHandler.drain(new FluidStack(stack.getFluid(), filled), IFluidHandler.FluidAction.EXECUTE);
                         fluidHandler.fill(stack, IFluidHandler.FluidAction.EXECUTE);
                     }
                 }
