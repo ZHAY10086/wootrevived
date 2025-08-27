@@ -117,7 +117,7 @@ public class EnchantedLiquifierBlock extends Block implements EntityBlock {
                             .append(Component.translatable("info.woot_revived.output_amount").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                             .append(WootContainerScreen.formatInteger(fluid.getAmount()))
                             .append(Component.literal("/").setStyle(MACHINE_STYLE))
-                            .append(WootContainerScreen.formatInteger(Config.DyeLiquifier.OUTPUT_TANK_CAPACITY))
+                            .append(WootContainerScreen.formatInteger(Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY))
                             .append(Component.literal("mB").setStyle(UNIT_STYLE))
             );
         }
