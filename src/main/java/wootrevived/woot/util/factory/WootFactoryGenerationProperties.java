@@ -1,6 +1,7 @@
 package wootrevived.woot.util.factory;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.api.WootFactoryMob;
@@ -54,6 +55,11 @@ public class WootFactoryGenerationProperties implements WootGenerationProperties
     @Override
     public void setNumberOfSimulations(int numberOfSimulations) {
         this.numberOfSimulations = Math.max(1, numberOfSimulations);
+    }
+
+    @Override
+    public @NotNull ServerLevel getLevel() {
+        return DropSimulator.getLevel();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package wootrevived.api.interfaces;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import wootrevived.api.WootFactoryMob;
@@ -41,6 +42,7 @@ public interface WootDropsProperties {
     int getExperience();
     void setExperience(int experience);
 
+    @NotNull ServerLevel getLevel();
     @NotNull RandomSource getRandom();
     @NotNull Tier getFactoryTier();
     @NotNull WootFactoryMob<?> getFactoryMob();

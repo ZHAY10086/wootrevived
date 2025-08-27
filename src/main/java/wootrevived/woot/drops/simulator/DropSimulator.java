@@ -46,6 +46,10 @@ public class DropSimulator {
         INSTANCE.simulate(tag, properties);
     }
 
+    public static @NotNull ServerLevel getLevel() {
+        return INSTANCE.dimensionLevel;
+    }
+
     public static @NotNull RandomSource getRandom() {
         return INSTANCE.dimensionLevel.getRandom();
     }
