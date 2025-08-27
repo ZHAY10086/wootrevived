@@ -1,6 +1,7 @@
 package wootrevived.woot.util.factory;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import wootrevived.api.enums.Tier;
@@ -9,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.interfaces.WootSpawnProperties;
+import wootrevived.woot.drops.simulator.DropSimulator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +73,11 @@ public class WootFactoryDropsProperties implements WootDropsProperties {
     @Override
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public @NotNull ServerLevel getLevel() {
+        return DropSimulator.getLevel();
     }
 
     @Override

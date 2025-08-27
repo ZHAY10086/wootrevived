@@ -1,6 +1,7 @@
 package wootrevived.api.interfaces;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import wootrevived.api.WootFactoryMob;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * <ul>
  *   <li>Change the mob's main hand or off-hand items</li>
  *   <li>Adjust attributes such as luck or environmental flags (e.g. charged creeper, in fire, dragon killed)</li>
- *   <li>Access the factory tier, associated mob, saved NBT, and random source</li>
+ *   <li>Access the factory tier, associated mob, saved NBT, server level, and random source</li>
  * </ul>
  * <p>
  * The implementation is provided by Woot; addon mods should not implement this
@@ -44,6 +45,7 @@ public interface WootSpawnProperties {
     boolean isInFire();
     void setIsInFire(boolean isInFire);
 
+    @NotNull ServerLevel getLevel();
     @NotNull RandomSource getRandom();
     @NotNull Tier getFactoryTier();
     @NotNull WootFactoryMob<?> getFactoryMob();

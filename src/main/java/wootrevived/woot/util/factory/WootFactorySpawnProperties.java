@@ -1,6 +1,7 @@
 package wootrevived.woot.util.factory;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -86,6 +87,11 @@ public class WootFactorySpawnProperties implements WootSpawnProperties {
     @Override
     public void setIsInFire(boolean isInFire) {
         this.isInFire = isInFire;
+    }
+
+    @Override
+    public @NotNull ServerLevel getLevel() {
+        return DropSimulator.getLevel();
     }
 
     @Override
