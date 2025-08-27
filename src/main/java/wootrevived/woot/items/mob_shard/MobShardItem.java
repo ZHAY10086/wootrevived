@@ -22,6 +22,7 @@ import wootrevived.woot.util.entity.WootTags;
 
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.util.helper.ModNameHelper;
+import wootrevived.woot.util.helper.SerializeEntityNBTHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class MobShardItem extends Item {
         if (isProgrammed(stack))
             return false;
 
-        return setProgrammedMob(stack, mob.saveTag(target.serializeNBT()));
+        return setProgrammedMob(stack, mob.saveTag(SerializeEntityNBTHelper.serialize(target)));
     }
 
     public static boolean isProgrammed(ItemStack itemStack) {

@@ -15,6 +15,7 @@ import wootrevived.woot.Woot;
 import wootrevived.woot.items.mob_shard.MobShardItem;
 import wootrevived.woot.items.mob_shard.MobShardProjectile;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
+import wootrevived.woot.util.helper.SerializeEntityNBTHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class MobShardKillCheck {
             mobShardItem.hurtEnemy(inHandItemStack, victim, killer);
         }
 
-        MobShardItem.handleKill(killer, victim.serializeNBT());
+        MobShardItem.handleKill(killer, SerializeEntityNBTHelper.serialize(victim));
     }
 
     private static final List<String> uuidList = new ArrayList<>();

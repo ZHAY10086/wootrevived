@@ -5,13 +5,11 @@ import net.minecraft.world.entity.Entity;
 
 public class SerializeEntityNBTHelper {
     public static CompoundTag serialize(Entity entity){
-        CompoundTag tag;
+        CompoundTag tag = new CompoundTag();
+        tag.putString("id", entity.getEncodeId());
         try {
-            tag = entity.serializeNBT();
-        } catch(Exception ignored){
-            tag = new CompoundTag();
-            tag.putString("id", entity.getEncodeId());
-        }
+            tag = entity.saveWithoutId(tag);
+        } catch(Exception ignored){}
         return tag;
     }
 }
