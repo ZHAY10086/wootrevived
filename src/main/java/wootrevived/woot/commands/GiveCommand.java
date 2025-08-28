@@ -5,6 +5,7 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.CompoundTagArgument;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.nbt.CompoundTag;
@@ -36,22 +37,36 @@ public class GiveCommand {
                                             .executes(ctx -> giveItem(
                                                     ctx.getSource(),
                                                     EntityArgument.getPlayer(ctx, "target"),
-                                                    ResourceLocationArgument.getId(ctx, "entity")
+                                                    ResourceLocationArgument.getId(ctx, "entity"),
+                                                    new CompoundTag()
                                             ))
+                                            .then(
+                                                    Commands.argument("nbt", CompoundTagArgument.compoundTag())
+                                                            .executes(ctx -> giveItem(
+                                                                    ctx.getSource(),
+                                                                    EntityArgument.getPlayer(ctx, "target"),
+                                                                    ResourceLocationArgument.getId(ctx, "entity"),
+                                                                    CompoundTagArgument.getCompoundTag(ctx, "nbt")
+                                                            ))
+                                            )
                             )
                 );
     }
 
-    private static int giveItem(CommandSourceStack source, ServerPlayer target, ResourceLocation resourceLocation) {
+    private static int giveItem(CommandSourceStack source, ServerPlayer target, ResourceLocation resourceLocation, CompoundTag tag) {
         EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(resourceLocation);
         WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(entityType);
 
-        Object object = entityType.create(source.getLevel());
-        if(object instanceof LivingEntity entity){
-            CompoundTag tag = mob.saveTag(SerializeEntityNBTHelper.serialize(entity));
-            ItemStack fakeSpawner = FakeSpawnerBlockEntity.getItemStack(tag);
-            ItemHandlerHelper.giveItemToPlayer(target, fakeSpawner);
-        }
+        tag.putString("id", resourceLocation.toString());
+
+        EntityType.create(tag, source.getLevel())
+                .filter(LivingEntity.class::isInstance)
+                .map(LivingEntity.class::cast)
+                .ifPresent(entity -> {
+                    CompoundTag mobTag = mob.saveTag(SerializeEntityNBTHelper.serialize(entity));
+                    ItemStack fakeSpawner = FakeSpawnerBlockEntity.getItemStack(mobTag);
+                    ItemHandlerHelper.giveItemToPlayer(target, fakeSpawner);
+                });
 
         return 1;
     }
