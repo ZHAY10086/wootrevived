@@ -63,7 +63,7 @@ public class GiveCommand {
                 .filter(LivingEntity.class::isInstance)
                 .map(LivingEntity.class::cast)
                 .ifPresent(entity -> {
-                    CompoundTag mobTag = mob.saveTag(SerializeEntityNBTHelper.serialize(entity));
+                    CompoundTag mobTag = mob.saveTag(SerializeEntityNBTHelper.serialize(entity), source.getLevel().registryAccess());
                     ItemStack fakeSpawner = FakeSpawnerBlockEntity.getItemStack(mobTag);
                     ItemHandlerHelper.giveItemToPlayer(target, fakeSpawner);
                 });

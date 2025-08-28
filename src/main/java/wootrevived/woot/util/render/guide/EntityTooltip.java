@@ -1,6 +1,7 @@
 package wootrevived.woot.util.render.guide;
 
 import guideme.document.interaction.GuideTooltip;
+import guideme.scene.level.GuidebookLevel;
 import guideme.siteexport.ResourceExporter;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.nbt.CompoundTag;
@@ -26,10 +27,12 @@ public class EntityTooltip implements GuideTooltip {
 
     @Override
     public List<ClientTooltipComponent> getLines() {
+        GuidebookLevel level = new GuidebookLevel();
+
         String modId = ForgeRegistries.ENTITY_TYPES.getKey(mob.getEntityType()).getNamespace();
 
         List<Component> lines = List.of(
-                mob.getDisplayName(tag).append(Component.literal(": ")).setStyle(MACHINE_STYLE),
+                mob.getDisplayName(tag, level.registryAccess()).append(Component.literal(": ")).setStyle(MACHINE_STYLE),
                 Component.empty()
                         .append(Component.translatable("info.woot_revived.tier").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                         .append(Component.translatable(WootTier.getTranslationKey(mob.getTier()))),

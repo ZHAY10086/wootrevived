@@ -2,6 +2,7 @@ package wootrevived.woot.drops.simulator;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -52,6 +53,10 @@ public class DropSimulator {
 
     public static @NotNull RandomSource getRandom() {
         return INSTANCE.dimensionLevel.getRandom();
+    }
+
+    public static @NotNull HolderLookup.Provider getLookupProvider(){
+        return INSTANCE.dimensionLevel.registryAccess();
     }
 
     @SuppressWarnings({"deprecation", "OverrideOnly", "UnstableApiUsage"})

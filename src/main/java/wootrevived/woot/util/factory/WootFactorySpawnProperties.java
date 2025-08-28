@@ -1,5 +1,6 @@
 package wootrevived.woot.util.factory;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -97,6 +98,11 @@ public class WootFactorySpawnProperties implements WootSpawnProperties {
     @Override
     public @NotNull RandomSource getRandom() {
         return DropSimulator.getRandom();
+    }
+
+    @Override
+    public @NotNull HolderLookup.Provider getLookupProvider() {
+        return DropSimulator.getLookupProvider();
     }
 
     @Override

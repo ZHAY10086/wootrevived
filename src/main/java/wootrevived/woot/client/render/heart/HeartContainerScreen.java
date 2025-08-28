@@ -124,7 +124,7 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
         if(activeButton == -1)
             renderFluidTooltip(gui, mouseX, mouseY, CELL_TANK_X, CELL_TANK_Y, menu.getCellFluid(), menu.getCellFluidCapacity());
         else {
-            List<FluidStack> stacks = menu.getFactoryMob(activeButton).getImportFluids(menu.getFactoryMobTag(activeButton));
+            List<FluidStack> stacks = menu.getFactoryMob(activeButton).getImportFluids(menu.getFactoryMobTag(activeButton), menu.getLevel().registryAccess());
             for(int i = 0; i < 8; i++){
                 renderSmallFluidTooltip(gui, mouseX, mouseY, 9 + i * 20, 70, i >= stacks.size() ? FluidStack.EMPTY : stacks.get(i));
             }
@@ -152,9 +152,9 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
         /* State */
         WootFactoryMob<?> mob = menu.getFactoryMob(activeButton);
         CompoundTag tag = menu.getFactoryMobTag(activeButton);
-        menu.updateImports(mob.getImportItems(tag));
+        menu.updateImports(mob.getImportItems(tag, menu.getLevel().registryAccess()));
 
-        List<FluidStack> stacks = mob.getImportFluids(tag);
+        List<FluidStack> stacks = mob.getImportFluids(tag, menu.getLevel().registryAccess());
         for(int i = 0; i < 8; i++){
             renderSmallFluid(gui, 9 + i * 20, 70, i >= stacks.size() ? FluidStack.EMPTY : stacks.get(i));
         }
@@ -414,7 +414,7 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
                 }
             } else {
                 tooltip = new ArrayList<>();
-                tooltip.add(mob.getDisplayName(tag).append(Component.literal(": ")).setStyle(MACHINE_STYLE));
+                tooltip.add(mob.getDisplayName(tag, menu.getLevel().registryAccess()).append(Component.literal(": ")).setStyle(MACHINE_STYLE));
                 tooltip.add(
                         Component.empty()
                                 .append(Component.translatable("info.woot_revived.tier").append(Component.literal(": ")).setStyle(MACHINE_STYLE))

@@ -2,6 +2,7 @@ package wootrevived.woot.drops.mobs;
 
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
@@ -20,7 +21,7 @@ public class VillagerMob extends WootFactoryMob<Villager> {
     }
 
     @Override
-    public MutableComponent getDisplayName(CompoundTag mobTag) {
+    public MutableComponent getDisplayName(CompoundTag mobTag, HolderLookup.Provider lookupProvider) {
         MutableComponent component = Component.empty();
         Tag villagerData = mobTag.get("VillagerData");
         DataResult<VillagerData> result = VillagerData.CODEC.parse(new Dynamic<>(NbtOps.INSTANCE, villagerData));
@@ -29,18 +30,18 @@ public class VillagerMob extends WootFactoryMob<Villager> {
             component.append(Component.translatable("entity.minecraft.villager." + data.getProfession().name().toLowerCase()));
             component.append(Component.literal(" "));
         });
-        component.append(Component.translatable(entityType.getDescriptionId()));
+        component.append(super.getDisplayName(mobTag, lookupProvider));
         return component;
     }
 
     @Override
-    public MutableComponent getTooltipKillName(CompoundTag mobTag) {
-        return super.getDisplayName(mobTag);
+    public MutableComponent getTooltipKillName(CompoundTag mobTag, HolderLookup.Provider lookupProvider) {
+        return super.getDisplayName(mobTag, lookupProvider);
     }
 
     @Override
-    public CompoundTag saveTag(CompoundTag mobTag){
-        CompoundTag tag = super.saveTag(mobTag);
+    public CompoundTag saveTag(CompoundTag mobTag, HolderLookup.Provider lookupProvider){
+        CompoundTag tag = super.saveTag(mobTag, lookupProvider);
         Tag villagerData = mobTag.get("VillagerData");
         if(villagerData != null)
             tag.put("VillagerData", villagerData);

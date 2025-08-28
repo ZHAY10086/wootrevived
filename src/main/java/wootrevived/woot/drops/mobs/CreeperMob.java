@@ -1,5 +1,6 @@
 package wootrevived.woot.drops.mobs;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -15,25 +16,25 @@ public class CreeperMob extends WootFactoryMob<Creeper> {
     }
 
     @Override
-    public MutableComponent getDisplayName(CompoundTag mobTag) {
+    public MutableComponent getDisplayName(CompoundTag mobTag, HolderLookup.Provider lookupProvider) {
         MutableComponent tip = Component.empty();
         if(mobTag.contains("powered") && mobTag.getBoolean("powered")){
             tip.append("Charged ");
         }
-        return tip.append(super.getDisplayName(mobTag));
+        return tip.append(super.getDisplayName(mobTag, lookupProvider));
     }
 
     @Override
-    public CompoundTag saveTag(CompoundTag mobTag){
-        CompoundTag tag = super.saveTag(mobTag);
+    public CompoundTag saveTag(CompoundTag mobTag, HolderLookup.Provider lookupProvider){
+        CompoundTag tag = super.saveTag(mobTag, lookupProvider);
         if(mobTag.contains("powered"))
             tag.putBoolean("powered", mobTag.getBoolean("powered"));
         return tag;
     }
 
     @Override
-    public boolean isSame(CompoundTag shardTag, CompoundTag mobTag){
-        if(!super.isSame(shardTag, mobTag))
+    public boolean isSame(CompoundTag shardTag, CompoundTag mobTag, HolderLookup.Provider lookupProvider){
+        if(!super.isSame(shardTag, mobTag, lookupProvider))
             return false;
 
         boolean isShardPowered = shardTag.contains("powered") && shardTag.getBoolean("powered");

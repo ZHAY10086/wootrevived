@@ -1,5 +1,6 @@
 package wootrevived.api.interfaces;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -44,6 +45,7 @@ public interface WootDropsProperties {
 
     @NotNull ServerLevel getLevel();
     @NotNull RandomSource getRandom();
+    @NotNull HolderLookup.Provider getLookupProvider();
     @NotNull Tier getFactoryTier();
     @NotNull WootFactoryMob<?> getFactoryMob();
     @NotNull CompoundTag getFactoryMobTag();
