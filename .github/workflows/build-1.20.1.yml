@@ -23,5 +23,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Woot Revived ${{ steps.var.outputs.commit_hash }}
+          name: Woot Revived 1.20.1 ${{ steps.var.outputs.commit_hash }}
           path: build/libs
