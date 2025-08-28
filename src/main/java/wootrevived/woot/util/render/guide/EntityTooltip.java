@@ -19,16 +19,16 @@ import static wootrevived.woot.util.render.WootStyles.*;
 public class EntityTooltip implements GuideTooltip {
     private final WootFactoryMob<?> mob;
     private final CompoundTag tag;
+    private final GuidebookLevel level;
 
-    public EntityTooltip(WootFactoryMob<?> mob, CompoundTag tag){
+    public EntityTooltip(WootFactoryMob<?> mob, CompoundTag tag, GuidebookLevel level){
         this.mob = mob;
         this.tag = tag;
+        this.level = level;
     }
 
     @Override
     public List<ClientTooltipComponent> getLines() {
-        GuidebookLevel level = new GuidebookLevel();
-
         String modId = ForgeRegistries.ENTITY_TYPES.getKey(mob.getEntityType()).getNamespace();
 
         List<Component> lines = List.of(
