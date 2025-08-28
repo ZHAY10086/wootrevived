@@ -38,7 +38,9 @@ public class WootRevivedPlugin implements IWootPlugin {
         SheepMob.register(registration);
         SlimeMob.register(registration);
         TropicalFishMob.register(registration);
+        VillagerMob.register(registration);
         VanillaMobs.register(registration);
         WitherMob.register(registration);
+        ZombieVillagerMob.register(registration);
     }
 }

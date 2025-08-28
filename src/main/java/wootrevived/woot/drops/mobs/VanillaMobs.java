@@ -7,9 +7,6 @@ import wootrevived.api.registrations.WootFactoryMobRegistration;
 
 public class VanillaMobs {
     public static void register(WootFactoryMobRegistration registration) {
-        /* Tier 1 */
-        registration.registerFactoryMob(new WootFactoryMob<>(EntityType.VILLAGER, new WootFactoryMob.Properties().tier(Tier.TIER_1)));
-
         /* Tier 2 */
 
         registration.registerFactoryMob(new WootFactoryMob<>(EntityType.CAVE_SPIDER, new WootFactoryMob.Properties().tier(Tier.TIER_2)));
