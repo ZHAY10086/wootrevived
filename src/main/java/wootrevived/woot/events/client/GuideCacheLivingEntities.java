@@ -44,8 +44,10 @@ public class GuideCacheLivingEntities {
 
             try {
                 Entity entity = entityType.create(level);
-                if(!(entity instanceof LivingEntity livingEntity))
+                if(!(entity instanceof LivingEntity livingEntity)) {
+                    WootFactoryMobsRegistry.removeFactoryMob(entityType);
                     continue;
+                }
 
                 livingEntities.put(entityType, livingEntity);
             } catch(Exception ignored){
