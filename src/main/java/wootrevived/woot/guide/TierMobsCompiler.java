@@ -6,6 +6,7 @@ import guideme.compiler.tags.MdxAttrs;
 import guideme.document.block.LytBlockContainer;
 import guideme.document.block.LytHBox;
 import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
+import guideme.scene.level.GuidebookLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import wootrevived.api.WootFactoryMob;
@@ -42,10 +43,12 @@ public class TierMobsCompiler extends BlockTagCompiler {
             entities.add(cachedLivingEntities.get(mob.getEntityType()));
         }
 
+        GuidebookLevel level = new GuidebookLevel();
+
         LytHBox box = new LytHBox();
 
         for(int i = 0; i < mobs.size(); i++)
-            box.append(new LytEntity(mobs.get(i), entities.get(i)));
+            box.append(new LytEntity(mobs.get(i), entities.get(i), level));
 
         parent.append(box);
     }

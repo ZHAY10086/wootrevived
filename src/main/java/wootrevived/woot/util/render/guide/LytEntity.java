@@ -6,6 +6,7 @@ import guideme.document.interaction.GuideTooltip;
 import guideme.document.interaction.InteractiveElement;
 import guideme.layout.LayoutContext;
 import guideme.render.RenderContext;
+import guideme.scene.level.GuidebookLevel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.LivingEntity;
 import wootrevived.api.WootFactoryMob;
@@ -22,10 +23,12 @@ public class LytEntity extends LytBlock implements InteractiveElement {
 
     private final WootFactoryMob<?> mob;
     private final LivingEntity entity;
+    private final GuidebookLevel level;
 
-    public LytEntity(WootFactoryMob<?> mob, LivingEntity entity) {
+    public LytEntity(WootFactoryMob<?> mob, LivingEntity entity, GuidebookLevel level) {
         this.mob = mob;
         this.entity = entity;
+        this.level = level;
     }
 
     @Override
@@ -50,6 +53,6 @@ public class LytEntity extends LytBlock implements InteractiveElement {
 
     @Override
     public Optional<GuideTooltip> getTooltip(float x, float y) {
-        return Optional.of(new EntityTooltip(mob, SerializeEntityNBTHelper.serialize(entity)));
+        return Optional.of(new EntityTooltip(mob, SerializeEntityNBTHelper.serialize(entity), level));
     }
 }
