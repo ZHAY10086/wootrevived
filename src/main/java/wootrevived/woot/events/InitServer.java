@@ -53,8 +53,10 @@ public class InitServer {
 
                 try {
                     Entity entity = entityType.create(level);
-                    if(!(entity instanceof LivingEntity))
+                    if(!(entity instanceof LivingEntity)) {
+                        WootFactoryMobsRegistry.removeFactoryMob(entityType);
                         continue;
+                    }
 
                     ResourceLocation location = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
                     mobLocations.add(location);
