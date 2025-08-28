@@ -1,6 +1,7 @@
 package wootrevived.woot.drops.mobs;
 
 import com.google.common.base.CaseFormat;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -15,24 +16,24 @@ public class PandaMob extends WootFactoryMob<Panda> {
     }
 
     @Override
-    public MutableComponent getDisplayName(CompoundTag mobTag) {
+    public MutableComponent getDisplayName(CompoundTag mobTag, HolderLookup.Provider lookupProvider) {
         MutableComponent tip = Component.empty();
         if(mobTag.getString("MainGene").equals(mobTag.getString("HiddenGene"))){
             tip.append(Component.literal(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, mobTag.getString("MainGene")).replaceAll("([a-z])([A-Z])", "$1 $2") + " "));
         } else {
             tip.append(Component.literal("Normal "));
         }
-        return tip.append(super.getDisplayName(mobTag));
+        return tip.append(super.getDisplayName(mobTag, lookupProvider));
     }
 
     @Override
-    public MutableComponent getTooltipKillName(CompoundTag mobTag) {
-        return super.getDisplayName(mobTag);
+    public MutableComponent getTooltipKillName(CompoundTag mobTag, HolderLookup.Provider lookupProvider) {
+        return super.getDisplayName(mobTag, lookupProvider);
     }
 
     @Override
-    public CompoundTag saveTag(CompoundTag mobTag){
-        CompoundTag tag = super.saveTag(mobTag);
+    public CompoundTag saveTag(CompoundTag mobTag, HolderLookup.Provider lookupProvider){
+        CompoundTag tag = super.saveTag(mobTag, lookupProvider);
         tag.putString("MainGene", mobTag.getString("MainGene"));
         tag.putString("HiddenGene", mobTag.getString("HiddenGene"));
         return tag;

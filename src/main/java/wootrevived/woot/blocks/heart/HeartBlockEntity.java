@@ -166,10 +166,10 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
             WootFactoryMob<?> mob = fakeSpawner.getMob();
             CompoundTag mobTag = fakeSpawner.getMobTag();
 
-            List<ItemStack> importItemStacks = mob.getImportItems(mobTag);
+            List<ItemStack> importItemStacks = mob.getImportItems(mobTag, level.registryAccess());
             ingredientImport.setImportItem(fakeSpawner.index, importItemStacks.size() > 36 ? importItemStacks.subList(0, 36) : importItemStacks);
 
-            List<FluidStack> importFluidStacks = mob.getImportFluids(mobTag);
+            List<FluidStack> importFluidStacks = mob.getImportFluids(mobTag, level.registryAccess());
             ingredientImport.setImportFluid(fakeSpawner.index, importFluidStacks.size() > 8 ?  importFluidStacks.subList(0, 8) : importFluidStacks);
 
             ingredientImport.extractNeighbors();

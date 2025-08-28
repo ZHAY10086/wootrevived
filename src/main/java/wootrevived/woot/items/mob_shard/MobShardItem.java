@@ -49,7 +49,7 @@ public class MobShardItem extends Item {
         if (isProgrammed(stack))
             return false;
 
-        return setProgrammedMob(stack, mob.saveTag(SerializeEntityNBTHelper.serialize(target)));
+        return setProgrammedMob(stack, mob.saveTag(SerializeEntityNBTHelper.serialize(target), target.level().registryAccess()));
     }
 
     public static boolean isProgrammed(ItemStack itemStack) {
@@ -72,7 +72,7 @@ public class MobShardItem extends Item {
         return true;
     }
 
-    private static boolean isMatchingMob(ItemStack itemStack, CompoundTag mobTag) {
+    private static boolean isMatchingMob(ItemStack itemStack, CompoundTag mobTag, Level level) {
         if(itemStack.getItem() != ItemsRegistry.MOB_SHARD_ITEM.get())
             return false;
 
@@ -85,7 +85,7 @@ public class MobShardItem extends Item {
 
         WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(programmedMob);
 
-        return mob.isSame(programmedMob, mobTag);
+        return mob.isSame(programmedMob, mobTag, level.registryAccess());
     }
 
     public static void handleKill(Player player, CompoundTag mobTag) {
@@ -93,7 +93,7 @@ public class MobShardItem extends Item {
 
         ItemStack inHandItemStack = player.getMainHandItem();
 
-        if(!inHandItemStack.isEmpty() && isMatchingMob(inHandItemStack, mobTag) && !isFullyProgrammed(inHandItemStack)){
+        if(!inHandItemStack.isEmpty() && isMatchingMob(inHandItemStack, mobTag, player.level()) && !isFullyProgrammed(inHandItemStack)){
             foundStack = inHandItemStack;
         } else {
             List<ItemStack> inventoryItems = new ArrayList<>();
@@ -102,7 +102,7 @@ public class MobShardItem extends Item {
 
             for(ItemStack itemStack : inventoryItems) {
                 if(inHandItemStack.equals(itemStack)) continue;
-                if(!itemStack.isEmpty() && isMatchingMob(itemStack, mobTag) && !isFullyProgrammed(itemStack)){
+                if(!itemStack.isEmpty() && isMatchingMob(itemStack, mobTag, player.level()) && !isFullyProgrammed(itemStack)){
                     foundStack = itemStack;
                     break;
                 }
@@ -176,7 +176,7 @@ public class MobShardItem extends Item {
 
         WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(mobTag);
         if(mob != null) {
-            tooltip.add(mob.getDisplayName(mobTag).setStyle(CAPTURED_STYLE));
+            tooltip.add(mob.getDisplayName(mobTag, level.registryAccess()).setStyle(CAPTURED_STYLE));
             String modId = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getEntityType()).getNamespace();
             tooltip.add(ModNameHelper.getModName(modId).setStyle(MOD_NAME_STYLE));
         }
@@ -187,7 +187,7 @@ public class MobShardItem extends Item {
         } else {
             tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining", killCount, 5).setStyle(SHARD_PROGRAM_STYLE));
             if(mob != null) {
-                tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining.desc", mob.getTooltipKillName(mobTag).setStyle(DESCRIPTION_STYLE)).setStyle(DESCRIPTION_STYLE));
+                tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining.desc", mob.getTooltipKillName(mobTag, level.registryAccess()).setStyle(DESCRIPTION_STYLE)).setStyle(DESCRIPTION_STYLE));
             } else {
                 tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining.desc_no_entity").setStyle(DESCRIPTION_STYLE));
             }

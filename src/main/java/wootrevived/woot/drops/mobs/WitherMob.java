@@ -1,5 +1,6 @@
 package wootrevived.woot.drops.mobs;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
@@ -38,7 +39,7 @@ public class WitherMob extends WootFactoryMob<WitherBoss> {
     }
 
     @Override
-    public List<ItemStack> getImportItems(CompoundTag mobTag){
+    public List<ItemStack> getImportItems(CompoundTag mobTag, HolderLookup.Provider lookupProvider){
         ItemStack witherSkeletonSkull = Items.WITHER_SKELETON_SKULL.getDefaultInstance();
         witherSkeletonSkull.setCount(3);
 

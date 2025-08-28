@@ -42,7 +42,7 @@ public class FakeSpawnerBlockItem extends FactoryBlockItem {
 
             WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(mobTag);
             if(mob != null) {
-                tooltip.add(mob.getDisplayName(mobTag).setStyle(CAPTURED_STYLE));
+                tooltip.add(mob.getDisplayName(mobTag, level.registryAccess()).setStyle(CAPTURED_STYLE));
                 String modId = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getEntityType()).getNamespace();
                 tooltip.add(ModNameHelper.getModName(modId).setStyle(MOD_NAME_STYLE));
             }
