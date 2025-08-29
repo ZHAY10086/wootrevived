@@ -129,7 +129,7 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
         else {
             List<FluidStack> stacks = menu.getFactoryMob(activeButton).getImportFluids(menu.getFactoryMobTag(activeButton), menu.getLevel().registryAccess());
             for(int i = 0; i < 8; i++){
-                renderSmallFluidTooltip(gui, mouseX, mouseY, 9 + i * 20, 70, i >= stacks.size() ? FluidStack.EMPTY : stacks.get(i));
+                renderSmallFluidTooltip(gui, mouseX, mouseY, 9 + i * 20, 73, i >= stacks.size() ? FluidStack.EMPTY : stacks.get(i));
             }
         }
     }
