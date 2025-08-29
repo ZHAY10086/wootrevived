@@ -175,9 +175,10 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
             ingredientImport.extractNeighbors();
 
             if(!fakeSpawner.isActive() && ingredientImport.isImportValid(fakeSpawner.index)){
-                ingredientImport.consumeImports(fakeSpawner.index);
                 WootGenerationProperties properties = getWootGenerationProperties(mob, mobTag);
-                fakeSpawner.setActive(properties.getSpawnRate(), properties.getVitalityFuelCost(), properties.getNumberOfSimulations());
+                if(fakeSpawner.setActive(properties.getSpawnRate(), properties.getVitalityFuelCost(), properties.getNumberOfSimulations())){
+                    ingredientImport.consumeImports(fakeSpawner.index);
+                }
             } else if(fakeSpawner.tick(cell.tankHandler)){
                 GenerationResult result = generateDrops(fakeSpawner);
 
