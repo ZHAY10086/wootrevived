@@ -19,18 +19,24 @@ public class WootRedstoneButton extends WootButton {
 
     @Override
     protected void renderWidget(GuiGraphics gui, int mouseX, int mouseY, float partialTick) {
-        int uOffset = mode == RedstoneMode.ALWAYS_ON ? 215 : mode == RedstoneMode.WITH_NO_SIGNAL ? 230 : mode == RedstoneMode.WITH_SIGNAL ? 215 : 230;
-        int vOffset = mode == RedstoneMode.ALWAYS_ON ? 132 : mode == RedstoneMode.WITH_NO_SIGNAL ? 132 : mode == RedstoneMode.WITH_SIGNAL ? 147 : 147;
-        gui.blit(WootContainerScreen.GUI, getX(), getY(), uOffset, vOffset, getWidth(), getHeight());
-        if(isHovered()) {
-            gui.fill(getX() + 1, getY() + 1, getX() + getWidth() - 1, getY() + getHeight() - 1, 0x80FFFFFF);
-            gui.renderTooltip(WootContainerScreen.getFont(), mode.getComponent(), mouseX, mouseY);
+        if(active){
+            int uOffset = mode == RedstoneMode.ALWAYS_ON ? 215 : mode == RedstoneMode.WITH_NO_SIGNAL ? 230 : mode == RedstoneMode.WITH_SIGNAL ? 215 : 230;
+            int vOffset = mode == RedstoneMode.ALWAYS_ON ? 132 : mode == RedstoneMode.WITH_NO_SIGNAL ? 132 : mode == RedstoneMode.WITH_SIGNAL ? 147 : 147;
+            gui.blit(WootContainerScreen.GUI, getX(), getY(), uOffset, vOffset, getWidth(), getHeight());
+            if(isHovered()) {
+                gui.fill(getX() + 1, getY() + 1, getX() + getWidth() - 1, getY() + getHeight() - 1, 0x80FFFFFF);
+                gui.renderTooltip(WootContainerScreen.getFont(), mode.getComponent(), mouseX, mouseY);
+            }
         }
     }
 
     public RedstoneMode nextMode(){
         mode = mode.getNext();
         return mode;
+    }
+
+    public void setMode(RedstoneMode mode){
+        this.mode = mode;
     }
 
     @Override

@@ -17,6 +17,10 @@ public class WootHeartInputButton extends WootButton {
         this.index = index;
     }
 
+    public int getFakeSpawnerIndex(){
+        return index;
+    }
+
     @Override
     protected void renderWidget(@NotNull GuiGraphics gui, int mouseX, int mouseY, float partialTick) {
         if(isViewActive || (active && isHovered())) {
