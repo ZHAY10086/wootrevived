@@ -27,14 +27,12 @@ import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.WootFluidTankHandlerWrapper;
-import wootrevived.woot.util.handlers.WootItemStackHandler;
+import wootrevived.woot.util.handlers.*;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
 
 
 import org.jetbrains.annotations.Nullable;
-import wootrevived.woot.util.handlers.WootItemStackHandlerWrapper;
 import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
@@ -114,22 +112,17 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
 
     public static IItemHandler getItemHandlerCapability(FluidInfuserBlockEntity blockEntity, Direction side){
         Properties properties = blockEntity.getProperties(side);
-        if(properties.getIngredientProperty() != MachineSideProperty.DISABLED)
-            return new WootItemStackHandlerWrapper(blockEntity.inventoryHandler, properties::getIngredientProperty);
-        return null;
+
+        return new WootItemHandlerWrapper()
+                .addHandler(blockEntity.inventoryHandler, properties::getIngredientProperty);
     }
 
     public static IFluidHandler getFluidHandlerCapability(FluidInfuserBlockEntity blockEntity, Direction side){
         Properties properties = blockEntity.getProperties(side);
-        MachineSideProperty inputProperty = properties.getInputFluidProperty();
-        MachineSideProperty outputProperty = properties.getOutputFluidProperty();
-        if(outputProperty == MachineSideProperty.PUSH)
-            return new WootFluidTankHandlerWrapper(blockEntity.outputTankHandler, properties::getOutputFluidProperty);
-        if(inputProperty != MachineSideProperty.DISABLED)
-            return new WootFluidTankHandlerWrapper(blockEntity.inputTankHandler, properties::getInputFluidProperty);
-        if(outputProperty == MachineSideProperty.ENABLED)
-            return new WootFluidTankHandlerWrapper(blockEntity.outputTankHandler, properties::getOutputFluidProperty);
-        return null;
+
+        return new WootFluidHandlerWrapper()
+                .addHandler(blockEntity.outputTankHandler, properties::getOutputFluidProperty)
+                .addHandler(blockEntity.inputTankHandler, properties::getInputFluidProperty);
     }
 
     @Override

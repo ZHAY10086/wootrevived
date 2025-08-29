@@ -29,11 +29,9 @@ import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.WootFluidTankHandlerWrapper;
-import wootrevived.woot.util.handlers.WootItemStackHandler;
+import wootrevived.woot.util.handlers.*;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
-import wootrevived.woot.util.handlers.WootItemStackHandlerWrapper;
 import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
@@ -138,28 +136,18 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
 
     public static IItemHandler getItemHandlerCapability(ItemInfuserBlockEntity blockEntity, Direction side){
         Properties properties = blockEntity.getProperties(side);
-        MachineSideProperty ingredientProperty = properties.getIngredientProperty();
-        MachineSideProperty augmentProperty = properties.getAugmentProperty();
-        MachineSideProperty outputProperty = properties.getOutputProperty();
-        if(outputProperty == MachineSideProperty.PUSH)
-            return new WootItemStackHandlerWrapper(blockEntity.outputSlotHandler, properties::getOutputProperty);
-        if((augmentProperty == MachineSideProperty.PUSH && (ingredientProperty == MachineSideProperty.ENABLED || ingredientProperty == MachineSideProperty.PULL)) ||
-                (augmentProperty == MachineSideProperty.PULL && (ingredientProperty == MachineSideProperty.ENABLED || ingredientProperty == MachineSideProperty.PUSH)))
-            return new WootItemStackHandlerWrapper(blockEntity.augmentSlotHandler, properties::getAugmentProperty);
-        if(ingredientProperty != MachineSideProperty.DISABLED)
-            return new WootItemStackHandlerWrapper(blockEntity.inputSlotHandler, properties::getIngredientProperty);
-        if(augmentProperty != MachineSideProperty.DISABLED)
-            return new WootItemStackHandlerWrapper(blockEntity.augmentSlotHandler, properties::getAugmentProperty);
-        if(outputProperty == MachineSideProperty.ENABLED)
-            return new WootItemStackHandlerWrapper(blockEntity.outputSlotHandler, properties::getOutputProperty);
-        return null;
+
+        return new WootItemHandlerWrapper()
+                .addHandler(blockEntity.outputSlotHandler, properties::getOutputProperty)
+                .addHandler(blockEntity.augmentSlotHandler, properties::getAugmentProperty)
+                .addHandler(blockEntity.inputSlotHandler, properties::getIngredientProperty);
     }
 
     public static IFluidHandler getFluidHandlerCapability(ItemInfuserBlockEntity blockEntity, Direction side){
         Properties properties = blockEntity.getProperties(side);
-        if(properties.getInputFluidProperty() != MachineSideProperty.DISABLED)
-            return new WootFluidTankHandlerWrapper(blockEntity.inputTankHandler, properties::getInputFluidProperty);
-        return null;
+
+        return new WootFluidHandlerWrapper()
+                .addHandler(blockEntity.inputTankHandler, properties::getInputFluidProperty);
     }
 
     @Override

@@ -31,11 +31,9 @@ import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.WootFluidTankHandlerWrapper;
-import wootrevived.woot.util.handlers.WootItemStackHandler;
+import wootrevived.woot.util.handlers.*;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
-import wootrevived.woot.util.handlers.WootItemStackHandlerWrapper;
 import wootrevived.woot.util.helper.EnchantmentHelper;
 
 
@@ -111,17 +109,16 @@ public class EnchantedLiquifierBlockEntity extends WootMachineBlockEntity implem
 
     public static IItemHandler getItemHandlerCapability(EnchantedLiquifierBlockEntity blockEntity, Direction side){
         Properties properties = blockEntity.getProperties(side);
-        if(properties.getIngredientProperty() != MachineSideProperty.DISABLED)
-            return new WootItemStackHandlerWrapper(blockEntity.inventoryHandler, properties::getIngredientProperty);
-        return null;
+
+        return new WootItemHandlerWrapper()
+                .addHandler(blockEntity.inventoryHandler, properties::getIngredientProperty);
     }
 
     public static IFluidHandler getFluidHandlerCapability(EnchantedLiquifierBlockEntity blockEntity, Direction side){
         Properties properties = blockEntity.getProperties(side);
-        MachineSideProperty property = properties.getOutputFluidProperty();
-        if(property != MachineSideProperty.DISABLED && property != MachineSideProperty.PULL)
-            return new WootFluidTankHandlerWrapper(blockEntity.outputTankHandler, properties::getOutputFluidProperty);
-        return null;
+
+        return new WootFluidHandlerWrapper()
+                .addHandler(blockEntity.outputTankHandler, properties::getOutputFluidProperty);
     }
 
     @Override
