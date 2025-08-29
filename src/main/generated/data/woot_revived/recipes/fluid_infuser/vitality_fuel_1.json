@@ -14,8 +14,8 @@
       "type": "fluid",
       "fluids": [
         {
-          "amount": 1000,
-          "id": "woot_revived:mob_tears_fluid"
+          "Amount": 1000,
+          "FluidName": "woot_revived:mob_tears_fluid"
         }
       ]
     }
@@ -23,8 +23,10 @@
   "outputs": [
     {
       "type": "fluid",
-      "amount": 100,
-      "id": "woot_revived:vitality_fuel_fluid"
+      "fluid": {
+        "Amount": 100,
+        "FluidName": "woot_revived:vitality_fuel_fluid"
+      }
     }
   ]
 }

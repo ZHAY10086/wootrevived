@@ -17,8 +17,8 @@
       "type": "fluid",
       "fluids": [
         {
-          "amount": 1000,
-          "id": "minecraft:lava"
+          "Amount": 1000,
+          "FluidName": "minecraft:lava"
         }
       ]
     }
@@ -26,8 +26,10 @@
   "outputs": [
     {
       "type": "item",
-      "count": 3,
-      "id": "minecraft:fire_charge"
+      "item": {
+        "Count": 3,
+        "id": "minecraft:fire_charge"
+      }
     }
   ]
 }

@@ -17,8 +17,8 @@
       "type": "fluid",
       "fluids": [
         {
-          "amount": 3000,
-          "id": "woot_revived:enchanted_fluid"
+          "Amount": 3000,
+          "FluidName": "woot_revived:enchanted_fluid"
         }
       ]
     }
@@ -26,8 +26,10 @@
   "outputs": [
     {
       "type": "item",
-      "count": 1,
-      "id": "woot_revived:gold_enchanted_plate"
+      "item": {
+        "Count": 1,
+        "id": "woot_revived:gold_enchanted_plate"
+      }
     }
   ]
 }

@@ -1,14 +1,18 @@
 package wootrevived.woot.util.recipes;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,9 +65,8 @@ public abstract class WootFinishedRecipe implements FinishedRecipe {
             obj.addProperty("type", "fluid");
             JsonArray fluids = new JsonArray();
             for(FluidStack stack : inputFluids){
-                JsonObject fluid = new JsonObject();
-                fluid.addProperty("id", ForgeRegistries.FLUIDS.getKey(stack.getFluid()).toString());
-                fluid.addProperty("amount", stack.getAmount());
+                CompoundTag tag = stack.writeToNBT(new CompoundTag());
+                JsonElement fluid = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
                 fluids.add(fluid);
             }
             obj.add("fluids", fluids);
@@ -77,16 +80,18 @@ public abstract class WootFinishedRecipe implements FinishedRecipe {
         if(outputItem != null){
             JsonObject obj = new JsonObject();
             obj.addProperty("type", "item");
-            obj.addProperty("id", ForgeRegistries.ITEMS.getKey(outputItem.getItem()).toString());
-            obj.addProperty("count", outputItem.getCount());
+            CompoundTag tag = outputItem.save(new CompoundTag());
+            JsonElement item = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
+            obj.add("item", item);
             outputs.add(obj);
         }
 
         if(outputFluid != null){
             JsonObject obj = new JsonObject();
             obj.addProperty("type", "fluid");
-            obj.addProperty("id", ForgeRegistries.FLUIDS.getKey(outputFluid.getFluid()).toString());
-            obj.addProperty("amount", outputFluid.getAmount());
+            CompoundTag tag = outputFluid.writeToNBT(new CompoundTag());
+            JsonElement fluid = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
+            obj.add("fluid", fluid);
             outputs.add(obj);
         }
 

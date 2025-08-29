@@ -14,8 +14,8 @@
       "type": "fluid",
       "fluids": [
         {
-          "amount": 1000,
-          "id": "minecraft:water"
+          "Amount": 1000,
+          "FluidName": "minecraft:water"
         }
       ]
     }
@@ -23,8 +23,10 @@
   "outputs": [
     {
       "type": "fluid",
-      "amount": 4000,
-      "id": "woot_revived:mob_tears_fluid"
+      "fluid": {
+        "Amount": 4000,
+        "FluidName": "woot_revived:mob_tears_fluid"
+      }
     }
   ]
 }

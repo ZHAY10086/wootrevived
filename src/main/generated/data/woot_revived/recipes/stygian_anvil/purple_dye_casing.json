@@ -17,8 +17,10 @@
   "outputs": [
     {
       "type": "item",
-      "count": 1,
-      "id": "woot_revived:purple_dye_casing"
+      "item": {
+        "Count": 1,
+        "id": "woot_revived:purple_dye_casing"
+      }
     }
   ]
 }

@@ -20,8 +20,10 @@
   "outputs": [
     {
       "type": "item",
-      "count": 1,
-      "id": "woot_revived:shard_mold"
+      "item": {
+        "Count": 1,
+        "id": "woot_revived:shard_mold"
+      }
     }
   ]
 }

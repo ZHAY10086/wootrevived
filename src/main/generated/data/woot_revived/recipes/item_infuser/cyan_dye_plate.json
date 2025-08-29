@@ -15,8 +15,8 @@
       "type": "fluid",
       "fluids": [
         {
-          "amount": 360,
-          "id": "woot_revived:pure_dye_fluid"
+          "Amount": 360,
+          "FluidName": "woot_revived:pure_dye_fluid"
         }
       ]
     }
@@ -24,8 +24,10 @@
   "outputs": [
     {
       "type": "item",
-      "count": 1,
-      "id": "woot_revived:cyan_dye_plate"
+      "item": {
+        "Count": 1,
+        "id": "woot_revived:cyan_dye_plate"
+      }
     }
   ]
 }
