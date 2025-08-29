@@ -31,5 +31,14 @@ public class NetworkChannel {
                 WootMachineUpdate::handle,
                 Optional.of(NetworkDirection.PLAY_TO_SERVER)
         );
+
+        channel.registerMessage(
+                1,
+                WootFakeSpawnerUpdate.class,
+                WootFakeSpawnerUpdate::encode,
+                WootFakeSpawnerUpdate::decode,
+                WootFakeSpawnerUpdate::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
     }
 }

@@ -2,6 +2,7 @@ package wootrevived.woot.blocks.fake_spawner;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -11,9 +12,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.enums.Tier;
+import wootrevived.woot.network.NetworkChannel;
+import wootrevived.woot.network.WootFakeSpawnerUpdate;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
 import wootrevived.woot.util.block.FactoryBlockBaseEntity;
+import wootrevived.woot.util.common.RedstoneMode;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.handlers.WootFluidTankHandler;
 
@@ -63,6 +67,9 @@ public class FakeSpawnerBlockEntity extends FactoryBlockBaseEntity {
     }
 
     public void setActive(int rate, int cost, int numOfSim){
+        if(isDisabled())
+            return;
+
         this.perTickRatio = ((double)cost) / ((double)rate);
         this.accumulator = 0;
         this.vitalityCost = cost;
@@ -77,6 +84,9 @@ public class FakeSpawnerBlockEntity extends FactoryBlockBaseEntity {
 
     public boolean tick(WootFluidTankHandler tank){
         if(!isActive())
+            return false;
+
+        if(redstoneMode != RedstoneMode.ONCE && isDisabled())
             return false;
 
         accumulator += perTickRatio;
@@ -128,9 +138,35 @@ public class FakeSpawnerBlockEntity extends FactoryBlockBaseEntity {
         return itemStack;
     }
 
+    protected RedstoneMode redstoneMode = RedstoneMode.ALWAYS_ON;
+
+    public RedstoneMode getRedstoneMode() {
+        return redstoneMode;
+    }
+
+    public void setRedstoneMode(RedstoneMode mode) {
+        redstoneMode = mode;
+    }
+
+    private boolean lastRedstoneState = false;
+    protected boolean isDisabled(){
+        if(redstoneMode == RedstoneMode.ALWAYS_ON) return false;
+
+        boolean current = level.hasNeighborSignal(getBlockPos());
+
+        if(redstoneMode != RedstoneMode.ONCE)
+            return (redstoneMode == RedstoneMode.WITH_SIGNAL) != current;
+
+        boolean risingEdge = !lastRedstoneState && current;
+        lastRedstoneState = current;
+        return !risingEdge;
+    }
+
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag){
         super.saveAdditional(tag);
+
+        tag.putInt(WootTags.REDSTONE_MODE_TAG, redstoneMode.ordinal());
 
         CompoundTag mobTag = getMobTag();
         if(mobTag != null)
@@ -146,6 +182,8 @@ public class FakeSpawnerBlockEntity extends FactoryBlockBaseEntity {
     @Override
     public void load(@NotNull CompoundTag tag){
         super.load(tag);
+
+        redstoneMode = RedstoneMode.byIndex(tag.getInt(WootTags.REDSTONE_MODE_TAG));
 
         if(tag.contains(WootTags.MOB_TAG))
             mobTag = tag.getCompound(WootTags.MOB_TAG);
@@ -177,5 +215,22 @@ public class FakeSpawnerBlockEntity extends FactoryBlockBaseEntity {
 
         if(level == null || level.isClientSide) return;
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
+    }
+
+    public void sendNewState(){
+        NetworkChannel.channel.sendToServer(new WootFakeSpawnerUpdate(getBlockPos(), redstoneMode));
+    }
+
+    public void handleNewState(WootFakeSpawnerUpdate update){
+        if(update.redstoneMode() != null)
+            redstoneMode = update.redstoneMode();
+
+        setChanged();
+    }
+
+    public boolean canPlayerAccess(ServerPlayer player) {
+        return !(player.distanceToSqr(getBlockPos().getX() + 0.5,
+                getBlockPos().getY() + 0.5,
+                getBlockPos().getZ() + 0.5) > 64);
     }
 }

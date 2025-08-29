@@ -25,12 +25,15 @@ import org.jetbrains.annotations.Nullable;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.enums.Tier;
 import wootrevived.woot.Woot;
+import wootrevived.woot.blocks.fake_spawner.FakeSpawnerBlockEntity;
 import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
+import wootrevived.woot.util.common.RedstoneMode;
 import wootrevived.woot.util.common.WootTier;
 import wootrevived.woot.util.helper.ModNameHelper;
 import wootrevived.woot.util.render.*;
 import wootrevived.woot.util.render.buttons.WootHeartInputButton;
+import wootrevived.woot.util.render.buttons.WootRedstoneButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,15 +142,15 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
 
     /* Imports */
 
-    protected void renderImports(GuiGraphics gui) {
+    protected void renderFakeSpawner(GuiGraphics gui) {
         /* Background */
         gui.fill(4, 56, 172, 159, 0xFFC6C6C6);
         gui.blit(GUI, 7, 105, 7, 101, 162, 54);
         for(int i = 0; i < 8; i++){
-            gui.blit(GUI, 9 + i * 20, 70, 58, 185, 18, 19);
+            gui.blit(GUI, 9 + i * 20, 73, 58, 185, 18, 19);
         }
-        gui.drawString(font, "Needed Fluid Imports", 9, 59, 0x404040, false);
-        gui.drawString(font, "Needed Item Imports", 7, 94, 0x404040, false);
+        gui.drawString(font, "Needed Fluid Imports", 9, 63, 0x404040, false);
+        gui.drawString(font, "Needed Item Imports", 7, 95, 0x404040, false);
 
         /* State */
         WootFactoryMob<?> mob = menu.getFactoryMob(activeButton);
@@ -156,7 +159,7 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
 
         List<FluidStack> stacks = mob.getImportFluids(tag, menu.getLevel().registryAccess());
         for(int i = 0; i < 8; i++){
-            renderSmallFluid(gui, 9 + i * 20, 70, i >= stacks.size() ? FluidStack.EMPTY : stacks.get(i));
+            renderSmallFluid(gui, 9 + i * 20, 73, i >= stacks.size() ? FluidStack.EMPTY : stacks.get(i));
         }
     }
 
@@ -164,11 +167,22 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
 
     private int activeButton = -1;
 
+    private WootRedstoneButton redstoneButton;
+
     @Override
     protected void init(){
         super.init();
 
         buttons.clear();
+
+        addRenderableWidget(redstoneButton = new WootRedstoneButton(leftPos + 152, topPos + 57, RedstoneMode.ALWAYS_ON, button -> {
+            RedstoneMode mode = button.nextMode();
+            FakeSpawnerBlockEntity entity = menu.getFakeSpawner(buttons.get(activeButton).getFakeSpawnerIndex());
+            entity.setRedstoneMode(mode);
+            entity.sendNewState();
+        }));
+
+        redstoneButton.active = false;
 
         createButton(PRIMARY_MOB_X, PRIMARY_MOB_Y, HeartContainerMenu.PRIMARY_FAKE_SPAWNER);
         createButton(SECONDARY_MOB_0_X, SECONDARY_MOB_0_Y, HeartContainerMenu.SECONDARY_FAKE_SPAWNER_0);
@@ -187,12 +201,15 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
         if(activeButton == button.index){
             activeButton = -1;
             button.isViewActive = false;
+            redstoneButton.active = false;
         } else {
             if(activeButton != -1)
                 buttons.get(activeButton).isViewActive = false;
 
             activeButton = button.index;
             button.isViewActive = true;
+            redstoneButton.active = true;
+            redstoneButton.setMode(menu.getFakeSpawner(buttons.get(activeButton).getFakeSpawnerIndex()).getRedstoneMode());
         }
     }
 
@@ -245,7 +262,7 @@ public class HeartContainerScreen extends AbstractContainerScreen<HeartContainer
         }
 
         if(activeButton != -1)
-            renderImports(gui);
+            renderFakeSpawner(gui);
 
         pose.popPose();
     }
