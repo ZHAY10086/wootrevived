@@ -30,14 +30,14 @@ import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.WootFluidTankHandlerWrapper;
+import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
+import wootrevived.woot.util.handlers.WootItemHandlerWrapper;
 import wootrevived.woot.util.handlers.WootItemStackHandler;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
 
 
 import org.jetbrains.annotations.Nullable;
-import wootrevived.woot.util.handlers.WootItemStackHandlerWrapper;
 import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
@@ -94,7 +94,6 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
     };
 
     public static final int INPUT_SLOT = 0;
-    private final LazyOptional<IItemHandler> inventory = LazyOptional.of(() -> inventoryHandler);
     public IItemHandler getInventory() { return inventoryHandler; }
 
     public record Properties(FluidInfuserBlockEntity entity, MachineSide machineSide){
@@ -125,20 +124,18 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
         Properties properties = getProperties(side);
 
         if(ForgeCapabilities.ITEM_HANDLER.equals(cap)){
-            MachineSideProperty property = properties.getIngredientProperty();
-            if(property != MachineSideProperty.DISABLED)
-                return inventory.lazyMap(handler -> new WootItemStackHandlerWrapper((WootItemStackHandler) handler, properties::getIngredientProperty)).cast();
+            WootItemHandlerWrapper wrapper = new WootItemHandlerWrapper()
+                    .addHandler(inventoryHandler, properties::getIngredientProperty);
+
+            return LazyOptional.of(() -> wrapper).cast();
         }
 
         if(ForgeCapabilities.FLUID_HANDLER.equals(cap)){
-            MachineSideProperty inputProperty = properties.getInputFluidProperty();
-            MachineSideProperty outputProperty = properties.getOutputFluidProperty();
-            if(outputProperty == MachineSideProperty.PUSH)
-                return outputTank.lazyMap(tank -> new WootFluidTankHandlerWrapper(tank, properties::getOutputFluidProperty)).cast();
-            if(inputProperty != MachineSideProperty.DISABLED)
-                return inputTank.lazyMap(tank -> new WootFluidTankHandlerWrapper(tank, properties::getInputFluidProperty)).cast();
-            if(outputProperty == MachineSideProperty.ENABLED)
-                return outputTank.lazyMap(tank -> new WootFluidTankHandlerWrapper(tank, properties::getOutputFluidProperty)).cast();
+            WootFluidHandlerWrapper wrapper = new WootFluidHandlerWrapper()
+                    .addHandler(outputTankHandler, properties::getOutputFluidProperty)
+                    .addHandler(inputTankHandler, properties::getInputFluidProperty);
+
+            return LazyOptional.of(() -> wrapper).cast();
         }
 
         return super.getCapability(cap, side);
@@ -256,7 +253,7 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
     private void getRecipe() {
         clearRecipe();
 
-        FluidStack inFluid = inputTank.map(FluidTank::getFluid).orElse(FluidStack.EMPTY);
+        FluidStack inFluid = inputTankHandler.getFluid();
         if (inFluid.isEmpty()) {
             clearRecipe();
             return;

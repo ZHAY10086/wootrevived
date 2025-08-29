@@ -37,7 +37,6 @@ import wootrevived.woot.util.render.WootContainerData;
 import wootrevived.woot.blocks.dye_liquifier.DyeLiquifierBlockEntity;
 import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerMenu;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -298,8 +297,6 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
     public abstract boolean hasEnergyCapability();
 
     public final WootFluidTankHandler inputTankHandler = createInputTank();
-    public final LazyOptional<WootFluidTankHandler> inputTank = LazyOptional.of(() -> inputTankHandler);
-
     private WootFluidTankHandler createInputTank() {
         if(!hasInputFluidCapability())
             return null;
@@ -346,8 +343,6 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
     }
 
     public final WootFluidTankHandler outputTankHandler = createOutputTank();
-    public final LazyOptional<WootFluidTankHandler> outputTank = LazyOptional.of(() -> outputTankHandler);
-
     private WootFluidTankHandler createOutputTank() {
         if(!hasOutputFluidCapability())
             return null;
@@ -439,8 +434,6 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
             }
         }
 
-        hasSidePropertiesChanged = true;
-
         if(hasEnergyCapability())
             energyHandler.deserializeNBT(tag.getCompound(WootTags.ENERGY_TAG));
 
@@ -470,18 +463,12 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    private boolean hasSidePropertiesChanged = false;
-
     @Override
     public void setChanged() {
         super.setChanged();
 
         if(this.level == null || this.level.isClientSide) return;
         this.level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
-        if(hasSidePropertiesChanged){
-            hasSidePropertiesChanged = false;
-            this.level.updateNeighborsAt(getBlockPos(), getBlockState().getBlock());
-        }
     }
 
     public void sendNewState(){
@@ -492,10 +479,8 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
         if(update.redstoneMode() != null)
             redstoneMode = update.redstoneMode();
 
-        if(update.listMachineProperties().size() == getAllMachineSidesProperties().size()) {
+        if(update.listMachineProperties().size() == getAllMachineSidesProperties().size())
             setAllMachineSidesProperties(update.listMachineProperties());
-            hasSidePropertiesChanged = true;
-        }
 
         setChanged();
     }

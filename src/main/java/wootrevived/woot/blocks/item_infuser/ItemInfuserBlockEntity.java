@@ -31,11 +31,11 @@ import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.WootFluidTankHandlerWrapper;
+import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
+import wootrevived.woot.util.handlers.WootItemHandlerWrapper;
 import wootrevived.woot.util.handlers.WootItemStackHandler;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
-import wootrevived.woot.util.handlers.WootItemStackHandlerWrapper;
 import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
@@ -111,12 +111,8 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
             return stack;
         }
     };
-    private final IItemHandler allSlotsHandler = new CombinedInvWrapper(inputSlotHandler, augmentSlotHandler, outputSlotHandler);
-    private final LazyOptional<IItemHandler> inputSlot = LazyOptional.of(() -> inputSlotHandler);
-    private final LazyOptional<IItemHandler> augmentSlot = LazyOptional.of(() -> augmentSlotHandler);
-    private final LazyOptional<IItemHandler> outputSlot = LazyOptional.of(() -> outputSlotHandler);
-    private final LazyOptional<IItemHandler> allSlots = LazyOptional.of(() -> allSlotsHandler);
 
+    private final IItemHandler allSlotsHandler = new CombinedInvWrapper(inputSlotHandler, augmentSlotHandler, outputSlotHandler);
     public IItemHandler getInventory() { return allSlotsHandler; }
 
     public record Properties(ItemInfuserBlockEntity entity, MachineSide machineSide){
@@ -150,26 +146,19 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
         Properties properties = getProperties(side);
 
         if(ForgeCapabilities.ITEM_HANDLER.equals(cap)){
-            MachineSideProperty ingredientProperty = properties.getIngredientProperty();
-            MachineSideProperty augmentProperty = properties.getAugmentProperty();
-            MachineSideProperty outputProperty = properties.getOutputProperty();
-            if(outputProperty == MachineSideProperty.PUSH)
-                return outputSlot.lazyMap(handler -> new WootItemStackHandlerWrapper((WootItemStackHandler) handler, properties::getOutputProperty)).cast();
-            if((augmentProperty == MachineSideProperty.PUSH && (ingredientProperty == MachineSideProperty.ENABLED || ingredientProperty == MachineSideProperty.PULL)) ||
-                    (augmentProperty == MachineSideProperty.PULL && (ingredientProperty == MachineSideProperty.ENABLED || ingredientProperty == MachineSideProperty.PUSH)))
-                return augmentSlot.lazyMap(handler -> new WootItemStackHandlerWrapper((WootItemStackHandler) handler, properties::getAugmentProperty)).cast();
-            if(ingredientProperty != MachineSideProperty.DISABLED)
-                return inputSlot.lazyMap(handler -> new WootItemStackHandlerWrapper((WootItemStackHandler) handler, properties::getIngredientProperty)).cast();
-            if(augmentProperty != MachineSideProperty.DISABLED)
-                return augmentSlot.lazyMap(handler -> new WootItemStackHandlerWrapper((WootItemStackHandler) handler, properties::getAugmentProperty)).cast();
-            if(outputProperty == MachineSideProperty.ENABLED)
-                return outputSlot.lazyMap(handler -> new WootItemStackHandlerWrapper((WootItemStackHandler) handler, properties::getOutputProperty)).cast();
+            WootItemHandlerWrapper wrapper = new WootItemHandlerWrapper()
+                    .addHandler(outputSlotHandler, properties::getOutputProperty)
+                    .addHandler(augmentSlotHandler, properties::getAugmentProperty)
+                    .addHandler(inputSlotHandler, properties::getIngredientProperty);
+
+            return LazyOptional.of(() -> wrapper).cast();
         }
 
         if(ForgeCapabilities.FLUID_HANDLER.equals(cap)){
-            MachineSideProperty property = properties.getInputFluidProperty();
-            if(property != MachineSideProperty.DISABLED)
-                return inputTank.lazyMap(tank -> new WootFluidTankHandlerWrapper(tank, properties::getInputFluidProperty)).cast();
+            WootFluidHandlerWrapper wrapper = new WootFluidHandlerWrapper()
+                    .addHandler(inputTankHandler, properties::getInputFluidProperty);
+
+            return LazyOptional.of(() -> wrapper).cast();
         }
 
         return super.getCapability(cap, side);
