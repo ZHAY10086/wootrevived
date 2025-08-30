@@ -1,13 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 0.125,
+  "blue_multiplier": 0.125,
   "energy": 500,
   "inputIngredients": [
     {
       "item": "minecraft:cocoa_beans"
     }
   ],
-  "red": 0.75,
-  "white": 0.0,
-  "yellow": 0.125
+  "red_multiplier": 0.75,
+  "white_multiplier": 0.0,
+  "yellow_multiplier": 0.125
 }

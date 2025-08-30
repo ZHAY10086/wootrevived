@@ -18,13 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.woot.blocks.fake_spawner.FakeSpawnerBlockEntity;
-import wootrevived.woot.events.InitServer;
+import wootrevived.woot.events.InitDropSimulator;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
 import wootrevived.woot.util.helper.SerializeEntityNBTHelper;
 
 public class GiveCommand {
     private static final SuggestionProvider<CommandSourceStack> suggestionProvider = (commandContext, suggestionsBuilder) -> {
-        return SharedSuggestionProvider.suggestResource(InitServer.mobLocations, suggestionsBuilder);
+        return SharedSuggestionProvider.suggestResource(InitDropSimulator.mobLocations, suggestionsBuilder);
     };
 
     public static ArgumentBuilder<CommandSourceStack, ?> register() {

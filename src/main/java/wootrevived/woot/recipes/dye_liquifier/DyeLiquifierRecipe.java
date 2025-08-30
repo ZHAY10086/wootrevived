@@ -19,10 +19,10 @@ import java.util.List;
 public class DyeLiquifierRecipe extends WootRecipe {
     public static final MapCodec<DyeLiquifierRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Codec.INT.fieldOf("energy").forGetter(DyeLiquifierRecipe::getEnergy),
-            Codec.FLOAT.fieldOf("red").forGetter(DyeLiquifierRecipe::getInternalRed),
-            Codec.FLOAT.fieldOf("yellow").forGetter(DyeLiquifierRecipe::getInternalYellow),
-            Codec.FLOAT.fieldOf("blue").forGetter(DyeLiquifierRecipe::getInternalBlue),
-            Codec.FLOAT.fieldOf("white").forGetter(DyeLiquifierRecipe::getInternalWhite),
+            Codec.FLOAT.fieldOf("red_multiplier").forGetter(DyeLiquifierRecipe::getInternalRed),
+            Codec.FLOAT.fieldOf("yellow_multiplier").forGetter(DyeLiquifierRecipe::getInternalYellow),
+            Codec.FLOAT.fieldOf("blue_multiplier").forGetter(DyeLiquifierRecipe::getInternalBlue),
+            Codec.FLOAT.fieldOf("white_multiplier").forGetter(DyeLiquifierRecipe::getInternalWhite),
             Ingredient.CODEC.listOf().fieldOf("inputIngredients").forGetter(DyeLiquifierRecipe::getInputItems)
     ).apply(inst, DyeLiquifierRecipe::new));
 
@@ -94,6 +94,7 @@ public class DyeLiquifierRecipe extends WootRecipe {
 
     public static void loadRecipes(@NotNull RecipeManager manager){
         Validator.clear();
+        maxMultiplier = 0;
         for(RecipeHolder<DyeLiquifierRecipe> recipeHolder : manager.getAllRecipesFor(RecipesRegistry.DYE_LIQUIFIER_RECIPE_TYPE.get())) {
             DyeLiquifierRecipe dyeLiquifierRecipe = recipeHolder.value();
             Validator.add(dyeLiquifierRecipe.getInputItems());

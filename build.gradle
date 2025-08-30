@@ -63,6 +63,7 @@ processResources {
                 'guideme_version': guideme_version,
                 'jei_version': jei_version,
                 'jade_version': jade_version,
+                'kubejs_version': kubejs_version,
                 'neo_major_version': neo_version.split('\\.')[0]
     }
 }
@@ -78,6 +79,8 @@ repositories {
     maven { url = "https://maven.minecraftforge.net/" }
     maven { url = "https://maven.blamejared.com/" }
     maven { url = "https://maven.creeperhost.net" }
+    maven { url = "https://maven.architectury.dev" }
+    maven { url = "https://cursemaven.com" }
     maven { url = "https://api.modrinth.com/maven" }
 }
 
@@ -86,14 +89,23 @@ dependencies {
 
     compileOnly 'org.jetbrains:annotations:22.0.0'
 
+    // JEI
     compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
     localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
 
+    // Jade
     implementation "maven.modrinth:jade:${jade_version}-neoforge"
 
+    // GuideME
     implementation "maven.modrinth:guideme:${guideme_version}"
 
+    // KubeJS
+    implementation "dev.architectury:architectury-neoforge:${architectury_version}"
+    implementation "maven.modrinth:kubejs:${kubejs_version}+KubeJS-1.20.4"
+    implementation "curse.maven:rhino-416294:5296113"
+
+    // Optimizations
     //localRuntime "org.embeddedt:embeddium-${mc_version}:${embeddium_version}"
     //localRuntime "maven.modrinth:modernfix:${modernfix_version}"
     //localRuntime "maven.modrinth:ferrite-core:${ferritecore_version}"
