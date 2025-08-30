@@ -1,7 +1,5 @@
 package wootrevived.woot.config;
 
-import wootrevived.woot.util.common.DyeMakeup;
-
 public class DefaultsConfig {
     public static final int BUCKET_CAPACITY = 1000;
 
@@ -19,21 +17,24 @@ public class DefaultsConfig {
         public static final int ENERGY_PROCESS_TRANSFER = 25;
         public static final int OUTPUT_TANK_CAPACITY = BUCKET_CAPACITY * 10;
 
-        public static final int RED_TANK_CAPACITY = DyeMakeup.LCM * 100;
-        public static final int YELLOW_TANK_CAPACITY = DyeMakeup.LCM * 100;
-        public static final int BLUE_TANK_CAPACITY = DyeMakeup.LCM * 100;
-        public static final int WHITE_TANK_CAPACITY = DyeMakeup.LCM * 100;
+        public static final int COLOR_PRODUCE_AMOUNT = 72;
+        public static final int PURE_DYE_PRODUCE_AMOUNT = COLOR_PRODUCE_AMOUNT * 4;
+
+        public static final int RED_TANK_CAPACITY = COLOR_PRODUCE_AMOUNT * 100;
+        public static final int YELLOW_TANK_CAPACITY = COLOR_PRODUCE_AMOUNT * 100;
+        public static final int BLUE_TANK_CAPACITY = COLOR_PRODUCE_AMOUNT * 100;
+        public static final int WHITE_TANK_CAPACITY = COLOR_PRODUCE_AMOUNT * 100;
     }
 
     public static class EnchantedLiquifier {
-        public static final int PER_ENCHANT_FLUID = BUCKET_CAPACITY;
-        public static final int PER_ENCHANT_ENERGY = 4000;
-        public static final int MAX_ENCHANT_LVL = 10;
-
         public static final int ENERGY_CAPACITY = 50000;
         public static final int ENERGY_MAX_TRANSFER = 1000;
         public static final int ENERGY_PROCESS_TRANSFER = 100;
         public static final int OUTPUT_TANK_CAPACITY = BUCKET_CAPACITY * 25;
+
+        public static final int PER_ENCHANT_FLUID = BUCKET_CAPACITY;
+        public static final int PER_ENCHANT_ENERGY = 4000;
+        public static final int MAX_ENCHANT_LVL = 10;
     }
 
     public static class FluidInfuser {

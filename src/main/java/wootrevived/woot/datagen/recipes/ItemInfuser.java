@@ -14,7 +14,6 @@ import wootrevived.woot.items.dye_plate.DyePlateItem;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipeBuilder;
 import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.registries.ItemsRegistry;
-import wootrevived.woot.util.common.DyeMakeup;
 
 public class ItemInfuser {
     public static void registerRecipes(Recipes recipes, RecipeOutput consumer) {
@@ -122,7 +121,7 @@ public class ItemInfuser {
         for (Plate p : plates) {
             ItemInfuserRecipeBuilder.itemInfuserRecipe(p.plate.get())
                     .ingredient(Ingredient.of(p.casing.get()))
-                    .fluid(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 5)
+                    .fluid(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), 500)
                     .energy(500)
                     .save(consumer);
         }

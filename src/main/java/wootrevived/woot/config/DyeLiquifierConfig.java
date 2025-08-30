@@ -8,6 +8,9 @@ public class DyeLiquifierConfig {
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_PROCESS_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> OUTPUT_TANK_CAPACITY;
 
+    public static ModConfigSpec.ConfigValue<Integer> COLOR_PRODUCE_AMOUNT;
+    public static ModConfigSpec.ConfigValue<Integer> PURE_DYE_PRODUCE_AMOUNT;
+
     public static ModConfigSpec.ConfigValue<Integer> RED_TANK_CAPACITY;
     public static ModConfigSpec.ConfigValue<Integer> YELLOW_TANK_CAPACITY;
     public static ModConfigSpec.ConfigValue<Integer> BLUE_TANK_CAPACITY;
@@ -27,6 +30,12 @@ public class DyeLiquifierConfig {
 
             OUTPUT_TANK_CAPACITY = builder.comment(String.format("The output tank capacity of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.OUTPUT_TANK_CAPACITY))
                     .define("outputTankCapacity", DefaultsConfig.DyeLiquifier.OUTPUT_TANK_CAPACITY);
+
+            COLOR_PRODUCE_AMOUNT = builder.comment(String.format("The reference amount of color produce per dye [Default: %d]", DefaultsConfig.DyeLiquifier.COLOR_PRODUCE_AMOUNT))
+                    .define("colorProduceAmount", DefaultsConfig.DyeLiquifier.COLOR_PRODUCE_AMOUNT);
+
+            PURE_DYE_PRODUCE_AMOUNT = builder.comment(String.format("Amount of pure dye produced after conversion conditions are met [Default: %d]", DefaultsConfig.DyeLiquifier.PURE_DYE_PRODUCE_AMOUNT))
+                    .define("pureDyeProduceAmount", DefaultsConfig.DyeLiquifier.PURE_DYE_PRODUCE_AMOUNT);
 
             RED_TANK_CAPACITY = builder.comment(String.format("The internal red tank capacity of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.RED_TANK_CAPACITY))
                     .define("redTankCapacity", DefaultsConfig.DyeLiquifier.RED_TANK_CAPACITY);
