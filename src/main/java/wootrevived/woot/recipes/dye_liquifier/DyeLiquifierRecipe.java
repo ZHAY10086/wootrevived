@@ -7,8 +7,8 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.recipes.WootRecipe;
 
 import java.util.ArrayList;
@@ -39,19 +39,35 @@ public class DyeLiquifierRecipe extends WootRecipe {
     }
 
     public int getRed() {
-        return Math.round(red * DyeMakeup.LCM);
+        return Math.round(red * DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get());
     }
 
     public int getYellow() {
-        return Math.round(yellow * DyeMakeup.LCM);
+        return Math.round(yellow * DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get());
     }
 
     public int getBlue() {
-        return Math.round(blue * DyeMakeup.LCM);
+        return Math.round(blue * DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get());
     }
 
     public int getWhite() {
-        return Math.round(white * DyeMakeup.LCM);
+        return Math.round(white * DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get());
+    }
+
+    public float getInternalRed() {
+        return red;
+    }
+
+    public float getInternalYellow() {
+        return yellow;
+    }
+
+    public float getInternalBlue() {
+        return blue;
+    }
+
+    public float getInternalWhite() {
+        return white;
     }
 
     @Override
@@ -63,11 +79,17 @@ public class DyeLiquifierRecipe extends WootRecipe {
         return false;
     }
 
+    public static float maxMultiplier = 0;
+
     public static void loadRecipes(@NotNull RecipeManager manager){
         Validator.clear();
         for(Recipe<?> recipe : manager.getRecipes()) {
             if(recipe instanceof DyeLiquifierRecipe dyeLiquifierRecipe) {
                 Validator.add(dyeLiquifierRecipe.getInputItems());
+                if(maxMultiplier < dyeLiquifierRecipe.getInternalRed()) maxMultiplier = dyeLiquifierRecipe.getInternalRed();
+                if(maxMultiplier < dyeLiquifierRecipe.getInternalYellow()) maxMultiplier = dyeLiquifierRecipe.getInternalYellow();
+                if(maxMultiplier < dyeLiquifierRecipe.getInternalBlue()) maxMultiplier = dyeLiquifierRecipe.getInternalBlue();
+                if(maxMultiplier < dyeLiquifierRecipe.getInternalWhite()) maxMultiplier = dyeLiquifierRecipe.getInternalWhite();
             }
         }
     }

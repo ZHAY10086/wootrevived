@@ -5,11 +5,6 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
 
 public enum DyeMakeup {
-
-    /**
-     * Red/Yellow/Blue/White breakdown for each of the standard 16 Minecraft colors
-     * Dye tags are provided by Forge
-     */
     BLACK(Tags.Items.DYES_BLACK, 1F / 3F, 1F / 3F, 1F / 3F, 0F),
     RED(Tags.Items.DYES_RED, 1F, 0F, 0F, 0F),
     GREEN(Tags.Items.DYES_GREEN, 0F, 1F / 2F, 1F / 2F, 0F),
@@ -26,8 +21,6 @@ public enum DyeMakeup {
     MAGENTA(Tags.Items.DYES_MAGENTA, 1F / 2F, 0F, 1F / 4F, 1F / 4F),
     ORANGE(Tags.Items.DYES_ORANGE, 1F / 2F, 1F / 2F, 0F, 0F),
     WHITE(Tags.Items.DYES_WHITE, 0F, 0F, 0F, 1F);
-
-    public static final int LCM = 72;
 
     private final TagKey<Item> tag;
     private final float red;

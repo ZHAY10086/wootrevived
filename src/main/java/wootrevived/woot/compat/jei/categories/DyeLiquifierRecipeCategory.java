@@ -22,7 +22,6 @@ import wootrevived.woot.events.client.GlobalClientTicker;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 public class DyeLiquifierRecipeCategory implements IRecipeCategory<DyeLiquifierRecipe> {
@@ -65,10 +64,10 @@ public class DyeLiquifierRecipeCategory implements IRecipeCategory<DyeLiquifierR
         DyeLiquifierContainerScreen.renderProgressBg(gui, PROGRESS_X, PROGRESS_Y);
 
         WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get());
-        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, RED_COLOR_BAR_Y, recipe.getRed(), DyeMakeup.LCM * 2, DyeColor.RED.getTextureDiffuseColors());
-        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, recipe.getYellow(), DyeMakeup.LCM * 2, DyeColor.YELLOW.getTextureDiffuseColors());
-        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, BLUE_COLOR_BAR_Y, recipe.getBlue(), DyeMakeup.LCM * 2, DyeColor.BLUE.getTextureDiffuseColors());
-        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, WHITE_COLOR_BAR_Y, recipe.getWhite(), DyeMakeup.LCM * 2, DyeColor.WHITE.getTextureDiffuseColors());
+        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, RED_COLOR_BAR_Y, recipe.getRed(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.RED.getTextureDiffuseColors());
+        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, recipe.getYellow(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.YELLOW.getTextureDiffuseColors());
+        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, BLUE_COLOR_BAR_Y, recipe.getBlue(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.BLUE.getTextureDiffuseColors());
+        WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, WHITE_COLOR_BAR_Y, recipe.getWhite(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.WHITE.getTextureDiffuseColors());
         DyeLiquifierContainerScreen.renderProgress(gui, PROGRESS_X, PROGRESS_Y, progress);
 
         WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get(), false, false);

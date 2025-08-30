@@ -14,7 +14,6 @@ import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerScreen;
 import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.render.guide.LytColorBar;
 import wootrevived.woot.util.render.guide.LytEnergy;
 import wootrevived.woot.util.render.guide.LytFluid;
@@ -53,11 +52,11 @@ public class LytDyeLiquifierRecipe extends LytBox {
     public LytDyeLiquifierRecipe(DyeLiquifierRecipe recipe){
         append(energy = new LytEnergy(recipe.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get()));
         append(inputSlot = new LytSlot(Ingredient.of(Tags.Items.DYES)));
-        append(redColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.RED.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.red")));
-        append(yellowColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.YELLOW.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.yellow")));
-        append(blueColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.BLUE.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.blue")));
-        append(whiteColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.WHITE.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.white")));
-        append(outputFluid = new LytFluid(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 4), DyeLiquifierConfig.OUTPUT_TANK_CAPACITY.get()));
+        append(redColorBar = new LytColorBar(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.RED.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.red")));
+        append(yellowColorBar = new LytColorBar(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.YELLOW.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.yellow")));
+        append(blueColorBar = new LytColorBar(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.BLUE.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.blue")));
+        append(whiteColorBar = new LytColorBar(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), Math.round(DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() * DyeLiquifierRecipe.maxMultiplier), DyeColor.WHITE.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.white")));
+        append(outputFluid = new LytFluid(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeLiquifierConfig.PURE_DYE_PRODUCE_AMOUNT.get()), DyeLiquifierConfig.OUTPUT_TANK_CAPACITY.get()));
     }
 
     @Override

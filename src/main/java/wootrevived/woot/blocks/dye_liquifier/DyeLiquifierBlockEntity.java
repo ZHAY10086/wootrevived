@@ -35,7 +35,6 @@ import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
 import wootrevived.woot.util.handlers.WootItemHandlerWrapper;
 import wootrevived.woot.util.handlers.WootItemStackHandler;
 import wootrevived.woot.util.entity.WootTags;
-import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
 
 
@@ -229,11 +228,11 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
 
     private void generatePureFluid() {
         while (canCreateOutput() && canStoreOutput()) {
-            outputTankHandler.fill(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 4), IFluidHandler.FluidAction.EXECUTE);
-            red -= DyeMakeup.LCM;
-            yellow -= DyeMakeup.LCM;
-            blue -= DyeMakeup.LCM;
-            white -= DyeMakeup.LCM;
+            outputTankHandler.fill(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeLiquifierConfig.PURE_DYE_PRODUCE_AMOUNT.get()), IFluidHandler.FluidAction.EXECUTE);
+            red -= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get();
+            yellow -= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get();
+            blue -= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get();
+            white -= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get();
             setChanged();
         }
     }
@@ -297,8 +296,14 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
                 recipe.getWhite() > 0 && whiteHasSpace;
     }
 
-    private boolean canCreateOutput() { return red >= DyeMakeup.LCM && yellow >= DyeMakeup.LCM && blue >= DyeMakeup.LCM && white >= DyeMakeup.LCM; }
-    private boolean canStoreOutput() { return outputTankHandler.fill(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 4), IFluidHandler.FluidAction.SIMULATE ) == DyeMakeup.LCM * 4; }
+    private boolean canCreateOutput() {
+        return red >= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() &&
+                yellow >= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() &&
+                blue >= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get() &&
+                white >= DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get();
+    }
+
+    private boolean canStoreOutput() { return outputTankHandler.fill(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeLiquifierConfig.PURE_DYE_PRODUCE_AMOUNT.get()), IFluidHandler.FluidAction.SIMULATE ) == DyeLiquifierConfig.PURE_DYE_PRODUCE_AMOUNT.get(); }
 
     public int getEnergyCapacity(){
         return DyeLiquifierConfig.ENERGY_CAPACITY.get();
