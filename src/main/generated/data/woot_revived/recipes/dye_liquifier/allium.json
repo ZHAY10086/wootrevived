@@ -1,13 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 18,
+  "blue": 0.25,
   "energy": 500,
   "inputIngredients": [
     {
       "item": "minecraft:allium"
     }
   ],
-  "red": 36,
-  "white": 18,
-  "yellow": 0
+  "red": 0.5,
+  "white": 0.25,
+  "yellow": 0.0
 }

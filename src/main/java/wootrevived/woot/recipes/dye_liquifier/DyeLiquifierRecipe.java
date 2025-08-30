@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.registries.RecipesRegistry;
+import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.recipes.WootRecipe;
 
 import java.util.ArrayList;
@@ -18,19 +19,19 @@ import java.util.List;
 public class DyeLiquifierRecipe extends WootRecipe {
     public static final MapCodec<DyeLiquifierRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Codec.INT.fieldOf("energy").forGetter(DyeLiquifierRecipe::getEnergy),
-            Codec.INT.fieldOf("red").forGetter(DyeLiquifierRecipe::getRed),
-            Codec.INT.fieldOf("yellow").forGetter(DyeLiquifierRecipe::getYellow),
-            Codec.INT.fieldOf("blue").forGetter(DyeLiquifierRecipe::getBlue),
-            Codec.INT.fieldOf("white").forGetter(DyeLiquifierRecipe::getWhite),
+            Codec.FLOAT.fieldOf("red").forGetter(DyeLiquifierRecipe::getInternalRed),
+            Codec.FLOAT.fieldOf("yellow").forGetter(DyeLiquifierRecipe::getInternalYellow),
+            Codec.FLOAT.fieldOf("blue").forGetter(DyeLiquifierRecipe::getInternalBlue),
+            Codec.FLOAT.fieldOf("white").forGetter(DyeLiquifierRecipe::getInternalWhite),
             Ingredient.CODEC.listOf().fieldOf("inputIngredients").forGetter(DyeLiquifierRecipe::getInputItems)
     ).apply(inst, DyeLiquifierRecipe::new));
 
-    private final int red;
-    private final int yellow;
-    private final int blue;
-    private final int white;
+    private final float red;
+    private final float yellow;
+    private final float blue;
+    private final float white;
 
-    public DyeLiquifierRecipe(int energy, int red, int yellow, int blue, int white, @Nullable List<Ingredient> inputItems) {
+    public DyeLiquifierRecipe(int energy, float red, float yellow, float blue, float white, @Nullable List<Ingredient> inputItems) {
         super(energy, inputItems, null, null, null);
         this.red = red;
         this.yellow = yellow;
@@ -49,18 +50,34 @@ public class DyeLiquifierRecipe extends WootRecipe {
     }
 
     public int getRed() {
-        return red;
+        return Math.round(red * DyeMakeup.LCM);
     }
 
     public int getYellow() {
-        return yellow;
+        return Math.round(yellow * DyeMakeup.LCM);
     }
 
     public int getBlue() {
-        return blue;
+        return Math.round(blue * DyeMakeup.LCM);
     }
 
     public int getWhite() {
+        return Math.round(white * DyeMakeup.LCM);
+    }
+
+    public float getInternalRed() {
+        return red;
+    }
+
+    public float getInternalYellow() {
+        return yellow;
+    }
+
+    public float getInternalBlue() {
+        return blue;
+    }
+
+    public float getInternalWhite() {
         return white;
     }
 

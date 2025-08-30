@@ -25,10 +25,10 @@ public class DyeLiquifierRecipeSerializer implements RecipeSerializer<DyeLiquifi
     @Override
     public @NotNull DyeLiquifierRecipe fromNetwork(FriendlyByteBuf buffer) {
         int energy = buffer.readVarInt();
-        int red = buffer.readVarInt();
-        int yellow = buffer.readVarInt();
-        int blue = buffer.readVarInt();
-        int white = buffer.readVarInt();
+        float red = buffer.readFloat();
+        float yellow = buffer.readFloat();
+        float blue = buffer.readFloat();
+        float white = buffer.readFloat();
 
         int lenInputItems = buffer.readVarInt();
         ArrayList<Ingredient> inputItems = new ArrayList<>(lenInputItems);
@@ -42,10 +42,10 @@ public class DyeLiquifierRecipeSerializer implements RecipeSerializer<DyeLiquifi
     @Override
     public void toNetwork(FriendlyByteBuf buffer, DyeLiquifierRecipe recipe) {
         buffer.writeVarInt(recipe.getEnergy());
-        buffer.writeVarInt(recipe.getRed());
-        buffer.writeVarInt(recipe.getYellow());
-        buffer.writeVarInt(recipe.getBlue());
-        buffer.writeVarInt(recipe.getWhite());
+        buffer.writeFloat(recipe.getRed());
+        buffer.writeFloat(recipe.getYellow());
+        buffer.writeFloat(recipe.getBlue());
+        buffer.writeFloat(recipe.getWhite());
 
         int lenInputItems = recipe.getInputItems().size();
         buffer.writeVarInt(lenInputItems);
@@ -55,6 +55,6 @@ public class DyeLiquifierRecipeSerializer implements RecipeSerializer<DyeLiquifi
     }
 
     public interface IFactory<T> {
-        T create(int energy, int red, int yellow, int blue, int white, @Nullable List<Ingredient> inputItems);
+        T create(int energy, float red, float yellow, float blue, float white, @Nullable List<Ingredient> inputItems);
     }
 }

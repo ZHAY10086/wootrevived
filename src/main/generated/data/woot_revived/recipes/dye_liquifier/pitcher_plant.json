@@ -1,13 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 36,
+  "blue": 0.5,
   "energy": 500,
   "inputIngredients": [
     {
       "item": "minecraft:pitcher_plant"
     }
   ],
-  "red": 0,
-  "white": 108,
-  "yellow": 0
+  "red": 0.0,
+  "white": 1.5,
+  "yellow": 0.0
 }

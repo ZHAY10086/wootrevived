@@ -1,13 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 24,
+  "blue": 0.33333334,
   "energy": 500,
   "inputIngredients": [
     {
       "item": "minecraft:ink_sac"
     }
   ],
-  "red": 24,
-  "white": 0,
-  "yellow": 24
+  "red": 0.33333334,
+  "white": 0.0,
+  "yellow": 0.33333334
 }

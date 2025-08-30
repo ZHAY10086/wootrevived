@@ -1,13 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 36,
+  "blue": 0.5,
   "energy": 500,
   "inputIngredients": [
     {
       "item": "minecraft:cactus"
     }
   ],
-  "red": 0,
-  "white": 0,
-  "yellow": 36
+  "red": 0.0,
+  "white": 0.0,
+  "yellow": 0.5
 }
