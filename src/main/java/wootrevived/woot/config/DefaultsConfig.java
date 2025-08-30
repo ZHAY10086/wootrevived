@@ -1,8 +1,8 @@
-package wootrevived.woot.util;
+package wootrevived.woot.config;
 
 import wootrevived.woot.util.common.DyeMakeup;
 
-public class Config {
+public class DefaultsConfig {
     public static final int BUCKET_CAPACITY = 1000;
 
     public static class Cell {
@@ -49,5 +49,9 @@ public class Config {
         public static final int ENERGY_MAX_TRANSFER = 1000;
         public static final int ENERGY_PROCESS_TRANSFER = 50;
         public static final int INPUT_TANK_CAPACITY = BUCKET_CAPACITY * 10;
+    }
+
+    public static class Guide {
+        public static final boolean GIVE_ON_SPAWN = true;
     }
 }

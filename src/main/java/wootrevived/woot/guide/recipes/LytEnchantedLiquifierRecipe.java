@@ -11,8 +11,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.render.WootContainerScreen;
 import wootrevived.woot.util.render.guide.LytEnergy;
 import wootrevived.woot.util.render.guide.LytFluid;
@@ -51,12 +51,12 @@ public class LytEnchantedLiquifierRecipe extends LytBox {
             items.add(itemStack);
         }
 
-        int energyAmount = enchantLevel * Config.EnchantedLiquifier.PER_ENCHANT_ENERGY;
-        int fluidAmount = enchantLevel * Config.EnchantedLiquifier.PER_ENCHANT_FLUID;
+        int energyAmount = enchantLevel * EnchantedLiquifierConfig.PER_ENCHANT_ENERGY.get();
+        int fluidAmount = enchantLevel * EnchantedLiquifierConfig.PER_ENCHANT_FLUID.get();
 
-        append(energy = new LytEnergy(energyAmount, Config.EnchantedLiquifier.ENERGY_CAPACITY));
+        append(energy = new LytEnergy(energyAmount, EnchantedLiquifierConfig.ENERGY_CAPACITY.get()));
         append(inputSlot = new LytSlot(Ingredient.of(items.stream())));
-        append(outputFluid = new LytFluid(new FluidStack(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), fluidAmount), Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY));
+        append(outputFluid = new LytFluid(new FluidStack(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), fluidAmount), EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get()));
     }
 
     @Override

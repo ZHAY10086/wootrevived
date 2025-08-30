@@ -3,21 +3,20 @@ package wootrevived.woot.init;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
+import wootrevived.woot.config.*;
 
 public class CommonConfig {
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
 
     public static ForgeConfigSpec COMMON_CONFIG;
-    public static ForgeConfigSpec.BooleanValue GIVE_GUIDE_ON_SPAWN;
 
     static {
-        COMMON_BUILDER.comment("Guide").push("guide");
-        {
-            GIVE_GUIDE_ON_SPAWN = COMMON_BUILDER.comment("Should give the woot guide book on player first connection")
-                    .define("shouldGiveOnSpawn", true);
-        }
-
-        COMMON_BUILDER.pop();
+        CellConfig.build(COMMON_BUILDER);
+        DyeLiquifierConfig.build(COMMON_BUILDER);
+        EnchantedLiquifierConfig.build(COMMON_BUILDER);
+        FluidInfuserConfig.build(COMMON_BUILDER);
+        ItemInfuserConfig.build(COMMON_BUILDER);
+        GuideConfig.build(COMMON_BUILDER);
 
         COMMON_CONFIG = COMMON_BUILDER.build();
     }

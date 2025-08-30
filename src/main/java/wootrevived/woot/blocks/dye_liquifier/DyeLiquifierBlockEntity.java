@@ -24,11 +24,11 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerMenu;
+import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
 import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
@@ -254,10 +254,10 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
         blue += finishedRecipe.getBlue();
         white += finishedRecipe.getWhite();
 
-        red = Mth.clamp(red, 0, Config.DyeLiquifier.RED_TANK_CAPACITY);
-        yellow = Mth.clamp(yellow, 0, Config.DyeLiquifier.YELLOW_TANK_CAPACITY);
-        blue = Mth.clamp(blue, 0, Config.DyeLiquifier.BLUE_TANK_CAPACITY);
-        white = Mth.clamp(white, 0, Config.DyeLiquifier.WHITE_TANK_CAPACITY);
+        red = Mth.clamp(red, 0, DyeLiquifierConfig.RED_TANK_CAPACITY.get());
+        yellow = Mth.clamp(yellow, 0, DyeLiquifierConfig.YELLOW_TANK_CAPACITY.get());
+        blue = Mth.clamp(blue, 0, DyeLiquifierConfig.BLUE_TANK_CAPACITY.get());
+        white = Mth.clamp(white, 0, DyeLiquifierConfig.WHITE_TANK_CAPACITY.get());
 
         inventoryHandler.extractItem(INPUT_SLOT, 1, false);
         generatePureFluid();
@@ -286,10 +286,10 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
     public int getWhite() { return this.white; }
 
     private boolean canStoreInternal(DyeLiquifierRecipe recipe) {
-        boolean redHasSpace = recipe.getRed() + red <= Config.DyeLiquifier.RED_TANK_CAPACITY;
-        boolean yellowHasSpace = recipe.getYellow() + yellow <= Config.DyeLiquifier.YELLOW_TANK_CAPACITY;
-        boolean blueHasSpace = recipe.getBlue() + blue <= Config.DyeLiquifier.BLUE_TANK_CAPACITY;
-        boolean whiteHasSpace = recipe.getWhite() + white <= Config.DyeLiquifier.WHITE_TANK_CAPACITY;
+        boolean redHasSpace = recipe.getRed() + red <= DyeLiquifierConfig.RED_TANK_CAPACITY.get();
+        boolean yellowHasSpace = recipe.getYellow() + yellow <= DyeLiquifierConfig.YELLOW_TANK_CAPACITY.get();
+        boolean blueHasSpace = recipe.getBlue() + blue <= DyeLiquifierConfig.BLUE_TANK_CAPACITY.get();
+        boolean whiteHasSpace = recipe.getWhite() + white <= DyeLiquifierConfig.WHITE_TANK_CAPACITY.get();
 
         return recipe.getRed() > 0 && redHasSpace ||
                 recipe.getYellow() > 0 && yellowHasSpace ||
@@ -301,15 +301,15 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
     private boolean canStoreOutput() { return outputTankHandler.fill(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 4), IFluidHandler.FluidAction.SIMULATE ) == DyeMakeup.LCM * 4; }
 
     public int getEnergyCapacity(){
-        return Config.DyeLiquifier.ENERGY_CAPACITY;
+        return DyeLiquifierConfig.ENERGY_CAPACITY.get();
     }
 
     public int getEnergyMaxTransfer(){
-        return Config.DyeLiquifier.ENERGY_MAX_TRANSFER;
+        return DyeLiquifierConfig.ENERGY_MAX_TRANSFER.get();
     }
 
     public int getEnergyProcessTransfer(){
-        return Config.DyeLiquifier.ENERGY_PROCESS_TRANSFER;
+        return DyeLiquifierConfig.ENERGY_PROCESS_TRANSFER.get();
     }
 
     public boolean hasEnergyCapability() {
@@ -329,7 +329,7 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
     }
 
     public int getOutputTankCapacity() {
-        return Config.DyeLiquifier.OUTPUT_TANK_CAPACITY;
+        return DyeLiquifierConfig.OUTPUT_TANK_CAPACITY.get();
     }
 
     public boolean hasOutputFluidCapability() {

@@ -29,9 +29,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.client.render.enchanted_liquifier.EnchantedLiquifierContainerMenu;
+import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
 import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
@@ -254,7 +254,7 @@ public class EnchantedLiquifierBlockEntity extends WootMachineBlockEntity implem
                 CompoundTag compoundNBT = listNBT.getCompound(i);
                 Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(compoundNBT.getString("id")));
                 if (enchantment != null && compoundNBT.contains("lvl"))
-                    amount += Mth.clamp(compoundNBT.getInt("lvl"), 1, Config.EnchantedLiquifier.MAX_ENCHANT_LVL) * Config.EnchantedLiquifier.PER_ENCHANT_FLUID;
+                    amount += Mth.clamp(compoundNBT.getInt("lvl"), 1, EnchantedLiquifierConfig.MAX_ENCHANT_LVL.get()) * EnchantedLiquifierConfig.PER_ENCHANT_FLUID.get();
             }
         }
         return amount;
@@ -273,22 +273,22 @@ public class EnchantedLiquifierBlockEntity extends WootMachineBlockEntity implem
                 CompoundTag compoundNBT = listNBT.getCompound(i);
                 Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(compoundNBT.getString("id")));
                 if (enchantment != null && compoundNBT.contains("lvl"))
-                    amount += Mth.clamp(compoundNBT.getInt("lvl"), 1, Config.EnchantedLiquifier.MAX_ENCHANT_LVL) * Config.EnchantedLiquifier.PER_ENCHANT_ENERGY;
+                    amount += Mth.clamp(compoundNBT.getInt("lvl"), 1, EnchantedLiquifierConfig.MAX_ENCHANT_LVL.get()) * EnchantedLiquifierConfig.PER_ENCHANT_ENERGY.get();
             }
         }
         return amount;
     }
 
     public int getEnergyCapacity(){
-        return Config.EnchantedLiquifier.ENERGY_CAPACITY;
+        return EnchantedLiquifierConfig.ENERGY_CAPACITY.get();
     }
 
     public int getEnergyMaxTransfer(){
-        return Config.EnchantedLiquifier.ENERGY_MAX_TRANSFER;
+        return EnchantedLiquifierConfig.ENERGY_MAX_TRANSFER.get();
     }
 
     public int getEnergyProcessTransfer(){
-        return Config.EnchantedLiquifier.ENERGY_PROCESS_TRANSFER;
+        return EnchantedLiquifierConfig.ENERGY_PROCESS_TRANSFER.get();
     }
 
     public boolean hasEnergyCapability() {
@@ -308,7 +308,7 @@ public class EnchantedLiquifierBlockEntity extends WootMachineBlockEntity implem
     }
 
     public int getOutputTankCapacity() {
-        return Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY;
+        return EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get();
     }
 
     public boolean hasOutputFluidCapability() {

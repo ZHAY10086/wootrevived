@@ -17,11 +17,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerScreen;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
+import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.events.client.GlobalClientTicker;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.render.WootContainerScreen;
 
@@ -53,7 +53,7 @@ public class DyeLiquifierRecipeCategory implements IRecipeCategory<DyeLiquifierR
 
     @Override
     public void draw(DyeLiquifierRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics gui, double mouseX, double mouseY) {
-        int totalProgressTick = recipe.getEnergy() / Config.DyeLiquifier.ENERGY_PROCESS_TRANSFER;
+        int totalProgressTick = recipe.getEnergy() / DyeLiquifierConfig.ENERGY_PROCESS_TRANSFER.get();
         int progress = (GlobalClientTicker.tickCounter % totalProgressTick) * 100 / totalProgressTick;
 
         WootContainerScreen.renderVanillaSlot(gui, INPUT_SLOT_X, INPUT_SLOT_Y);
@@ -64,19 +64,19 @@ public class DyeLiquifierRecipeCategory implements IRecipeCategory<DyeLiquifierR
         WootContainerScreen.renderEnergyBg(gui, ENERGY_X, ENERGY_Y);
         DyeLiquifierContainerScreen.renderProgressBg(gui, PROGRESS_X, PROGRESS_Y);
 
-        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.DyeLiquifier.ENERGY_CAPACITY);
+        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get());
         WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, RED_COLOR_BAR_Y, recipe.getRed(), DyeMakeup.LCM * 2, DyeColor.RED.getTextureDiffuseColors());
         WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, recipe.getYellow(), DyeMakeup.LCM * 2, DyeColor.YELLOW.getTextureDiffuseColors());
         WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, BLUE_COLOR_BAR_Y, recipe.getBlue(), DyeMakeup.LCM * 2, DyeColor.BLUE.getTextureDiffuseColors());
         WootContainerScreen.renderColorBar(gui, COLOR_BAR_X, WHITE_COLOR_BAR_Y, recipe.getWhite(), DyeMakeup.LCM * 2, DyeColor.WHITE.getTextureDiffuseColors());
         DyeLiquifierContainerScreen.renderProgress(gui, PROGRESS_X, PROGRESS_Y, progress);
 
-        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.DyeLiquifier.ENERGY_CAPACITY, false, false);
+        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get(), false, false);
         WootContainerScreen._renderColorBarTooltip(gui, (int)mouseX, (int)mouseY, COLOR_BAR_X, RED_COLOR_BAR_Y, recipe.getRed(), 0, Component.translatable("info.woot_revived.dye.red"), false, false);
         WootContainerScreen._renderColorBarTooltip(gui, (int)mouseX, (int)mouseY, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, recipe.getYellow(), 0, Component.translatable("info.woot_revived.dye.yellow"), false, false);
         WootContainerScreen._renderColorBarTooltip(gui, (int)mouseX, (int)mouseY, COLOR_BAR_X, BLUE_COLOR_BAR_Y, recipe.getBlue(), 0, Component.translatable("info.woot_revived.dye.blue"), false, false);
         WootContainerScreen._renderColorBarTooltip(gui, (int)mouseX, (int)mouseY, COLOR_BAR_X, WHITE_COLOR_BAR_Y, recipe.getWhite(), 0, Component.translatable("info.woot_revived.dye.white"), false, false);
-        DyeLiquifierContainerScreen._renderProgressTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick / 20F), Config.DyeLiquifier.ENERGY_PROCESS_TRANSFER, false);
+        DyeLiquifierContainerScreen._renderProgressTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick / 20F), DyeLiquifierConfig.ENERGY_PROCESS_TRANSFER.get(), false);
     }
 
     @Override

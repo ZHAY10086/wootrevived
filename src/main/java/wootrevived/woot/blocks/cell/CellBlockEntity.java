@@ -13,9 +13,9 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import wootrevived.woot.config.CellConfig;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.block.FactoryBlockBaseEntity;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.handlers.WootFluidTankHandler;
@@ -40,15 +40,15 @@ public class CellBlockEntity extends FactoryBlockBaseEntity {
 
     private int getCapacity(){
         if(getType() == BlocksRegistry.COPPER_CELL_BLOCK_ENTITY.get())
-            return Config.Cell.COPPER_CAPACITY;
+            return CellConfig.COPPER_CAPACITY.get();
         if(getType() == BlocksRegistry.IRON_CELL_BLOCK_ENTITY.get())
-            return Config.Cell.IRON_CAPACITY;
+            return CellConfig.IRON_CAPACITY.get();
         if(getType() == BlocksRegistry.GOLD_CELL_BLOCK_ENTITY.get())
-            return Config.Cell.GOLD_CAPACITY;
+            return CellConfig.GOLD_CAPACITY.get();
         if(getType() == BlocksRegistry.DIAMOND_CELL_BLOCK_ENTITY.get())
-            return Config.Cell.DIAMOND_CAPACITY;
+            return CellConfig.DIAMOND_CAPACITY.get();
         if(getType() == BlocksRegistry.NETHERITE_CELL_BLOCK_ENTITY.get())
-            return Config.Cell.NETHERITE_CAPACITY;
+            return CellConfig.NETHERITE_CAPACITY.get();
         return 0;
     }
 

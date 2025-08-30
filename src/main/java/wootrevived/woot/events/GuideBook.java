@@ -6,8 +6,8 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import wootrevived.woot.Woot;
+import wootrevived.woot.config.GuideConfig;
 import wootrevived.woot.guide.GuideBookPersistentState;
-import wootrevived.woot.init.CommonConfig;
 import wootrevived.woot.registries.ItemsRegistry;
 
 @Mod.EventBusSubscriber(modid = Woot.MOD_ID)
@@ -19,7 +19,7 @@ public class GuideBook {
         if(server == null)
             return;
 
-        if(CommonConfig.GIVE_GUIDE_ON_SPAWN.get()){
+        if(GuideConfig.GIVE_ON_SPAWN.get()){
             GuideBookPersistentState state = GuideBookPersistentState.get(player.getServer());
             if(!state.hasPlayerReceivedGuideBook(player) && player.getInventory().add(ItemsRegistry.GUIDE_BOOK_ITEM.get().getDefaultInstance())){
                 state.addPlayerReceivedGuideBook(player);
