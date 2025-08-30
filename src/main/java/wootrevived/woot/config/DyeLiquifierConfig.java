@@ -40,9 +40,6 @@ public class DyeLiquifierConfig {
             RED_TANK_CAPACITY = builder.comment(String.format("The internal red tank capacity of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.RED_TANK_CAPACITY))
                     .define("redTankCapacity", DefaultsConfig.DyeLiquifier.RED_TANK_CAPACITY);
 
-            RED_TANK_CAPACITY = builder.comment(String.format("The internal red tank capacity of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.RED_TANK_CAPACITY))
-                    .define("redTankCapacity", DefaultsConfig.DyeLiquifier.RED_TANK_CAPACITY);
-
             YELLOW_TANK_CAPACITY = builder.comment(String.format("The internal yellow tank capacity of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.YELLOW_TANK_CAPACITY))
                     .define("yellowTankCapacity", DefaultsConfig.DyeLiquifier.YELLOW_TANK_CAPACITY);
 

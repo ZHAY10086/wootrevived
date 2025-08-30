@@ -15,7 +15,7 @@
       "type": "fluid",
       "fluids": [
         {
-          "Amount": 360,
+          "Amount": 500,
           "FluidName": "woot_revived:pure_dye_fluid"
         }
       ]
