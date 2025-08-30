@@ -22,6 +22,8 @@ import wootrevived.woot.events.client.GlobalClientTicker;
 public class WootEntityRenderer {
     public static void render(@NotNull GuiGraphics gui, int x, int y, @NotNull LivingEntity entity, double size, double padding, float max_entity_size){
         EntityRenderer<? super Entity> renderer = Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(entity);
+        if(renderer == null)
+            return;
 
         PoseStack pose = gui.pose();
         pose.pushPose();
