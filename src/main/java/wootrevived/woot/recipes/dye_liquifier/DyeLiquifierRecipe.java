@@ -1,8 +1,8 @@
 package wootrevived.woot.recipes.dye_liquifier;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.registries.RecipesRegistry;
+import wootrevived.woot.util.common.WootCodecs;
 import wootrevived.woot.util.recipes.WootRecipe;
 
 import java.util.ArrayList;
@@ -18,11 +19,11 @@ import java.util.List;
 
 public class DyeLiquifierRecipe extends WootRecipe {
     public static final MapCodec<DyeLiquifierRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Codec.INT.fieldOf("energy").forGetter(DyeLiquifierRecipe::getEnergy),
-            Codec.FLOAT.fieldOf("red_multiplier").forGetter(DyeLiquifierRecipe::getInternalRed),
-            Codec.FLOAT.fieldOf("yellow_multiplier").forGetter(DyeLiquifierRecipe::getInternalYellow),
-            Codec.FLOAT.fieldOf("blue_multiplier").forGetter(DyeLiquifierRecipe::getInternalBlue),
-            Codec.FLOAT.fieldOf("white_multiplier").forGetter(DyeLiquifierRecipe::getInternalWhite),
+            ExtraCodecs.NON_NEGATIVE_INT.fieldOf("energy").forGetter(DyeLiquifierRecipe::getEnergy),
+            WootCodecs.NON_NEGATIVE_FLOAT.fieldOf("red_multiplier").forGetter(DyeLiquifierRecipe::getInternalRed),
+            WootCodecs.NON_NEGATIVE_FLOAT.fieldOf("yellow_multiplier").forGetter(DyeLiquifierRecipe::getInternalYellow),
+            WootCodecs.NON_NEGATIVE_FLOAT.fieldOf("blue_multiplier").forGetter(DyeLiquifierRecipe::getInternalBlue),
+            WootCodecs.NON_NEGATIVE_FLOAT.fieldOf("white_multiplier").forGetter(DyeLiquifierRecipe::getInternalWhite),
             Ingredient.CODEC.listOf().fieldOf("inputIngredients").forGetter(DyeLiquifierRecipe::getInputItems)
     ).apply(inst, DyeLiquifierRecipe::new));
 

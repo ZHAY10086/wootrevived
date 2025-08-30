@@ -1,8 +1,8 @@
 package wootrevived.woot.recipes.item_infuser;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ItemInfuserRecipe extends WootRecipe {
     public static final MapCodec<ItemInfuserRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Codec.INT.fieldOf("energy").forGetter(ItemInfuserRecipe::getEnergy),
+            ExtraCodecs.NON_NEGATIVE_INT.fieldOf("energy").forGetter(ItemInfuserRecipe::getEnergy),
             Ingredient.CODEC.listOf().fieldOf("inputIngredients").forGetter(ItemInfuserRecipe::getInputItems),
             FluidStack.CODEC.listOf().fieldOf("inputFluids").forGetter(ItemInfuserRecipe::getInputFluids),
             ItemStack.CODEC.fieldOf("outputItem").forGetter(ItemInfuserRecipe::getOutputItem)
