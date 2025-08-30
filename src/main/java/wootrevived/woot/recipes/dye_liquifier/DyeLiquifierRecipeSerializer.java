@@ -23,10 +23,10 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
     @Override
     public @NotNull T fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
         int energy = GsonHelper.getAsInt(json, "energy", 0);
-        int red = GsonHelper.getAsInt(json, "red", 0);
-        int yellow = GsonHelper.getAsInt(json, "yellow", 0);
-        int blue = GsonHelper.getAsInt(json, "blue", 0);
-        int white = GsonHelper.getAsInt(json, "white", 0);
+        float red = GsonHelper.getAsFloat(json, "red", 0);
+        float yellow = GsonHelper.getAsFloat(json, "yellow", 0);
+        float blue = GsonHelper.getAsFloat(json, "blue", 0);
+        float white = GsonHelper.getAsFloat(json, "white", 0);
 
         List<Ingredient> ingredients = WootRecipeSerializer.readInputIngredientsJson(json);
 
@@ -36,10 +36,10 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
     @Override
     public @Nullable T fromNetwork(@NotNull ResourceLocation recipeId, FriendlyByteBuf buffer) {
         int energy = buffer.readVarInt();
-        int red = buffer.readVarInt();
-        int yellow = buffer.readVarInt();
-        int blue = buffer.readVarInt();
-        int white = buffer.readVarInt();
+        float red = buffer.readFloat();
+        float yellow = buffer.readFloat();
+        float blue = buffer.readFloat();
+        float white = buffer.readFloat();
 
         int lenInputItems = buffer.readVarInt();
         ArrayList<Ingredient> inputItems = new ArrayList<>(lenInputItems);
@@ -53,10 +53,10 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
     @Override
     public void toNetwork(FriendlyByteBuf buffer, T recipe) {
         buffer.writeVarInt(recipe.getEnergy());
-        buffer.writeVarInt(recipe.getRed());
-        buffer.writeVarInt(recipe.getYellow());
-        buffer.writeVarInt(recipe.getBlue());
-        buffer.writeVarInt(recipe.getWhite());
+        buffer.writeFloat(recipe.getRed());
+        buffer.writeFloat(recipe.getYellow());
+        buffer.writeFloat(recipe.getBlue());
+        buffer.writeFloat(recipe.getWhite());
 
         int lenInputItems = recipe.getInputItems().size();
         buffer.writeVarInt(lenInputItems);
@@ -66,6 +66,6 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
     }
 
     public interface IFactory<T> {
-        T create(ResourceLocation recipeId, int energy, int red, int yellow, int blue, int white, @Nullable List<Ingredient> inputItems);
+        T create(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, @Nullable List<Ingredient> inputItems);
     }
 }

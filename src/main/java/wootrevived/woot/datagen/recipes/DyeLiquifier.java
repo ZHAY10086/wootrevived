@@ -15,7 +15,7 @@ public class DyeLiquifier {
     public static void registerRecipes(Recipes recipes, Consumer<FinishedRecipe> consumer){
         for (DyeMakeup d : DyeMakeup.values()) {
             DyeLiquifierRecipeBuilder.dyeLiquifierRecipe()
-                    .ingredient(Ingredient.of(d.getItemTag()))
+                    .ingredient(Ingredient.of(d.getTag()))
                     .energy(500)
                     .red(d.getRed())
                     .yellow(d.getYellow())
@@ -27,9 +27,9 @@ public class DyeLiquifier {
         class VanillaDyes {
             final Item item;
             final DyeMakeup dyeMakeup;
-            final int multiply;
+            final float multiply;
             final String name;
-            public VanillaDyes(Item item, DyeMakeup dyeMakeup, int multiply, String name) {
+            public VanillaDyes(Item item, DyeMakeup dyeMakeup, float multiply, String name) {
                 this.item = item;
                 this.dyeMakeup = dyeMakeup;
                 this.multiply = multiply;
@@ -38,32 +38,32 @@ public class DyeLiquifier {
         }
 
         VanillaDyes[] dyes = {
-                new VanillaDyes(Items.BONE_MEAL, DyeMakeup.WHITE, 1, "bone_meal"),
-                new VanillaDyes(Items.LILY_OF_THE_VALLEY, DyeMakeup.WHITE, 1, "lily_of_the_valley"),
-                new VanillaDyes(Items.OXEYE_DAISY, DyeMakeup.LIGHTGRAY, 1, "oxeye_daisy"),
-                new VanillaDyes(Items.AZURE_BLUET, DyeMakeup.LIGHTGRAY, 1, "azure_bluet"),
-                new VanillaDyes(Items.WHITE_TULIP, DyeMakeup.LIGHTGRAY, 1, "white_tulip"),
-                new VanillaDyes(Items.INK_SAC, DyeMakeup.BLACK, 1, "ink_sac"),
-                new VanillaDyes(Items.WITHER_ROSE, DyeMakeup.BLACK, 1, "wither_rose"),
-                new VanillaDyes(Items.COCOA_BEANS, DyeMakeup.BROWN, 1, "cocoa_beans"),
-                new VanillaDyes(Items.RED_TULIP, DyeMakeup.RED, 1, "red_tulip"),
-                new VanillaDyes(Items.BEETROOT, DyeMakeup.RED, 1, "beetroot"),
-                new VanillaDyes(Items.POPPY, DyeMakeup.RED, 1, "poppy"),
-                new VanillaDyes(Items.ROSE_BUSH, DyeMakeup.RED, 2, "rose_bush"),
-                new VanillaDyes(Items.TORCHFLOWER, DyeMakeup.ORANGE, 1, "torchflower"),
-                new VanillaDyes(Items.ORANGE_TULIP, DyeMakeup.ORANGE, 1, "orange_tulip"),
-                new VanillaDyes(Items.DANDELION, DyeMakeup.YELLOW, 1, "dandelion"),
-                new VanillaDyes(Items.SUNFLOWER, DyeMakeup.YELLOW, 2, "sunflower"),
-                new VanillaDyes(Items.SEA_PICKLE, DyeMakeup.LIME, 1, "sea_pickle"),
-                new VanillaDyes(Items.CACTUS, DyeMakeup.GREEN, 1, "cactus"),
-                new VanillaDyes(Items.PITCHER_PLANT, DyeMakeup.CYAN, 2, "pitcher_plant"),
-                new VanillaDyes(Items.BLUE_ORCHID, DyeMakeup.LIGHTBLUE, 1, "blue_orchid"),
-                new VanillaDyes(Items.CORNFLOWER, DyeMakeup.BLUE, 1, "cornflower"),
-                new VanillaDyes(Items.ALLIUM, DyeMakeup.MAGENTA, 1, "allium"),
-                new VanillaDyes(Items.LILAC, DyeMakeup.MAGENTA, 2, "lilac"),
-                new VanillaDyes(Items.PINK_PETALS, DyeMakeup.PINK, 1, "pink_petals"),
-                new VanillaDyes(Items.PINK_TULIP, DyeMakeup.PINK, 1, "pink_tulip"),
-                new VanillaDyes(Items.PEONY, DyeMakeup.PINK, 2, "peony"),
+                new VanillaDyes(Items.BONE_MEAL, DyeMakeup.WHITE, 1F, "bone_meal"),
+                new VanillaDyes(Items.LILY_OF_THE_VALLEY, DyeMakeup.WHITE, 1F, "lily_of_the_valley"),
+                new VanillaDyes(Items.OXEYE_DAISY, DyeMakeup.LIGHT_GRAY, 1F, "oxeye_daisy"),
+                new VanillaDyes(Items.AZURE_BLUET, DyeMakeup.LIGHT_GRAY, 1F, "azure_bluet"),
+                new VanillaDyes(Items.WHITE_TULIP, DyeMakeup.LIGHT_GRAY, 1F, "white_tulip"),
+                new VanillaDyes(Items.INK_SAC, DyeMakeup.BLACK, 1F, "ink_sac"),
+                new VanillaDyes(Items.WITHER_ROSE, DyeMakeup.BLACK, 1F, "wither_rose"),
+                new VanillaDyes(Items.COCOA_BEANS, DyeMakeup.BROWN, 1F, "cocoa_beans"),
+                new VanillaDyes(Items.RED_TULIP, DyeMakeup.RED, 1F, "red_tulip"),
+                new VanillaDyes(Items.BEETROOT, DyeMakeup.RED, 1F, "beetroot"),
+                new VanillaDyes(Items.POPPY, DyeMakeup.RED, 1F, "poppy"),
+                new VanillaDyes(Items.ROSE_BUSH, DyeMakeup.RED, 2F, "rose_bush"),
+                new VanillaDyes(Items.TORCHFLOWER, DyeMakeup.ORANGE, 1F, "torchflower"),
+                new VanillaDyes(Items.ORANGE_TULIP, DyeMakeup.ORANGE, 1F, "orange_tulip"),
+                new VanillaDyes(Items.DANDELION, DyeMakeup.YELLOW, 1F, "dandelion"),
+                new VanillaDyes(Items.SUNFLOWER, DyeMakeup.YELLOW, 2F, "sunflower"),
+                new VanillaDyes(Items.SEA_PICKLE, DyeMakeup.LIME, 1F, "sea_pickle"),
+                new VanillaDyes(Items.CACTUS, DyeMakeup.GREEN, 1F, "cactus"),
+                new VanillaDyes(Items.PITCHER_PLANT, DyeMakeup.CYAN, 2F, "pitcher_plant"),
+                new VanillaDyes(Items.BLUE_ORCHID, DyeMakeup.LIGHT_BLUE, 1F, "blue_orchid"),
+                new VanillaDyes(Items.CORNFLOWER, DyeMakeup.BLUE, 1F, "cornflower"),
+                new VanillaDyes(Items.ALLIUM, DyeMakeup.MAGENTA, 1F, "allium"),
+                new VanillaDyes(Items.LILAC, DyeMakeup.MAGENTA, 2F, "lilac"),
+                new VanillaDyes(Items.PINK_PETALS, DyeMakeup.PINK, 1F, "pink_petals"),
+                new VanillaDyes(Items.PINK_TULIP, DyeMakeup.PINK, 1F, "pink_tulip"),
+                new VanillaDyes(Items.PEONY, DyeMakeup.PINK, 2F, "peony"),
         };
 
         for (VanillaDyes d : dyes) {

@@ -8,18 +8,19 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.registries.RecipesRegistry;
+import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.recipes.WootRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DyeLiquifierRecipe extends WootRecipe {
-    private final int red;
-    private final int yellow;
-    private final int blue;
-    private final int white;
+    private final float red;
+    private final float yellow;
+    private final float blue;
+    private final float white;
 
-    public DyeLiquifierRecipe(ResourceLocation recipeId, int energy, int red, int yellow, int blue, int white, @Nullable List<Ingredient> inputItems) {
+    public DyeLiquifierRecipe(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, @Nullable List<Ingredient> inputItems) {
         super(recipeId, energy, inputItems, null, null, null);
         this.red = red;
         this.yellow = yellow;
@@ -38,19 +39,19 @@ public class DyeLiquifierRecipe extends WootRecipe {
     }
 
     public int getRed() {
-        return red;
+        return Math.round(red * DyeMakeup.LCM);
     }
 
     public int getYellow() {
-        return yellow;
+        return Math.round(yellow * DyeMakeup.LCM);
     }
 
     public int getBlue() {
-        return blue;
+        return Math.round(blue * DyeMakeup.LCM);
     }
 
     public int getWhite() {
-        return white;
+        return Math.round(white * DyeMakeup.LCM);
     }
 
     @Override

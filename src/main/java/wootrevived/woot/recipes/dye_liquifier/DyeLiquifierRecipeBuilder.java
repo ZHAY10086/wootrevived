@@ -16,11 +16,11 @@ import java.util.function.Consumer;
 
 public class DyeLiquifierRecipeBuilder {
     private int energy;
-    private int red;
-    private int yellow;
-    private int blue;
-    private int white;
-    private int multiply;
+    private float red;
+    private float yellow;
+    private float blue;
+    private float white;
+    private float multiply;
     private Ingredient ingredient;
 
     protected DyeLiquifierRecipeBuilder() {
@@ -36,27 +36,27 @@ public class DyeLiquifierRecipeBuilder {
         return this;
     }
 
-    public DyeLiquifierRecipeBuilder red(int red){
+    public DyeLiquifierRecipeBuilder red(float red){
         this.red = red;
         return this;
     }
 
-    public DyeLiquifierRecipeBuilder yellow(int yellow){
+    public DyeLiquifierRecipeBuilder yellow(float yellow){
         this.yellow = yellow;
         return this;
     }
 
-    public DyeLiquifierRecipeBuilder blue(int blue){
+    public DyeLiquifierRecipeBuilder blue(float blue){
         this.blue = blue;
         return this;
     }
 
-    public DyeLiquifierRecipeBuilder white(int white){
+    public DyeLiquifierRecipeBuilder white(float white){
         this.white = white;
         return this;
     }
 
-    public DyeLiquifierRecipeBuilder multiply(int multiply){
+    public DyeLiquifierRecipeBuilder multiply(float multiply){
         this.multiply = multiply;
         return this;
     }
@@ -74,12 +74,12 @@ public class DyeLiquifierRecipeBuilder {
     }
 
     public static class Result extends WootFinishedRecipe {
-        private final int red;
-        private final int yellow;
-        private final int blue;
-        private final int white;
+        private final float red;
+        private final float yellow;
+        private final float blue;
+        private final float white;
 
-        protected Result(ResourceLocation recipeId, int energy, int red, int yellow, int blue, int white, Ingredient ingredient) {
+        protected Result(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, Ingredient ingredient) {
             super(recipeId, energy, List.of(ingredient), null, null, null);
             this.red = red;
             this.yellow = yellow;

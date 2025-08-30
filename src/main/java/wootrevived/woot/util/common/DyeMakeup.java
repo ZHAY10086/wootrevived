@@ -1,6 +1,5 @@
 package wootrevived.woot.util.common;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
@@ -11,47 +10,42 @@ public enum DyeMakeup {
      * Red/Yellow/Blue/White breakdown for each of the standard 16 Minecraft colors
      * Dye tags are provided by Forge
      */
-    BLACK("black", DyeMakeup.LCM / 3, DyeMakeup.LCM / 3, DyeMakeup.LCM / 3, 0, Tags.Items.DYES_BLACK),
-    RED("red", DyeMakeup.LCM, 0, 0, 0, Tags.Items.DYES_RED),
-    GREEN("green", 0, DyeMakeup.LCM / 2, DyeMakeup.LCM / 2, 0, Tags.Items.DYES_GREEN),
-    BROWN("brown", 3 * (DyeMakeup.LCM / 4), DyeMakeup.LCM / 8, DyeMakeup.LCM / 8, 0, Tags.Items.DYES_BROWN),
-    BLUE("blue", 0, 0, DyeMakeup.LCM, 0, Tags.Items.DYES_BLUE),
-    PURPLE("purple", DyeMakeup.LCM / 2, 0, DyeMakeup.LCM / 2, 0, Tags.Items.DYES_PURPLE),
-    CYAN("cyan", 0, 0, DyeMakeup.LCM / 4, 3 * (DyeMakeup.LCM / 4), Tags.Items.DYES_CYAN),
-    LIGHTGRAY("light_gray", DyeMakeup.LCM / 9, DyeMakeup.LCM / 9, DyeMakeup.LCM / 9, 2 * (DyeMakeup.LCM / 3), Tags.Items.DYES_LIGHT_GRAY),
-    GRAY("gray", DyeMakeup.LCM / 6, DyeMakeup.LCM / 6, DyeMakeup.LCM / 6, DyeMakeup.LCM / 2, Tags.Items.DYES_GRAY),
-    PINK("pink", DyeMakeup.LCM / 2, 0, 0, DyeMakeup.LCM / 2, Tags.Items.DYES_PINK),
-    LIME("lime", 0, DyeMakeup.LCM / 4, DyeMakeup.LCM / 4, DyeMakeup.LCM / 2, Tags.Items.DYES_LIME),
-    YELLOW("yellow", 0, DyeMakeup.LCM, 0, 0, Tags.Items.DYES_YELLOW),
-    LIGHTBLUE("light_blue", 0, 0, DyeMakeup.LCM / 2, DyeMakeup.LCM / 2, Tags.Items.DYES_LIGHT_BLUE),
-    MAGENTA("magenta", DyeMakeup.LCM / 2, 0, DyeMakeup.LCM / 4, DyeMakeup.LCM / 4, Tags.Items.DYES_MAGENTA),
-    ORANGE("orange", DyeMakeup.LCM / 2, DyeMakeup.LCM / 2, 0, 0, Tags.Items.DYES_ORANGE),
-    WHITE("white", 0, 0, 0, DyeMakeup.LCM, Tags.Items.DYES_WHITE);
+    BLACK(Tags.Items.DYES_BLACK, 1F / 3F, 1F / 3F, 1F / 3F, 0F),
+    RED(Tags.Items.DYES_RED, 1F, 0F, 0F, 0F),
+    GREEN(Tags.Items.DYES_GREEN, 0F, 1F / 2F, 1F / 2F, 0F),
+    BROWN(Tags.Items.DYES_BROWN, 3F / 4F, 1F / 8F, 1F / 8F, 0F),
+    BLUE(Tags.Items.DYES_BLUE, 0F, 0F, 1F, 0F),
+    PURPLE(Tags.Items.DYES_PURPLE, 1F / 2F, 0F, 1F / 2F, 0F),
+    CYAN(Tags.Items.DYES_CYAN, 0F, 0F, 1F / 4F, 3F / 4F),
+    LIGHT_GRAY(Tags.Items.DYES_LIGHT_GRAY, 1F / 9F, 1F / 9F, 1F / 9F, 2F / 3F),
+    GRAY(Tags.Items.DYES_GRAY, 1F / 6F, 1F / 6F, 1F / 6F, 1F / 2F),
+    PINK(Tags.Items.DYES_PINK, 1F / 2F, 0F, 0F, 1F / 2F),
+    LIME(Tags.Items.DYES_LIME, 0F, 1F / 4F, 1F / 4F, 1F / 2F),
+    YELLOW(Tags.Items.DYES_YELLOW, 0F, 1F, 0F, 0F),
+    LIGHT_BLUE(Tags.Items.DYES_LIGHT_BLUE, 0F, 0F, 1F / 2F, 1F / 2F),
+    MAGENTA(Tags.Items.DYES_MAGENTA, 1F / 2F, 0F, 1F / 4F, 1F / 4F),
+    ORANGE(Tags.Items.DYES_ORANGE, 1F / 2F, 1F / 2F, 0F, 0F),
+    WHITE(Tags.Items.DYES_WHITE, 0F, 0F, 0F, 1F);
 
     public static final int LCM = 72;
 
-    private final int red;
-    private final int yellow;
-    private final int blue;
-    private final int white;
-    private final String tag;
-    private final TagKey<Item> itemTag;
+    private final TagKey<Item> tag;
+    private final float red;
+    private final float yellow;
+    private final float blue;
+    private final float white;
 
-    DyeMakeup(String tag, int red, int yellow, int blue, int white, TagKey<Item> itemTag) {
+    DyeMakeup(TagKey<Item> tag, float red, float yellow, float blue, float white) {
         this.tag = tag;
         this.red = red;
         this.yellow = yellow;
         this.blue = blue;
         this.white = white;
-        this.itemTag = itemTag;
     }
 
-    public int getRed() { return this.red; }
-    public int getYellow() { return this.yellow; }
-    public int getBlue() { return this.blue; }
-    public int getWhite() { return this.white; }
-    public ResourceLocation getForgeTag() { return ResourceLocation.tryBuild("forge", "dyes/" + this.tag); }
-    public TagKey<Item> getItemTag() { return itemTag; }
-
-    public static final DyeMakeup[] VALUES = DyeMakeup.values();
+    public TagKey<Item> getTag() { return tag; }
+    public float getRed() { return this.red; }
+    public float getYellow() { return this.yellow; }
+    public float getBlue() { return this.blue; }
+    public float getWhite() { return this.white; }
 }

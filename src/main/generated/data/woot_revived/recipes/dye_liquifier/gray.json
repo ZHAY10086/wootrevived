@@ -1,6 +1,6 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 12,
+  "blue": 0.16666667,
   "energy": 500,
   "inputs": [
     {
@@ -13,7 +13,7 @@
     }
   ],
   "outputs": [],
-  "red": 12,
-  "white": 36,
-  "yellow": 12
+  "red": 0.16666667,
+  "white": 0.5,
+  "yellow": 0.16666667
 }
