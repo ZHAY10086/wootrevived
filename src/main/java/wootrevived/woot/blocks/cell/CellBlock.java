@@ -27,8 +27,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import wootrevived.woot.config.CellConfig;
 import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.block.FactoryBlockBase;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.render.WootContainerScreen;
@@ -76,15 +76,15 @@ public class CellBlock extends FactoryBlockBase {
         super.appendHoverText(stack, block, tooltip, flag);
         int capacity = 0;
         if(entity.get() == BlocksRegistry.COPPER_CELL_BLOCK_ENTITY.get()) {
-            capacity = Config.Cell.COPPER_CAPACITY;
+            capacity = CellConfig.COPPER_CAPACITY.get();
         } else if(entity.get() == BlocksRegistry.IRON_CELL_BLOCK_ENTITY.get()) {
-            capacity = Config.Cell.IRON_CAPACITY;
+            capacity = CellConfig.IRON_CAPACITY.get();
         } else if(entity.get() == BlocksRegistry.GOLD_CELL_BLOCK_ENTITY.get()) {
-            capacity = Config.Cell.GOLD_CAPACITY;
+            capacity = CellConfig.GOLD_CAPACITY.get();
         } else if(entity.get() == BlocksRegistry.DIAMOND_CELL_BLOCK_ENTITY.get()) {
-            capacity = Config.Cell.DIAMOND_CAPACITY;
+            capacity = CellConfig.DIAMOND_CAPACITY.get();
         } else if(entity.get() == BlocksRegistry.NETHERITE_CELL_BLOCK_ENTITY.get()) {
-            capacity = Config.Cell.NETHERITE_CAPACITY;
+            capacity = CellConfig.NETHERITE_CAPACITY.get();
         }
 
         CompoundTag tag = stack.getTagElement("BlockEntityTag");

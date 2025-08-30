@@ -23,10 +23,10 @@ import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.client.render.item_infuser.ItemInfuserContainerMenu;
+import wootrevived.woot.config.ItemInfuserConfig;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
 import wootrevived.woot.util.handlers.*;
@@ -299,15 +299,15 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
     }
 
     public int getEnergyCapacity(){
-        return Config.ItemInfuser.ENERGY_CAPACITY;
+        return ItemInfuserConfig.ENERGY_CAPACITY.get();
     }
 
     public int getEnergyMaxTransfer(){
-        return Config.ItemInfuser.ENERGY_MAX_TRANSFER;
+        return ItemInfuserConfig.ENERGY_MAX_TRANSFER.get();
     }
 
     public int getEnergyProcessTransfer(){
-        return Config.ItemInfuser.ENERGY_PROCESS_TRANSFER;
+        return ItemInfuserConfig.ENERGY_PROCESS_TRANSFER.get();
     }
 
     public boolean hasEnergyCapability() {
@@ -315,7 +315,7 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
     }
 
     public int getInputTankCapacity() {
-        return Config.ItemInfuser.INPUT_TANK_CAPACITY;
+        return ItemInfuserConfig.INPUT_TANK_CAPACITY.get();
     }
 
     public boolean hasInputFluidCapability() {

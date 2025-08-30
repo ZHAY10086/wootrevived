@@ -7,7 +7,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.blocks.item_infuser.ItemInfuserBlockEntity;
-import wootrevived.woot.util.Config;
+import wootrevived.woot.config.ItemInfuserConfig;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 @OnlyIn(Dist.CLIENT)
@@ -58,15 +58,15 @@ public class ItemInfuserContainerScreen extends WootContainerScreen<ItemInfuserC
 
     @Override
     protected void renderState(@NotNull GuiGraphics gui) {
-        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.ItemInfuser.ENERGY_CAPACITY);
-        renderFluid(gui, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), Config.ItemInfuser.INPUT_TANK_CAPACITY);
+        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), ItemInfuserConfig.ENERGY_CAPACITY.get());
+        renderFluid(gui, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), ItemInfuserConfig.INPUT_TANK_CAPACITY.get());
         renderProgressArrow(gui, PROGRESS_X, PROGRESS_Y, menu.getProgress());
     }
 
     @Override
     protected void renderTooltip(@NotNull GuiGraphics gui, int mouseX, int mouseY){
-        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.ItemInfuser.ENERGY_CAPACITY);
-        renderFluidTooltip(gui, mouseX, mouseY, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), Config.ItemInfuser.INPUT_TANK_CAPACITY);
+        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), ItemInfuserConfig.ENERGY_CAPACITY.get());
+        renderFluidTooltip(gui, mouseX, mouseY, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), ItemInfuserConfig.INPUT_TANK_CAPACITY.get());
         renderProgressArrowTooltip(gui, mouseX, mouseY, PROGRESS_X, PROGRESS_Y, menu.getProgress(), menu.getLeftSeconds(), menu.getEnergyProcessTransfer());
     }
 }

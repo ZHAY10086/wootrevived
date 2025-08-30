@@ -15,10 +15,10 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.compat.jei.WootJeiCustomFluidRenderer;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
+import wootrevived.woot.config.ItemInfuserConfig;
 import wootrevived.woot.events.client.GlobalClientTicker;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRecipe> {
@@ -53,7 +53,7 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
 
     @Override
     public void draw(ItemInfuserRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics gui, double mouseX, double mouseY) {
-        int totalProgressTick = recipe.getEnergy() / Config.ItemInfuser.ENERGY_PROCESS_TRANSFER;
+        int totalProgressTick = recipe.getEnergy() / ItemInfuserConfig.ENERGY_PROCESS_TRANSFER.get();
         int progress = (GlobalClientTicker.tickCounter % totalProgressTick) * 100 / totalProgressTick;
 
         WootContainerScreen.renderVanillaSlot(gui, INGREDIENT_SLOT_X, INGREDIENT_SLOT_Y);
@@ -63,11 +63,11 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
         WootContainerScreen.renderFluidBg(gui, INPUT_FLUID_X, INPUT_FLUID_Y);
         WootContainerScreen.renderProgressArrowBg(gui, PROGRESS_X, PROGRESS_Y);
 
-        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.ItemInfuser.ENERGY_CAPACITY);
+        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), ItemInfuserConfig.ENERGY_CAPACITY.get());
         WootContainerScreen.renderProgressArrow(gui, PROGRESS_X, PROGRESS_Y, progress);
 
-        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.ItemInfuser.ENERGY_CAPACITY, false, false);
-        WootContainerScreen._renderProgressArrowTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick/ 20F), Config.ItemInfuser.ENERGY_PROCESS_TRANSFER, false);
+        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), ItemInfuserConfig.ENERGY_CAPACITY.get(), false, false);
+        WootContainerScreen._renderProgressArrowTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick/ 20F), ItemInfuserConfig.ENERGY_PROCESS_TRANSFER.get(), false);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
 
         builder.addSlot(RecipeIngredientRole.INPUT, INPUT_FLUID_X + 3, INPUT_FLUID_Y + 3)
                 .addFluidStack(inputFluid.getFluid(), inputFluid.getAmount())
-                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(Config.ItemInfuser.INPUT_TANK_CAPACITY));
+                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(ItemInfuserConfig.INPUT_TANK_CAPACITY.get()));
 
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT)
                .addItemStack(inputFluid.getFluid().getBucket().getDefaultInstance());

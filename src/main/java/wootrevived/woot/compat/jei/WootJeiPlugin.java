@@ -23,6 +23,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.Woot;
 import wootrevived.woot.compat.jei.categories.*;
+import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.recipes.enchanted_liquifier.EnchantedLiquifierRecipe;
@@ -31,7 +32,6 @@ import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.registries.ItemsRegistry;
-import wootrevived.woot.util.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,7 +92,7 @@ public class WootJeiPlugin implements IModPlugin {
             for(int enchantLevel = enchantment.getMinLevel(); enchantLevel <= enchantment.getMaxLevel(); ++enchantLevel) {
                 ItemStack itemStack = Items.ENCHANTED_BOOK.getDefaultInstance();
                 itemStack.enchant(enchantment, enchantLevel);
-                enchantLevel = Mth.clamp(enchantLevel, 1, Config.EnchantedLiquifier.MAX_ENCHANT_LVL);
+                enchantLevel = Mth.clamp(enchantLevel, 1, EnchantedLiquifierConfig.MAX_ENCHANT_LVL.get());
                 booksMap.computeIfAbsent(enchantLevel, k -> new ArrayList<>());
                 booksMap.get(enchantLevel).add(itemStack);
             }
@@ -101,8 +101,8 @@ public class WootJeiPlugin implements IModPlugin {
         for(Integer enchantLevel : booksMap.keySet()) {
             List<ItemStack> books = booksMap.get(enchantLevel);
             Ingredient ingredient = Ingredient.of(books.stream());
-            int amount = enchantLevel * Config.EnchantedLiquifier.PER_ENCHANT_FLUID;
-            int energy = enchantLevel * Config.EnchantedLiquifier.PER_ENCHANT_ENERGY;
+            int amount = enchantLevel * EnchantedLiquifierConfig.PER_ENCHANT_FLUID.get();
+            int energy = enchantLevel * EnchantedLiquifierConfig.PER_ENCHANT_ENERGY.get();
             enchantedLiquifierRecipes.add(
                     new EnchantedLiquifierRecipe(
                             energy,

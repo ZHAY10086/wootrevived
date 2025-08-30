@@ -16,10 +16,10 @@ import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.client.render.fluid_infuser.FluidInfuserContainerScreen;
 import wootrevived.woot.compat.jei.WootJeiCustomFluidRenderer;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
+import wootrevived.woot.config.FluidInfuserConfig;
 import wootrevived.woot.events.client.GlobalClientTicker;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 public class FluidInfuserRecipeCategory implements IRecipeCategory<FluidInfuserRecipe> {
@@ -51,7 +51,7 @@ public class FluidInfuserRecipeCategory implements IRecipeCategory<FluidInfuserR
 
     @Override
     public void draw(FluidInfuserRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics gui, double mouseX, double mouseY) {
-        int totalProgressTick = recipe.getEnergy() / Config.FluidInfuser.ENERGY_PROCESS_TRANSFER;
+        int totalProgressTick = recipe.getEnergy() / FluidInfuserConfig.ENERGY_PROCESS_TRANSFER.get();
         int progress = (GlobalClientTicker.tickCounter % totalProgressTick) * 100 / totalProgressTick;
 
         WootContainerScreen.renderVanillaSlot(gui, INPUT_SLOT_X, INPUT_SLOT_Y);
@@ -60,11 +60,11 @@ public class FluidInfuserRecipeCategory implements IRecipeCategory<FluidInfuserR
         WootContainerScreen.renderFluidBg(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y);
         FluidInfuserContainerScreen.renderProgressBg(gui, PROGRESS_X, PROGRESS_Y);
 
-        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.FluidInfuser.ENERGY_CAPACITY);
+        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), FluidInfuserConfig.ENERGY_CAPACITY.get());
         FluidInfuserContainerScreen.renderProgress(gui, PROGRESS_X, PROGRESS_Y, progress);
 
-        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.FluidInfuser.ENERGY_CAPACITY, false, false);
-        FluidInfuserContainerScreen._renderProgressTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick / 20F), Config.FluidInfuser.ENERGY_PROCESS_TRANSFER, false);
+        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), FluidInfuserConfig.ENERGY_CAPACITY.get(), false, false);
+        FluidInfuserContainerScreen._renderProgressTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick / 20F), FluidInfuserConfig.ENERGY_PROCESS_TRANSFER.get(), false);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class FluidInfuserRecipeCategory implements IRecipeCategory<FluidInfuserR
 
         builder.addSlot(RecipeIngredientRole.INPUT, INPUT_FLUID_X + 3, INPUT_FLUID_Y + 3)
                 .addFluidStack(inputFluid.getFluid(), inputFluid.getAmount())
-                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(Config.FluidInfuser.INPUT_TANK_CAPACITY));
+                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(FluidInfuserConfig.INPUT_TANK_CAPACITY.get()));
 
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT)
                 .addItemStack(inputFluid.getFluid().getBucket().getDefaultInstance());
@@ -105,7 +105,7 @@ public class FluidInfuserRecipeCategory implements IRecipeCategory<FluidInfuserR
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_FLUID_X + 3, OUTPUT_FLUID_Y + 3)
                 .addFluidStack(outputFluid.getFluid(), outputFluid.getAmount())
-                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(Config.FluidInfuser.OUTPUT_TANK_CAPACITY));
+                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(FluidInfuserConfig.OUTPUT_TANK_CAPACITY.get()));
 
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT)
                 .addItemStack(outputFluid.getFluid().getBucket().getDefaultInstance());

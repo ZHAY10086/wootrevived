@@ -9,7 +9,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.blocks.dye_liquifier.DyeLiquifierBlockEntity;
-import wootrevived.woot.util.Config;
+import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 @OnlyIn(Dist.CLIENT)
@@ -59,23 +59,23 @@ public class DyeLiquifierContainerScreen extends WootContainerScreen<DyeLiquifie
 
     @Override
     protected void renderState(@NotNull GuiGraphics gui) {
-        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.DyeLiquifier.ENERGY_CAPACITY);
-        renderColorBar(gui, COLOR_BAR_X, RED_COLOR_BAR_Y, menu.getRedDyeAmount(), Config.DyeLiquifier.RED_TANK_CAPACITY, DyeColor.RED.getTextureDiffuseColors());
-        renderColorBar(gui, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, menu.getYellowDyeAmount(), Config.DyeLiquifier.YELLOW_TANK_CAPACITY, DyeColor.YELLOW.getTextureDiffuseColors());
-        renderColorBar(gui, COLOR_BAR_X, BLUE_COLOR_BAR_Y, menu.getBlueDyeAmount(), Config.DyeLiquifier.BLUE_TANK_CAPACITY, DyeColor.BLUE.getTextureDiffuseColors());
-        renderColorBar(gui, COLOR_BAR_X, WHITE_COLOR_BAR_Y, menu.getWhiteDyeAmount(), Config.DyeLiquifier.WHITE_TANK_CAPACITY, DyeColor.WHITE.getTextureDiffuseColors());
-        renderFluid(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), Config.DyeLiquifier.OUTPUT_TANK_CAPACITY);
+        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get());
+        renderColorBar(gui, COLOR_BAR_X, RED_COLOR_BAR_Y, menu.getRedDyeAmount(), DyeLiquifierConfig.RED_TANK_CAPACITY.get(), DyeColor.RED.getTextureDiffuseColors());
+        renderColorBar(gui, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, menu.getYellowDyeAmount(), DyeLiquifierConfig.YELLOW_TANK_CAPACITY.get(), DyeColor.YELLOW.getTextureDiffuseColors());
+        renderColorBar(gui, COLOR_BAR_X, BLUE_COLOR_BAR_Y, menu.getBlueDyeAmount(), DyeLiquifierConfig.BLUE_TANK_CAPACITY.get(), DyeColor.BLUE.getTextureDiffuseColors());
+        renderColorBar(gui, COLOR_BAR_X, WHITE_COLOR_BAR_Y, menu.getWhiteDyeAmount(), DyeLiquifierConfig.WHITE_TANK_CAPACITY.get(), DyeColor.WHITE.getTextureDiffuseColors());
+        renderFluid(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), DyeLiquifierConfig.OUTPUT_TANK_CAPACITY.get());
         renderProgress(gui, PROGRESS_X, PROGRESS_Y, menu.getProgress());
     }
 
     @Override
     protected void renderTooltip(@NotNull GuiGraphics gui, int mouseX, int mouseY){
-        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.DyeLiquifier.ENERGY_CAPACITY);
-        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, RED_COLOR_BAR_Y, menu.getRedDyeAmount(), Config.DyeLiquifier.RED_TANK_CAPACITY, Component.translatable("info.woot_revived.dye.red"));
-        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, menu.getYellowDyeAmount(), Config.DyeLiquifier.YELLOW_TANK_CAPACITY, Component.translatable("info.woot_revived.dye.yellow"));
-        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, BLUE_COLOR_BAR_Y, menu.getBlueDyeAmount(), Config.DyeLiquifier.BLUE_TANK_CAPACITY, Component.translatable("info.woot_revived.dye.blue"));
-        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, WHITE_COLOR_BAR_Y, menu.getWhiteDyeAmount(), Config.DyeLiquifier.WHITE_TANK_CAPACITY, Component.translatable("info.woot_revived.dye.white"));
-        renderFluidTooltip(gui, mouseX, mouseY, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), Config.DyeLiquifier.OUTPUT_TANK_CAPACITY);
+        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get());
+        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, RED_COLOR_BAR_Y, menu.getRedDyeAmount(), DyeLiquifierConfig.RED_TANK_CAPACITY.get(), Component.translatable("info.woot_revived.dye.red"));
+        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, YELLOW_COLOR_BAR_Y, menu.getYellowDyeAmount(), DyeLiquifierConfig.YELLOW_TANK_CAPACITY.get(), Component.translatable("info.woot_revived.dye.yellow"));
+        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, BLUE_COLOR_BAR_Y, menu.getBlueDyeAmount(), DyeLiquifierConfig.BLUE_TANK_CAPACITY.get(), Component.translatable("info.woot_revived.dye.blue"));
+        renderColorBarTooltip(gui, mouseX, mouseY, COLOR_BAR_X, WHITE_COLOR_BAR_Y, menu.getWhiteDyeAmount(), DyeLiquifierConfig.WHITE_TANK_CAPACITY.get(), Component.translatable("info.woot_revived.dye.white"));
+        renderFluidTooltip(gui, mouseX, mouseY, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), DyeLiquifierConfig.OUTPUT_TANK_CAPACITY.get());
         renderProgressTooltip(gui, mouseX, mouseY, PROGRESS_X, PROGRESS_Y, menu.getProgress(), menu.getLeftSeconds(), menu.getEnergyProcessTransfer());
     }
 

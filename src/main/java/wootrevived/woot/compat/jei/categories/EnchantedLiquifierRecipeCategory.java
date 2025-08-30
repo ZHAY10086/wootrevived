@@ -15,10 +15,10 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.compat.jei.WootJeiCustomFluidRenderer;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
+import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.events.client.GlobalClientTicker;
 import wootrevived.woot.recipes.enchanted_liquifier.EnchantedLiquifierRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 public class EnchantedLiquifierRecipeCategory implements IRecipeCategory<EnchantedLiquifierRecipe> {
@@ -47,7 +47,7 @@ public class EnchantedLiquifierRecipeCategory implements IRecipeCategory<Enchant
 
     @Override
     public void draw(EnchantedLiquifierRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull GuiGraphics gui, double mouseX, double mouseY) {
-        int totalProgressTick = recipe.getEnergy() / Config.EnchantedLiquifier.ENERGY_PROCESS_TRANSFER;
+        int totalProgressTick = recipe.getEnergy() / EnchantedLiquifierConfig.ENERGY_PROCESS_TRANSFER.get();
         int progress = (GlobalClientTicker.tickCounter % totalProgressTick) * 100 / totalProgressTick;
 
         WootContainerScreen.renderVanillaSlot(gui, INPUT_SLOT_X, INPUT_SLOT_Y);
@@ -55,11 +55,11 @@ public class EnchantedLiquifierRecipeCategory implements IRecipeCategory<Enchant
         WootContainerScreen.renderFluidBg(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y);
         WootContainerScreen.renderProgressArrowBg(gui, PROGRESS_X, PROGRESS_Y);
 
-        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.EnchantedLiquifier.ENERGY_CAPACITY);
+        WootContainerScreen.renderEnergy(gui, ENERGY_X, ENERGY_Y, recipe.getEnergy(), EnchantedLiquifierConfig.ENERGY_CAPACITY.get());
         WootContainerScreen.renderProgressArrow(gui, PROGRESS_X, PROGRESS_Y, progress);
 
-        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), Config.EnchantedLiquifier.ENERGY_CAPACITY, false, false);
-        WootContainerScreen._renderProgressArrowTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick / 20F), Config.EnchantedLiquifier.ENERGY_PROCESS_TRANSFER, false);
+        WootContainerScreen._renderEnergyTooltip(gui, (int)mouseX, (int)mouseY, ENERGY_X, ENERGY_Y, recipe.getEnergy(), EnchantedLiquifierConfig.ENERGY_CAPACITY.get(), false, false);
+        WootContainerScreen._renderProgressArrowTooltip(gui, (int)mouseX, (int)mouseY, PROGRESS_X, PROGRESS_Y, progress, Math.max(0F, totalProgressTick / 20F), EnchantedLiquifierConfig.ENERGY_PROCESS_TRANSFER.get(), false);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class EnchantedLiquifierRecipeCategory implements IRecipeCategory<Enchant
         FluidStack outputFluid = recipe.getOutputFluid();
         builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_FLUID_X + 3, OUTPUT_FLUID_Y + 3)
                 .addFluidStack(outputFluid.getFluid(), outputFluid.getAmount())
-                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY));
+                .setCustomRenderer(NeoForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get()));
 
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT)
                 .addItemStack(outputFluid.getFluid().getBucket().getDefaultInstance());

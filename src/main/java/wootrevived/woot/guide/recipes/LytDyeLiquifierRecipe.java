@@ -12,9 +12,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerScreen;
+import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.DyeMakeup;
 import wootrevived.woot.util.render.guide.LytColorBar;
 import wootrevived.woot.util.render.guide.LytEnergy;
@@ -53,13 +53,13 @@ public class LytDyeLiquifierRecipe extends LytBox {
 
     public LytDyeLiquifierRecipe(RecipeHolder<DyeLiquifierRecipe> recipeHolder){
         DyeLiquifierRecipe recipe = recipeHolder.value();
-        append(energy = new LytEnergy(recipe.getEnergy(), Config.DyeLiquifier.ENERGY_CAPACITY));
+        append(energy = new LytEnergy(recipe.getEnergy(), DyeLiquifierConfig.ENERGY_CAPACITY.get()));
         append(inputSlot = new LytSlot(Ingredient.of(Tags.Items.DYES)));
         append(redColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.RED.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.red")));
         append(yellowColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.YELLOW.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.yellow")));
         append(blueColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.BLUE.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.blue")));
         append(whiteColorBar = new LytColorBar(DyeMakeup.LCM, DyeMakeup.LCM * 2, DyeColor.WHITE.getTextureDiffuseColors(), Component.translatable("info.woot_revived.dye.white")));
-        append(outputFluid = new LytFluid(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 4), Config.DyeLiquifier.OUTPUT_TANK_CAPACITY));
+        append(outputFluid = new LytFluid(new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), DyeMakeup.LCM * 4), DyeLiquifierConfig.OUTPUT_TANK_CAPACITY.get()));
     }
 
     @Override

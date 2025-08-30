@@ -7,7 +7,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.blocks.enchanted_liquifier.EnchantedLiquifierBlockEntity;
-import wootrevived.woot.util.Config;
+import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 @OnlyIn(Dist.CLIENT)
@@ -46,15 +46,15 @@ public class EnchantedLiquifierContainerScreen extends WootContainerScreen<Encha
 
     @Override
     protected void renderState(@NotNull GuiGraphics gui){
-        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.EnchantedLiquifier.ENERGY_CAPACITY);
-        renderFluid(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY);
+        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), EnchantedLiquifierConfig.ENERGY_CAPACITY.get());
+        renderFluid(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get());
         renderProgressArrow(gui, PROGRESS_X, PROGRESS_Y, menu.getProgress());
     }
 
     @Override
     protected void renderTooltip(@NotNull GuiGraphics gui, int mouseX, int mouseY){
-        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.EnchantedLiquifier.ENERGY_CAPACITY);
-        renderFluidTooltip(gui, mouseX, mouseY, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY);
+        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), EnchantedLiquifierConfig.ENERGY_CAPACITY.get());
+        renderFluidTooltip(gui, mouseX, mouseY, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get());
         renderProgressArrowTooltip(gui, mouseX, mouseY, PROGRESS_X, PROGRESS_Y, menu.getProgress(), menu.getLeftSeconds(), menu.getEnergyProcessTransfer());
     }
 }

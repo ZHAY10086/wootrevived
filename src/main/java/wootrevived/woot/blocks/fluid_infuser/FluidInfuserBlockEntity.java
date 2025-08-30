@@ -21,10 +21,10 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.client.render.fluid_infuser.FluidInfuserContainerMenu;
+import wootrevived.woot.config.FluidInfuserConfig;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
 import wootrevived.woot.util.handlers.*;
@@ -260,15 +260,15 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
     }
 
     public int getEnergyCapacity(){
-        return Config.FluidInfuser.ENERGY_CAPACITY;
+        return FluidInfuserConfig.ENERGY_CAPACITY.get();
     }
 
     public int getEnergyMaxTransfer(){
-        return Config.FluidInfuser.ENERGY_MAX_TRANSFER;
+        return FluidInfuserConfig.ENERGY_MAX_TRANSFER.get();
     }
 
     public int getEnergyProcessTransfer(){
-        return Config.FluidInfuser.ENERGY_PROCESS_TRANSFER;
+        return FluidInfuserConfig.ENERGY_PROCESS_TRANSFER.get();
     }
 
     public boolean hasEnergyCapability() {
@@ -276,7 +276,7 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
     }
 
     public int getInputTankCapacity() {
-        return Config.FluidInfuser.INPUT_TANK_CAPACITY;
+        return FluidInfuserConfig.INPUT_TANK_CAPACITY.get();
     }
 
     public boolean hasInputFluidCapability() {
@@ -288,7 +288,7 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
     }
 
     public int getOutputTankCapacity() {
-        return Config.FluidInfuser.OUTPUT_TANK_CAPACITY;
+        return FluidInfuserConfig.OUTPUT_TANK_CAPACITY.get();
     }
 
     public boolean hasOutputFluidCapability() {

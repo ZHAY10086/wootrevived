@@ -30,8 +30,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.jetbrains.annotations.NotNull;
+import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.util.Config;
 import wootrevived.woot.util.entity.WootTags;
 
 import org.jetbrains.annotations.Nullable;
@@ -97,7 +97,7 @@ public class EnchantedLiquifierBlock extends Block implements EntityBlock {
                             .append(Component.translatable("info.woot_revived.power").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                             .append(Component.literal(WootContainerScreen.formatInteger(energyTag.getInt(WootTags.ENERGY_TAG))))
                             .append(Component.literal("/").setStyle(MACHINE_STYLE))
-                            .append(WootContainerScreen.formatInteger(Config.EnchantedLiquifier.ENERGY_CAPACITY))
+                            .append(WootContainerScreen.formatInteger(EnchantedLiquifierConfig.ENERGY_CAPACITY.get()))
                             .append(Component.literal(" FE").setStyle(UNIT_STYLE))
             );
         }
@@ -115,7 +115,7 @@ public class EnchantedLiquifierBlock extends Block implements EntityBlock {
                             .append(Component.translatable("info.woot_revived.output_amount").append(Component.literal(": ")).setStyle(MACHINE_STYLE))
                             .append(WootContainerScreen.formatInteger(fluid.getAmount()))
                             .append(Component.literal("/").setStyle(MACHINE_STYLE))
-                            .append(WootContainerScreen.formatInteger(Config.EnchantedLiquifier.OUTPUT_TANK_CAPACITY))
+                            .append(WootContainerScreen.formatInteger(EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get()))
                             .append(Component.literal("mB").setStyle(UNIT_STYLE))
             );
         }

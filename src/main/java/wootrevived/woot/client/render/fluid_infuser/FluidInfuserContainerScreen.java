@@ -8,7 +8,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.blocks.fluid_infuser.FluidInfuserBlockEntity;
-import wootrevived.woot.util.Config;
+import wootrevived.woot.config.FluidInfuserConfig;
 import wootrevived.woot.util.render.WootContainerScreen;
 
 @OnlyIn(Dist.CLIENT)
@@ -53,17 +53,17 @@ public class FluidInfuserContainerScreen extends WootContainerScreen<FluidInfuse
 
     @Override
     protected void renderState(@NotNull GuiGraphics gui) {
-        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.FluidInfuser.ENERGY_CAPACITY);
-        renderFluid(gui, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), Config.FluidInfuser.INPUT_TANK_CAPACITY);
-        renderFluid(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), Config.FluidInfuser.OUTPUT_TANK_CAPACITY);
+        renderEnergy(gui, ENERGY_X, ENERGY_Y, menu.getEnergy(), FluidInfuserConfig.ENERGY_CAPACITY.get());
+        renderFluid(gui, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), FluidInfuserConfig.INPUT_TANK_CAPACITY.get());
+        renderFluid(gui, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), FluidInfuserConfig.OUTPUT_TANK_CAPACITY.get());
         renderProgress(gui, PROGRESS_X, PROGRESS_Y, menu.getProgress());
     }
 
     @Override
     protected void renderTooltip(@NotNull GuiGraphics gui, int mouseX, int mouseY){
-        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), Config.FluidInfuser.ENERGY_CAPACITY);
-        renderFluidTooltip(gui, mouseX, mouseY, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), Config.FluidInfuser.INPUT_TANK_CAPACITY);
-        renderFluidTooltip(gui, mouseX, mouseY, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), Config.FluidInfuser.OUTPUT_TANK_CAPACITY);
+        renderEnergyTooltip(gui, mouseX, mouseY, ENERGY_X, ENERGY_Y, menu.getEnergy(), FluidInfuserConfig.ENERGY_CAPACITY.get());
+        renderFluidTooltip(gui, mouseX, mouseY, INPUT_FLUID_X, INPUT_FLUID_Y, menu.getInputFluid(), FluidInfuserConfig.INPUT_TANK_CAPACITY.get());
+        renderFluidTooltip(gui, mouseX, mouseY, OUTPUT_FLUID_X, OUTPUT_FLUID_Y, menu.getOutputFluid(), FluidInfuserConfig.OUTPUT_TANK_CAPACITY.get());
         renderProgressTooltip(gui, mouseX, mouseY, PROGRESS_X, PROGRESS_Y, menu.getProgress(), menu.getLeftSeconds(), menu.getEnergyProcessTransfer());
     }
 
