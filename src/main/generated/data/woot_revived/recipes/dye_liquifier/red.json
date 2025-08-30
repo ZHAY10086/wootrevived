@@ -1,19 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 0.0,
+  "blue_multiplier": 0.0,
   "energy": 500,
-  "inputs": [
+  "inputIngredients": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "tag": "forge:dyes/red"
-        }
-      ]
+      "tag": "forge:dyes/red"
     }
   ],
-  "outputs": [],
-  "red": 1.0,
-  "white": 0.0,
-  "yellow": 0.0
+  "red_multiplier": 1.0,
+  "white_multiplier": 0.0,
+  "yellow_multiplier": 0.0
 }

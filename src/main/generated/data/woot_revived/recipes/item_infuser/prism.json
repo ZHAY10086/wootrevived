@@ -1,33 +1,20 @@
 {
   "type": "woot_revived:item_infuser",
   "energy": 1000,
-  "inputs": [
+  "inputFluids": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "tag": "forge:glass"
-        },
-        []
-      ]
-    },
-    {
-      "type": "fluid",
-      "fluids": [
-        {
-          "Amount": 1000,
-          "FluidName": "woot_revived:pure_dye_fluid"
-        }
-      ]
+      "Amount": 1000,
+      "FluidName": "woot_revived:pure_dye_fluid"
     }
   ],
-  "outputs": [
+  "inputIngredients": [
     {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "woot_revived:prism"
-      }
-    }
-  ]
+      "tag": "forge:glass"
+    },
+    []
+  ],
+  "outputItem": {
+    "Count": 1,
+    "id": "woot_revived:prism"
+  }
 }

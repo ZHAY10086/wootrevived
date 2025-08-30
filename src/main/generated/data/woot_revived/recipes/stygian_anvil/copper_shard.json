@@ -1,35 +1,24 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "energy": 0,
-  "inputs": [
+  "inputIngredients": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "woot_revived:shard_mold"
-        },
-        {
-          "item": "minecraft:copper_ingot"
-        },
-        {
-          "item": "minecraft:copper_ingot"
-        },
-        {
-          "item": "minecraft:copper_ingot"
-        },
-        {
-          "item": "minecraft:copper_ingot"
-        }
-      ]
+      "item": "woot_revived:shard_mold"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
     }
   ],
-  "outputs": [
-    {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "woot_revived:copper_shard"
-      }
-    }
-  ]
+  "outputItem": {
+    "Count": 1,
+    "id": "woot_revived:copper_shard"
+  }
 }

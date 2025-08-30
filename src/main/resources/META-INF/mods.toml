@@ -48,3 +48,10 @@ mandatory = false
 versionRange = "[${jade_version},)"
 ordering="NONE"
 side="CLIENT"
+
+[[dependencies.${file.modId}]]
+modId="kubejs"
+mandatory = false
+versionRange = "[${kubejs_version},)"
+ordering="NONE"
+side="BOTH"

@@ -1,35 +1,22 @@
 {
   "type": "woot_revived:item_infuser",
   "energy": 1000,
-  "inputs": [
+  "inputFluids": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "minecraft:soul_sand"
-        },
-        {
-          "tag": "forge:sand"
-        }
-      ]
-    },
-    {
-      "type": "fluid",
-      "fluids": [
-        {
-          "Amount": 1000,
-          "FluidName": "woot_revived:mob_tears_fluid"
-        }
-      ]
+      "Amount": 1000,
+      "FluidName": "woot_revived:mob_tears_fluid"
     }
   ],
-  "outputs": [
+  "inputIngredients": [
     {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "minecraft:soul_soil"
-      }
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "tag": "forge:sand"
     }
-  ]
+  ],
+  "outputItem": {
+    "Count": 1,
+    "id": "minecraft:soul_soil"
+  }
 }

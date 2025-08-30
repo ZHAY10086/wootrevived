@@ -1,32 +1,19 @@
 {
   "type": "woot_revived:fluid_infuser",
   "energy": 1000,
-  "inputs": [
+  "inputFluids": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "minecraft:nether_star"
-        }
-      ]
-    },
-    {
-      "type": "fluid",
-      "fluids": [
-        {
-          "Amount": 1000,
-          "FluidName": "minecraft:water"
-        }
-      ]
+      "Amount": 1000,
+      "FluidName": "minecraft:water"
     }
   ],
-  "outputs": [
+  "inputIngredients": [
     {
-      "type": "fluid",
-      "fluid": {
-        "Amount": 10000,
-        "FluidName": "woot_revived:mob_tears_fluid"
-      }
+      "item": "minecraft:nether_star"
     }
-  ]
+  ],
+  "outputFluid": {
+    "Amount": 10000,
+    "FluidName": "woot_revived:mob_tears_fluid"
+  }
 }

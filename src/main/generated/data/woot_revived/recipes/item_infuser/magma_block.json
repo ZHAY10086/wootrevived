@@ -1,33 +1,20 @@
 {
   "type": "woot_revived:item_infuser",
   "energy": 1000,
-  "inputs": [
+  "inputFluids": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "minecraft:netherrack"
-        },
-        []
-      ]
-    },
-    {
-      "type": "fluid",
-      "fluids": [
-        {
-          "Amount": 1000,
-          "FluidName": "minecraft:lava"
-        }
-      ]
+      "Amount": 1000,
+      "FluidName": "minecraft:lava"
     }
   ],
-  "outputs": [
+  "inputIngredients": [
     {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "minecraft:magma_block"
-      }
-    }
-  ]
+      "item": "minecraft:netherrack"
+    },
+    []
+  ],
+  "outputItem": {
+    "Count": 1,
+    "id": "minecraft:magma_block"
+  }
 }

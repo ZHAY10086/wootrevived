@@ -83,6 +83,7 @@ public class DyeLiquifierRecipe extends WootRecipe {
 
     public static void loadRecipes(@NotNull RecipeManager manager){
         Validator.clear();
+        maxMultiplier = 0;
         for(Recipe<?> recipe : manager.getRecipes()) {
             if(recipe instanceof DyeLiquifierRecipe dyeLiquifierRecipe) {
                 Validator.add(dyeLiquifierRecipe.getInputItems());

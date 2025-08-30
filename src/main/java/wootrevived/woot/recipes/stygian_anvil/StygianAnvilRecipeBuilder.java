@@ -63,7 +63,7 @@ public class StygianAnvilRecipeBuilder {
 
     public static class Result extends WootFinishedRecipe {
         protected Result(ResourceLocation recipeId, @Nullable List<Ingredient> itemInputs, @Nullable ItemStack output) {
-            super(recipeId, 0, itemInputs, null, output, null);
+            super(recipeId, -1, itemInputs, null, output, null);
         }
 
         @Override

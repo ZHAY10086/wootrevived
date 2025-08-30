@@ -1,19 +1,13 @@
 {
   "type": "woot_revived:dye_liquifier",
-  "blue": 0.25,
+  "blue_multiplier": 0.25,
   "energy": 500,
-  "inputs": [
+  "inputIngredients": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "minecraft:sea_pickle"
-        }
-      ]
+      "item": "minecraft:sea_pickle"
     }
   ],
-  "outputs": [],
-  "red": 0.0,
-  "white": 0.5,
-  "yellow": 0.25
+  "red_multiplier": 0.0,
+  "white_multiplier": 0.5,
+  "yellow_multiplier": 0.25
 }

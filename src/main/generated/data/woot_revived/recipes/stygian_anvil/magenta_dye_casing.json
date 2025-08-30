@@ -1,26 +1,15 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "energy": 0,
-  "inputs": [
+  "inputIngredients": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "woot_revived:dye_casing_mold"
-        },
-        {
-          "tag": "forge:dyes/magenta"
-        }
-      ]
+      "item": "woot_revived:dye_casing_mold"
+    },
+    {
+      "tag": "forge:dyes/magenta"
     }
   ],
-  "outputs": [
-    {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "woot_revived:magenta_dye_casing"
-      }
-    }
-  ]
+  "outputItem": {
+    "Count": 1,
+    "id": "woot_revived:magenta_dye_casing"
+  }
 }

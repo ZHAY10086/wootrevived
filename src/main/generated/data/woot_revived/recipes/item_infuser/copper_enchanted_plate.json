@@ -1,35 +1,22 @@
 {
   "type": "woot_revived:item_infuser",
   "energy": 1000,
-  "inputs": [
+  "inputFluids": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "woot_revived:stygian_plate"
-        },
-        {
-          "item": "woot_revived:copper_shard"
-        }
-      ]
-    },
-    {
-      "type": "fluid",
-      "fluids": [
-        {
-          "Amount": 1000,
-          "FluidName": "woot_revived:enchanted_fluid"
-        }
-      ]
+      "Amount": 1000,
+      "FluidName": "woot_revived:enchanted_fluid"
     }
   ],
-  "outputs": [
+  "inputIngredients": [
     {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "woot_revived:copper_enchanted_plate"
-      }
+      "item": "woot_revived:stygian_plate"
+    },
+    {
+      "item": "woot_revived:copper_shard"
     }
-  ]
+  ],
+  "outputItem": {
+    "Count": 1,
+    "id": "woot_revived:copper_enchanted_plate"
+  }
 }

@@ -89,10 +89,10 @@ public class DyeLiquifierRecipeBuilder {
         @Override
         public void serializeRecipeData(JsonObject json) {
             super.serializeRecipeData(json);
-            json.addProperty("red", this.red);
-            json.addProperty("yellow", this.yellow);
-            json.addProperty("blue", this.blue);
-            json.addProperty("white", this.white);
+            json.addProperty("red_multiplier", this.red);
+            json.addProperty("yellow_multiplier", this.yellow);
+            json.addProperty("blue_multiplier", this.blue);
+            json.addProperty("white_multiplier", this.white);
         }
 
         @Override

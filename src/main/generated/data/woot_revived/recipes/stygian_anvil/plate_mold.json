@@ -1,29 +1,18 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "energy": 0,
-  "inputs": [
+  "inputIngredients": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "minecraft:iron_trapdoor"
-        },
-        {
-          "item": "minecraft:quartz"
-        },
-        {
-          "item": "woot_revived:stygian_ingot"
-        }
-      ]
+      "item": "minecraft:iron_trapdoor"
+    },
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "woot_revived:stygian_ingot"
     }
   ],
-  "outputs": [
-    {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "woot_revived:plate_mold"
-      }
-    }
-  ]
+  "outputItem": {
+    "Count": 1,
+    "id": "woot_revived:plate_mold"
+  }
 }

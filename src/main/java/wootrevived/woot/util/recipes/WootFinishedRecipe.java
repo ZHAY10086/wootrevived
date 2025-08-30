@@ -45,57 +45,38 @@ public abstract class WootFinishedRecipe implements FinishedRecipe {
 
     @Override
     public void serializeRecipeData(JsonObject json) {
-        json.addProperty("energy", energy);
-
-        JsonArray inputs = new JsonArray();
+        if(energy >= 0)
+            json.addProperty("energy", energy);
 
         if(!inputItems.isEmpty()){
-            JsonObject obj = new JsonObject();
-            obj.addProperty("type", "ingredient");
             JsonArray ingredients = new JsonArray();
-            for(Ingredient ingredient : inputItems){
+
+            for(Ingredient ingredient : inputItems)
                 ingredients.add(ingredient.toJson());
-            }
-            obj.add("ingredients", ingredients);
-            inputs.add(obj);
+
+            json.add("inputIngredients", ingredients);
         }
 
         if(!inputFluids.isEmpty()){
-            JsonObject obj = new JsonObject();
-            obj.addProperty("type", "fluid");
             JsonArray fluids = new JsonArray();
             for(FluidStack stack : inputFluids){
                 CompoundTag tag = stack.writeToNBT(new CompoundTag());
                 JsonElement fluid = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
                 fluids.add(fluid);
             }
-            obj.add("fluids", fluids);
-            inputs.add(obj);
+            json.add("inputFluids", fluids);
         }
-
-        json.add("inputs", inputs);
-
-        JsonArray outputs = new JsonArray();
-
         if(outputItem != null){
-            JsonObject obj = new JsonObject();
-            obj.addProperty("type", "item");
             CompoundTag tag = outputItem.save(new CompoundTag());
             JsonElement item = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
-            obj.add("item", item);
-            outputs.add(obj);
+            json.add("outputItem", item);
         }
 
         if(outputFluid != null){
-            JsonObject obj = new JsonObject();
-            obj.addProperty("type", "fluid");
             CompoundTag tag = outputFluid.writeToNBT(new CompoundTag());
             JsonElement fluid = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
-            obj.add("fluid", fluid);
-            outputs.add(obj);
+            json.add("outputFluid", fluid);
         }
-
-        json.add("outputs", outputs);
     }
 
     @Override

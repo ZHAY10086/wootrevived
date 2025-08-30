@@ -1,32 +1,19 @@
 {
   "type": "woot_revived:fluid_infuser",
   "energy": 1000,
-  "inputs": [
+  "inputFluids": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "woot_revived:iron_shard"
-        }
-      ]
-    },
-    {
-      "type": "fluid",
-      "fluids": [
-        {
-          "Amount": 1000,
-          "FluidName": "woot_revived:mob_tears_fluid"
-        }
-      ]
+      "Amount": 1000,
+      "FluidName": "woot_revived:mob_tears_fluid"
     }
   ],
-  "outputs": [
+  "inputIngredients": [
     {
-      "type": "fluid",
-      "fluid": {
-        "Amount": 2500,
-        "FluidName": "woot_revived:vitality_fuel_fluid"
-      }
+      "item": "woot_revived:iron_shard"
     }
-  ]
+  ],
+  "outputFluid": {
+    "Amount": 2500,
+    "FluidName": "woot_revived:vitality_fuel_fluid"
+  }
 }

@@ -23,10 +23,10 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
     @Override
     public @NotNull T fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
         int energy = GsonHelper.getAsInt(json, "energy", 0);
-        float red = GsonHelper.getAsFloat(json, "red", 0);
-        float yellow = GsonHelper.getAsFloat(json, "yellow", 0);
-        float blue = GsonHelper.getAsFloat(json, "blue", 0);
-        float white = GsonHelper.getAsFloat(json, "white", 0);
+        float red = GsonHelper.getAsFloat(json, "red_multiplier", 0);
+        float yellow = GsonHelper.getAsFloat(json, "yellow_multiplier", 0);
+        float blue = GsonHelper.getAsFloat(json, "blue_multiplier", 0);
+        float white = GsonHelper.getAsFloat(json, "white_multiplier", 0);
 
         List<Ingredient> ingredients = WootRecipeSerializer.readInputIngredientsJson(json);
 

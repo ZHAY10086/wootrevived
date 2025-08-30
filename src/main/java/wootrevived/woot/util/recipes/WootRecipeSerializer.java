@@ -40,60 +40,47 @@ public class WootRecipeSerializer<T extends WootRecipe> implements RecipeSeriali
     }
 
     public static List<Ingredient> readInputIngredientsJson(JsonObject json) {
+        if(!json.has("inputIngredients"))
+            return List.of();
+
         List<Ingredient> inputItems = new ArrayList<>();
-        for(JsonElement element : GsonHelper.getAsJsonArray(json, "inputs")){
-            JsonObject obj = element.getAsJsonObject();
-            String type = GsonHelper.getAsString(obj, "type", "ingredient");
-            if(type.equals("ingredient")){
-                for(JsonElement ingredient : GsonHelper.getAsJsonArray(obj, "ingredients")){
-                    inputItems.add(Ingredient.fromJson(ingredient));
-                }
-            }
-        }
+
+        for(JsonElement ingredient : GsonHelper.getAsJsonArray(json, "inputIngredients"))
+            inputItems.add(Ingredient.fromJson(ingredient));
+
         return inputItems;
     }
 
     public static List<FluidStack> readInputFluidsJson(JsonObject json) {
+        if(!json.has("inputFluids"))
+            return List.of();
+
         List<FluidStack> inputFluids = new ArrayList<>();
-        for(JsonElement element : GsonHelper.getAsJsonArray(json, "inputs")){
-            JsonObject obj = element.getAsJsonObject();
-            String type = GsonHelper.getAsString(obj, "type", "ingredient");
-            if(type.equals("fluid")){
-                for(JsonElement fluidElem : GsonHelper.getAsJsonArray(obj, "fluids")){
-                    Tag tag = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, fluidElem);
-                    inputFluids.add(FluidStack.loadFluidStackFromNBT((CompoundTag) tag));
-                }
-            }
+
+        for(JsonElement fluidElem : GsonHelper.getAsJsonArray(json, "inputFluids")){
+            Tag tag = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, fluidElem);
+            inputFluids.add(FluidStack.loadFluidStackFromNBT((CompoundTag) tag));
         }
+
         return inputFluids;
     }
 
     public static ItemStack readOutputItemJson(JsonObject json) {
-        ItemStack outputItem = null;
-        for(JsonElement element : GsonHelper.getAsJsonArray(json, "outputs")){
-            JsonObject obj = element.getAsJsonObject();
-            String type = GsonHelper.getAsString(obj, "type", "item");
-            if(type.equals("item")){
-                JsonElement itemElem = obj.get("item");
-                Tag tag = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, itemElem);
-                outputItem = ItemStack.of((CompoundTag) tag);
-            }
-        }
-        return outputItem;
+        if(!json.has("outputItem"))
+            return null;
+
+        JsonElement itemElem = json.get("outputItem");
+        Tag tag = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, itemElem);
+        return ItemStack.of((CompoundTag) tag);
     }
 
     public static FluidStack readOutputFluidJson(JsonObject json) {
-        FluidStack outputFluid = null;
-        for(JsonElement element : GsonHelper.getAsJsonArray(json, "outputs")){
-            JsonObject obj = element.getAsJsonObject();
-            String type = GsonHelper.getAsString(obj, "type", "item");
-            if(type.equals("fluid")){
-                JsonElement fluidElem = obj.get("fluid");
-                Tag tag = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, fluidElem);
-                outputFluid = FluidStack.loadFluidStackFromNBT((CompoundTag) tag);
-            }
-        }
-        return outputFluid;
+        if(!json.has("outputFluid"))
+            return null;
+
+        JsonElement fluidElem = json.get("outputFluid");
+        Tag tag = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, fluidElem);
+        return FluidStack.loadFluidStackFromNBT((CompoundTag) tag);
     }
 
     @Override

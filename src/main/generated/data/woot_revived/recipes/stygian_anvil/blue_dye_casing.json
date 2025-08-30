@@ -1,26 +1,15 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "energy": 0,
-  "inputs": [
+  "inputIngredients": [
     {
-      "type": "ingredient",
-      "ingredients": [
-        {
-          "item": "woot_revived:dye_casing_mold"
-        },
-        {
-          "tag": "forge:dyes/blue"
-        }
-      ]
+      "item": "woot_revived:dye_casing_mold"
+    },
+    {
+      "tag": "forge:dyes/blue"
     }
   ],
-  "outputs": [
-    {
-      "type": "item",
-      "item": {
-        "Count": 1,
-        "id": "woot_revived:blue_dye_casing"
-      }
-    }
-  ]
+  "outputItem": {
+    "Count": 1,
+    "id": "woot_revived:blue_dye_casing"
+  }
 }

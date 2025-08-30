@@ -84,6 +84,7 @@ processResources {
                 'guideme_version': guideme_version,
                 'jei_version': jei_version,
                 'jade_version': jade_version,
+                'kubejs_version': kubejs_version,
                 'neo_major_version': neo_version.split('\\.')[0]
     }
 }
@@ -101,6 +102,7 @@ repositories {
     maven { url = "https://maven.minecraftforge.net/" }
     maven { url = "https://maven.blamejared.com/" }
     maven { url = "https://maven.creeperhost.net" }
+    maven { url = "https://maven.architectury.dev" }
     maven { url = "https://api.modrinth.com/maven" }
 }
 
@@ -109,18 +111,27 @@ dependencies {
 
     compileOnly 'org.jetbrains:annotations:22.0.0'
 
+    // JEI
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
+    // Jade
     implementation fg.deobf("maven.modrinth:jade:${jade_version}")
 
+    // GuideME
+    compileOnly fg.deobf("org.appliedenergistics:guideme:${guideme_version}:api")
+    runtimeOnly fg.deobf("org.appliedenergistics:guideme:${guideme_version}")
+
+    // KubeJS
+    implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    implementation fg.deobf("maven.modrinth:kubejs:${kubejs_version}+forge")
+    implementation fg.deobf("maven.modrinth:rhino:${rhino_version}+forge")
+
+    // Optimizations
     runtimeOnly fg.deobf("org.embeddedt:embeddium-${mc_version}:${embeddium_version}")
     runtimeOnly fg.deobf("maven.modrinth:modernfix:${modernfix_version}")
     runtimeOnly fg.deobf("maven.modrinth:ferrite-core:${ferritecore_version}")
-
-    compileOnly fg.deobf("org.appliedenergistics:guideme:${guideme_version}:api")
-    runtimeOnly fg.deobf("org.appliedenergistics:guideme:${guideme_version}")
 }
 
 shadowJar {
