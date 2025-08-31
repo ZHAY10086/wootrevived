@@ -247,6 +247,8 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
             return;
         }
 
+        DyeLiquifierRecipe recipe = this.recipe;
+
         red += recipe.getRed();
         yellow += recipe.getYellow();
         blue += recipe.getBlue();
