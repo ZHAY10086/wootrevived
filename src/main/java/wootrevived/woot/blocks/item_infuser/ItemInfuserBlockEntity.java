@@ -254,9 +254,21 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
         final int inputSize = recipe.ingredientCount(inputSlotHandler.getStackInSlot(INPUT_SLOT).getItem());
         final int augmentSize = recipe.augmentCount(augmentSlotHandler.getStackInSlot(AUGMENT_SLOT).getItem());
 
-        inputSlotHandler.extractItem(INPUT_SLOT, inputSize, false);
-        if (recipe.getAugment().isPresent())
-            augmentSlotHandler.extractItem(AUGMENT_SLOT, augmentSize, false);
+        ItemStack item = inputSlotHandler.getStackInSlot(INPUT_SLOT);
+        if(item.getItem().hasCraftingRemainingItem(item)){
+            inputSlotHandler.setStackInSlot(INPUT_SLOT, item.getItem().getCraftingRemainingItem(item));
+        } else {
+            inputSlotHandler.extractItem(INPUT_SLOT, inputSize, false);
+        }
+
+        if (recipe.getAugment().isPresent()){
+            ItemStack augment = augmentSlotHandler.getStackInSlot(AUGMENT_SLOT);
+            if(augment.getItem().hasCraftingRemainingItem(augment)){
+                augmentSlotHandler.setStackInSlot(AUGMENT_SLOT, augment.getItem().getCraftingRemainingItem(augment));
+            } else {
+                augmentSlotHandler.extractItem(AUGMENT_SLOT, augmentSize, false);
+            }
+        }
 
         ItemStack itemStack = recipe.getOutput();
         ItemStack output = outputSlotHandler.getStackInSlot(OUTPUT_SLOT);
