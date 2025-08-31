@@ -71,7 +71,7 @@ public class ItemInfuserRecipeBuilder {
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
                 ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.ITEM_INFUSER_TAG + "/" + path),
-                new ItemInfuserRecipe(energy, fluid, ingredient, Optional.ofNullable(augment), output),
+                new ItemInfuserRecipe(energy, fluid, ingredient, augment.isEmpty() ? Optional.empty() : Optional.of(augment), output),
                 null
         );
     }

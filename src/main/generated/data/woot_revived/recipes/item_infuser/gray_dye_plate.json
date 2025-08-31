@@ -1,6 +1,5 @@
 {
   "type": "woot_revived:item_infuser",
-  "augment": [],
   "energy": 500,
   "fluid": {
     "Amount": 500,
