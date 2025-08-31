@@ -10,8 +10,8 @@ navigation:
 
 The <ItemImage id="dye_liquifier" scale="0.5"/> Dye Liquifier produces <ItemImage id="pure_dye_fluid_bucket" scale="0.5"/> Pure Dye Fluid by liquifying dyes.
 
-Each dye will give different amount of liquified colors. At the moment you will have 72mB of each colors,
-it will instantly produce 288mB of <ItemImage id="pure_dye_fluid_bucket" scale="0.5"/> Pure Dye Fluid.
+Each dye will give different amount of liquified colors. At the moment you will have <WootConfig key="dye_liquifier.color_produce_amount" />mB of each colors,
+it will instantly produce <WootConfig key="dye_liquifier.pure_dye_produce_amount" />mB of <ItemImage id="pure_dye_fluid_bucket" scale="0.5"/> Pure Dye Fluid.
 
 You can put either dyes or directly the ingredients of these dyes, like flowers for example.
 
