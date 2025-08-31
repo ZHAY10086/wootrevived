@@ -8,22 +8,22 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ItemInfuserRecipe implements Recipe<WootContainer> {
     private final ResourceLocation recipeId;
     private final int energy;
     private final FluidStack fluid;
     private final Ingredient ingredient;
-    private final Ingredient augment;
+    private final Optional<Ingredient> augment;
     private final ItemStack output;
 
-    public ItemInfuserRecipe(ResourceLocation recipeId, int energy, @NotNull FluidStack fluid, @NotNull Ingredient ingredient, @Nullable Ingredient augment, @NotNull ItemStack output) {
+    public ItemInfuserRecipe(ResourceLocation recipeId, int energy, @NotNull FluidStack fluid, @NotNull Ingredient ingredient, @NotNull Optional<Ingredient> augment, @NotNull ItemStack output) {
         this.recipeId = recipeId;
         this.energy = energy;
         this.fluid = fluid;
@@ -50,9 +50,7 @@ public class ItemInfuserRecipe implements Recipe<WootContainer> {
         return this.ingredient;
     }
 
-    public @NotNull Ingredient getAugment(){
-        if(this.augment == null)
-            return Ingredient.of(ItemStack.EMPTY);
+    public @NotNull Optional<Ingredient> getAugment(){
         return this.augment;
     }
 
@@ -74,10 +72,10 @@ public class ItemInfuserRecipe implements Recipe<WootContainer> {
     }
 
     public int augmentCount(Item item){
-        if(augment == null)
+        if(augment.isEmpty())
             return 0;
 
-        for(ItemStack stack : augment.getItems()){
+        for(ItemStack stack : augment.get().getItems()){
             if(stack.is(item))
                 return stack.getCount();
         }
@@ -93,7 +91,7 @@ public class ItemInfuserRecipe implements Recipe<WootContainer> {
         if(!getIngredient().test(container.getItem(1)))
             return false;
 
-        return getAugment().isEmpty() || getAugment().test(container.getItem(2));
+        return getAugment().isEmpty() || getAugment().get().test(container.getItem(2));
     }
 
     public static void loadRecipes(@NotNull RecipeManager manager){
@@ -134,9 +132,9 @@ public class ItemInfuserRecipe implements Recipe<WootContainer> {
             return false;
         }
 
-        protected static void add(Ingredient ingredient, Ingredient augment, FluidStack fluid){
+        protected static void add(Ingredient ingredient, Optional<Ingredient> augment, FluidStack fluid){
             validIngredients.add(ingredient);
-            validAugments.add(augment);
+            augment.ifPresent(validAugments::add);
             validFluids.add(fluid);
         }
 

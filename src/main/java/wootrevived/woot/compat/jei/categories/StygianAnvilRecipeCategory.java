@@ -119,17 +119,10 @@ public class StygianAnvilRecipeCategory implements IRecipeCategory<StygianAnvilR
                 builder.addInputSlot(INGREDIENT_3_X + 1, INGREDIENT_3_Y + 1),
         };
 
-        if(recipe.getFirstComplementary() != null)
-            slots[0].addIngredients(recipe.getFirstComplementary());
-
-        if(recipe.getSecondComplementary() != null)
-            slots[1].addIngredients(recipe.getSecondComplementary());
-
-        if(recipe.getThirdComplementary() != null)
-            slots[2].addIngredients(recipe.getThirdComplementary());
-
-        if(recipe.getFourthComplementary() != null)
-            slots[3].addIngredients(recipe.getFourthComplementary());
+        recipe.getFirstComplementary().ifPresent(slots[0]::addIngredients);
+        recipe.getSecondComplementary().ifPresent(slots[1]::addIngredients);
+        recipe.getThirdComplementary().ifPresent(slots[2]::addIngredients);
+        recipe.getFourthComplementary().ifPresent(slots[3]::addIngredients);
 
         builder.addOutputSlot(OUTPUT_X + 1, OUTPUT_Y + 1)
                .addItemStack(recipe.getOutput());

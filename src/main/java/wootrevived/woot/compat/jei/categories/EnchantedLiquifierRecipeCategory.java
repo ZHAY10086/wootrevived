@@ -89,9 +89,9 @@ public class EnchantedLiquifierRecipeCategory implements IRecipeCategory<Enchant
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, EnchantedLiquifierRecipe recipe, @NotNull IFocusGroup focuses) {
         builder.addInputSlot(INPUT_SLOT_X + 1, INPUT_SLOT_Y + 1)
-                .addIngredients(recipe.getInputIngredient());
+                .addIngredients(recipe.getIngredient());
 
-        FluidStack outputFluid = recipe.getOutputFluid();
+        FluidStack outputFluid = recipe.getOutput();
         builder.addOutputSlot(OUTPUT_FLUID_X + 3, OUTPUT_FLUID_Y + 3)
                 .addFluidStack(outputFluid.getFluid(), outputFluid.getAmount())
                 .setCustomRenderer(ForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(EnchantedLiquifierConfig.OUTPUT_TANK_CAPACITY.get()));

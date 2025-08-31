@@ -104,7 +104,7 @@ public class DyeLiquifierRecipeCategory implements IRecipeCategory<DyeLiquifierR
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, DyeLiquifierRecipe recipe, @NotNull IFocusGroup focuses) {
         builder.addInputSlot(INPUT_SLOT_X + 1, INPUT_SLOT_Y + 1)
-                .addIngredients(recipe.getInputIngredient());
+                .addIngredients(recipe.getIngredient());
 
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT)
                 .addFluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get())

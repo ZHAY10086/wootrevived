@@ -42,7 +42,7 @@ public class DyeLiquifierRecipe implements Recipe<WootContainer> {
         return RecipesRegistry.DYE_LIQUIFIER_RECIPE_TYPE.get();
     }
 
-    public Ingredient getInputIngredient() {
+    public Ingredient getIngredient() {
         return ingredient;
     }
 
@@ -94,7 +94,7 @@ public class DyeLiquifierRecipe implements Recipe<WootContainer> {
         maxMultiplier = 0;
         for(Recipe<?> recipe : manager.getRecipes()) {
             if(recipe instanceof DyeLiquifierRecipe dyeLiquifierRecipe) {
-                Validator.add(dyeLiquifierRecipe.getInputIngredient());
+                Validator.add(dyeLiquifierRecipe.getIngredient());
                 if(maxMultiplier < dyeLiquifierRecipe.getInternalRed()) maxMultiplier = dyeLiquifierRecipe.getInternalRed();
                 if(maxMultiplier < dyeLiquifierRecipe.getInternalYellow()) maxMultiplier = dyeLiquifierRecipe.getInternalYellow();
                 if(maxMultiplier < dyeLiquifierRecipe.getInternalBlue()) maxMultiplier = dyeLiquifierRecipe.getInternalBlue();

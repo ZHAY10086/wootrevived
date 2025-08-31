@@ -51,7 +51,7 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
         buffer.writeFloat(recipe.getBlue());
         buffer.writeFloat(recipe.getWhite());
 
-        RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getInputIngredient());
+        RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getIngredient());
     }
 
     public interface IFactory<T> {

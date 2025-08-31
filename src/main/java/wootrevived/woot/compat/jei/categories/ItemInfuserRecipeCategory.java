@@ -108,8 +108,10 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
         builder.addInputSlot(INGREDIENT_SLOT_X + 1, INGREDIENT_SLOT_Y + 1)
                 .addIngredients(recipe.getIngredient());
 
-        builder.addInputSlot(AUGMENT_SLOT_X + 1, AUGMENT_SLOT_Y + 1)
-                .addIngredients(recipe.getAugment());
+        if(recipe.getAugment().isPresent()){
+            builder.addInputSlot(AUGMENT_SLOT_X + 1, AUGMENT_SLOT_Y + 1)
+                    .addIngredients(recipe.getAugment().get());
+        }
 
         builder.addOutputSlot(OUTPUT_SLOT_X + 1, OUTPUT_SLOT_Y + 1)
                .addItemStack(recipe.getOutput());

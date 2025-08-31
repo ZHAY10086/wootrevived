@@ -13,19 +13,20 @@ import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StygianAnvilRecipe implements Recipe<WootContainer> {
     private final ResourceLocation recipeId;
     private final Ingredient base;
-    private final Ingredient firstComplementary;
-    private final Ingredient secondComplementary;
-    private final Ingredient thirdComplementary;
-    private final Ingredient fourthComplementary;
+    private final Optional<Ingredient> firstComplementary;
+    private final Optional<Ingredient> secondComplementary;
+    private final Optional<Ingredient> thirdComplementary;
+    private final Optional<Ingredient> fourthComplementary;
     private final ItemStack outputItem;
 
     private final int complementaryCount;
 
-    public StygianAnvilRecipe(ResourceLocation recipeId, @NotNull Ingredient base, @Nullable Ingredient firstComplementary, @Nullable Ingredient secondComplementary, @Nullable Ingredient thirdComplementary, @Nullable Ingredient fourthComplementary, @NotNull ItemStack outputItem) {
+    public StygianAnvilRecipe(ResourceLocation recipeId, @NotNull Ingredient base, @NotNull Optional<Ingredient> firstComplementary, @NotNull Optional<Ingredient> secondComplementary, @NotNull Optional<Ingredient> thirdComplementary, @NotNull Optional<Ingredient> fourthComplementary, @NotNull ItemStack outputItem) {
         this.recipeId = recipeId;
         this.base = base;
         this.firstComplementary = firstComplementary;
@@ -35,10 +36,10 @@ public class StygianAnvilRecipe implements Recipe<WootContainer> {
         this.outputItem = outputItem;
 
         this.complementaryCount =
-                Boolean.compare(firstComplementary != null, false) +
-                Boolean.compare(secondComplementary != null, false) +
-                Boolean.compare(thirdComplementary != null, false) +
-                Boolean.compare(fourthComplementary != null, false);
+                Boolean.compare(firstComplementary.isPresent(), false) +
+                Boolean.compare(secondComplementary.isPresent(), false) +
+                Boolean.compare(thirdComplementary.isPresent(), false) +
+                Boolean.compare(fourthComplementary.isPresent(), false);
     }
 
     @Override
@@ -55,19 +56,19 @@ public class StygianAnvilRecipe implements Recipe<WootContainer> {
         return base;
     }
 
-    public @Nullable Ingredient getFirstComplementary(){
+    public @NotNull Optional<Ingredient> getFirstComplementary(){
         return firstComplementary;
     }
 
-    public @Nullable Ingredient getSecondComplementary(){
+    public @NotNull Optional<Ingredient> getSecondComplementary(){
         return secondComplementary;
     }
 
-    public @Nullable Ingredient getThirdComplementary(){
+    public @NotNull Optional<Ingredient> getThirdComplementary(){
         return thirdComplementary;
     }
 
-    public @Nullable Ingredient getFourthComplementary(){
+    public @NotNull Optional<Ingredient> getFourthComplementary(){
         return fourthComplementary;
     }
 
@@ -97,14 +98,14 @@ public class StygianAnvilRecipe implements Recipe<WootContainer> {
                 matchComplementary(container, validatedSlots, fourthComplementary);
     }
 
-    private boolean matchComplementary(Container container, List<Integer> validatedSlots, @Nullable Ingredient complementary){
-        if(complementary == null)
+    private boolean matchComplementary(Container container, List<Integer> validatedSlots, Optional<Ingredient> complementary){
+        if(complementary.isEmpty())
             return true;
 
         boolean hasFound = false;
 
         for(int i = 1; i < container.getContainerSize(); i++){
-            if(!validatedSlots.contains(i) && complementary.test(container.getItem(i))){
+            if(!validatedSlots.contains(i) && complementary.get().test(container.getItem(i))){
                 validatedSlots.add(i);
                 hasFound = true;
                 break;
@@ -143,16 +144,12 @@ public class StygianAnvilRecipe implements Recipe<WootContainer> {
             return false;
         }
 
-        protected static void add(@NotNull Ingredient base, @Nullable Ingredient firstComplementary, @Nullable Ingredient secondComplementary, @Nullable Ingredient thirdComplementary, @Nullable Ingredient fourthComplementary){
+        protected static void add(@NotNull Ingredient base, @Nullable Optional<Ingredient> firstComplementary, @Nullable Optional<Ingredient> secondComplementary, @Nullable Optional<Ingredient> thirdComplementary, @Nullable Optional<Ingredient> fourthComplementary){
             validBaseInputs.add(base);
-            if(firstComplementary != null)
-                validIngredients.add(firstComplementary);
-            if(secondComplementary != null)
-                validIngredients.add(secondComplementary);
-            if(thirdComplementary != null)
-                validIngredients.add(thirdComplementary);
-            if(fourthComplementary != null)
-                validIngredients.add(fourthComplementary);
+            firstComplementary.ifPresent(validIngredients::add);
+            secondComplementary.ifPresent(validIngredients::add);
+            thirdComplementary.ifPresent(validIngredients::add);
+            fourthComplementary.ifPresent(validIngredients::add);
         }
 
         protected static void clear(){

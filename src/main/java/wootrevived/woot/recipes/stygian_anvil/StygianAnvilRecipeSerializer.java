@@ -10,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.util.helper.RecipeHelper;
 
+import java.util.Optional;
+
 public class StygianAnvilRecipeSerializer<T extends StygianAnvilRecipe> implements RecipeSerializer<T> {
     protected final IFactory<T> factory;
 
@@ -39,7 +41,7 @@ public class StygianAnvilRecipeSerializer<T extends StygianAnvilRecipe> implemen
 
         ItemStack outputItem = RecipeHelper.ItemOutput.fromJson(json, "output");
 
-        return factory.create(recipeId, base, firstComplementary, secondComplementary, thirdComplementary, fourthComplementary, outputItem);
+        return factory.create(recipeId, base, Optional.ofNullable(firstComplementary), Optional.ofNullable(secondComplementary), Optional.ofNullable(thirdComplementary), Optional.ofNullable(fourthComplementary), outputItem);
     }
 
     @Override
@@ -62,35 +64,35 @@ public class StygianAnvilRecipeSerializer<T extends StygianAnvilRecipe> implemen
         if(buffer.readBoolean())
             fourthComplementary = RecipeHelper.IngredientInput.fromNetwork(buffer);
 
-        ItemStack outputItem = RecipeHelper.ItemOutput.fromNetwork(buffer);
+        ItemStack output = RecipeHelper.ItemOutput.fromNetwork(buffer);
 
-        return factory.create(recipeId, base, firstComplementary, secondComplementary, thirdComplementary, fourthComplementary, outputItem);
+        return factory.create(recipeId, base, Optional.ofNullable(firstComplementary), Optional.ofNullable(secondComplementary), Optional.ofNullable(thirdComplementary), Optional.ofNullable(fourthComplementary), output);
     }
 
     @Override
     public void toNetwork(FriendlyByteBuf buffer, T recipe) {
         RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getBase());
 
-        buffer.writeBoolean(recipe.getFirstComplementary() != null);
-        if(recipe.getFirstComplementary() != null)
-            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getFirstComplementary());
+        buffer.writeBoolean(recipe.getFirstComplementary().isPresent());
+        if(recipe.getFirstComplementary().isPresent())
+            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getFirstComplementary().get());
 
-        buffer.writeBoolean(recipe.getSecondComplementary() != null);
-        if(recipe.getSecondComplementary() != null)
-            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getSecondComplementary());
+        buffer.writeBoolean(recipe.getSecondComplementary().isPresent());
+        if(recipe.getSecondComplementary().isPresent())
+            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getSecondComplementary().get());
 
-        buffer.writeBoolean(recipe.getThirdComplementary() != null);
-        if(recipe.getThirdComplementary() != null)
-            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getThirdComplementary());
+        buffer.writeBoolean(recipe.getThirdComplementary().isPresent());
+        if(recipe.getThirdComplementary().isPresent())
+            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getThirdComplementary().get());
 
-        buffer.writeBoolean(recipe.getFourthComplementary() != null);
-        if(recipe.getFourthComplementary() != null)
-            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getFourthComplementary());
+        buffer.writeBoolean(recipe.getFourthComplementary().isPresent());
+        if(recipe.getFourthComplementary().isPresent())
+            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getFourthComplementary().get());
 
         RecipeHelper.ItemOutput.toNetwork(buffer, recipe.getOutput());
     }
 
     public interface IFactory<T> {
-        T create(ResourceLocation recipeId, Ingredient base, Ingredient firstComplementary, Ingredient secondComplementary, Ingredient thirdComplementary, Ingredient fourthComplementary, ItemStack outputItem);
+        T create(ResourceLocation recipeId, Ingredient base, Optional<Ingredient> firstComplementary, Optional<Ingredient> secondComplementary, Optional<Ingredient> thirdComplementary, Optional<Ingredient> fourthComplementary, ItemStack outputItem);
     }
 }

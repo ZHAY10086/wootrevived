@@ -22,11 +22,11 @@ public class EnchantedLiquifierRecipe implements Recipe<WootContainer> {
         this.outputFluid = outputFluid;
     }
 
-    public Ingredient getInputIngredient(){
+    public Ingredient getIngredient(){
         return ingredient;
     }
 
-    public FluidStack getOutputFluid(){
+    public FluidStack getOutput(){
         return this.outputFluid;
     }
 

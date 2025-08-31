@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.util.helper.RecipeHelper;
 
+import java.util.Optional;
+
 public class ItemInfuserRecipeSerializer<T extends ItemInfuserRecipe> implements RecipeSerializer<T> {
     protected final IFactory<T> factory;
 
@@ -32,7 +34,7 @@ public class ItemInfuserRecipeSerializer<T extends ItemInfuserRecipe> implements
 
         ItemStack output = RecipeHelper.ItemOutput.fromJson(json, "output");
 
-        return factory.create(recipeId, energy, fluid, ingredient, augment, output);
+        return factory.create(recipeId, energy, fluid, ingredient, Optional.ofNullable(augment), output);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class ItemInfuserRecipeSerializer<T extends ItemInfuserRecipe> implements
 
         ItemStack output = RecipeHelper.ItemOutput.fromNetwork(buffer);
 
-        return factory.create(recipeId, energy, fluid, ingredient, augment, output);
+        return factory.create(recipeId, energy, fluid, ingredient, Optional.ofNullable(augment), output);
     }
 
     @Override
@@ -58,14 +60,14 @@ public class ItemInfuserRecipeSerializer<T extends ItemInfuserRecipe> implements
         RecipeHelper.FluidInput.toNetwork(buffer, recipe.getFluid());
         RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getIngredient());
 
-        buffer.writeBoolean(!recipe.getAugment().isEmpty());
-        if(!recipe.getAugment().isEmpty())
-            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getAugment());
+        buffer.writeBoolean(recipe.getAugment().isPresent());
+        if(recipe.getAugment().isPresent())
+            RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getAugment().get());
 
         RecipeHelper.ItemOutput.toNetwork(buffer, recipe.getOutput());
     }
 
     public interface IFactory<T> {
-        T create(ResourceLocation recipeId, int energy, FluidStack inputFluid, Ingredient inputIngredient, Ingredient inputAugment, ItemStack output);
+        T create(ResourceLocation recipeId, int energy, FluidStack fluid, Ingredient ingredient, Optional<Ingredient> augment, ItemStack output);
     }
 }
