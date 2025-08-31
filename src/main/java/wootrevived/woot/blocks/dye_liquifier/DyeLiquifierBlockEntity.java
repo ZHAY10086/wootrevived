@@ -243,11 +243,13 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
         blue = Mth.clamp(blue, 0, DyeLiquifierConfig.BLUE_TANK_CAPACITY.get());
         white = Mth.clamp(white, 0, DyeLiquifierConfig.WHITE_TANK_CAPACITY.get());
 
+        int ingredientAmount = recipe.ingredientCount(inventoryHandler.getStackInSlot(INPUT_SLOT).getItem());
+
         ItemStack item = inventoryHandler.getStackInSlot(INPUT_SLOT);
         if(item.getItem().hasCraftingRemainingItem(item)){
             inventoryHandler.setStackInSlot(INPUT_SLOT, item.getItem().getCraftingRemainingItem(item));
         } else {
-            inventoryHandler.extractItem(INPUT_SLOT, 1, false);
+            inventoryHandler.extractItem(INPUT_SLOT, ingredientAmount, false);
         }
 
         generatePureFluid();

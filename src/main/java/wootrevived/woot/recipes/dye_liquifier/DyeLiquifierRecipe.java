@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -90,6 +91,15 @@ public class DyeLiquifierRecipe implements Recipe<WootContainer> {
 
     public int getEnergy() {
         return energy;
+    }
+
+    public int ingredientCount(Item item){
+        for(ItemStack stack : ingredient.getItems()){
+            if(stack.is(item))
+                return stack.getCount();
+        }
+
+        return 0;
     }
 
     @Override
