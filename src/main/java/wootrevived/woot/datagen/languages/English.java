@@ -1,4 +1,4 @@
-package wootrevived.woot.datagen;
+package wootrevived.woot.datagen.languages;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -9,9 +9,9 @@ import wootrevived.woot.registries.ItemsRegistry;
 import wootrevived.woot.registries.UpgradeItemsRegistry;
 import wootrevived.woot.upgrades.*;
 
-public class Language extends LanguageProvider {
-    public Language(PackOutput output, String locale){
-        super(output, Woot.MOD_ID, locale);
+public class English extends LanguageProvider {
+    public English(PackOutput output){
+        super(output, Woot.MOD_ID, "en_us");
     }
 
     @Override

@@ -39,7 +39,7 @@ public class DataGenerators {
             generator.addProvider(true, new Blocks(packOutput, existingFileHelper));
             generator.addProvider(true, new Items(packOutput, existingFileHelper));
             generator.addProvider(true, new Atlas(packOutput, lookupProvider, existingFileHelper));
-            generator.addProvider(true, new Language(packOutput, "en_us"));
+            generator.addProvider(true, new Languages(packOutput));
         }
     }
 }
