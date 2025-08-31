@@ -274,7 +274,7 @@ public class Language extends LanguageProvider {
         add("jei.woot_revived.mob_shard.0", "Hit the mob with the shard or throw the shard on the mob to start programming it.");
         add("jei.woot_revived.mob_shard.1", "You need to kill the same mob you killed a number of times to get the shard fully programmed.");
         add("jei.woot_revived.mob_shard.2", "Once fully programmed it can be turned into a Fake Spawner with the Stygian Anvil.");
-        add("jei.woot_revived.pure_dye_fluid", "Generated using the Dye Liquifier with 72mB of Blue, 72mB of Yellow, 72mB of Red and 72mB of White.");
+        add("jei.woot_revived.pure_dye_fluid", "Generated using the Dye Liquifier with %dmB of Blue, %dmB of Yellow, %dmB of Red and %dmB of White.");
 
         add("advancements.woot_revived.root.title", "Woot Revived");
         add("advancements.woot_revived.root.description", "You missed this loot mod right?");
