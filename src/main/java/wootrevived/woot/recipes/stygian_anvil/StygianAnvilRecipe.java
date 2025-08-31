@@ -152,10 +152,10 @@ public class StygianAnvilRecipe implements Recipe<WootContainer> {
 
         protected static void add(@NotNull Ingredient base, @NotNull Optional<Ingredient> firstComplementary, @NotNull Optional<Ingredient> secondComplementary, @NotNull Optional<Ingredient> thirdComplementary, @NotNull Optional<Ingredient> fourthComplementary){
             validBaseInputs.add(base);
-            firstComplementary.ifPresent(validBaseInputs::add);
-            secondComplementary.ifPresent(validBaseInputs::add);
-            thirdComplementary.ifPresent(validBaseInputs::add);
-            fourthComplementary.ifPresent(validBaseInputs::add);
+            firstComplementary.ifPresent(validIngredients::add);
+            secondComplementary.ifPresent(validIngredients::add);
+            thirdComplementary.ifPresent(validIngredients::add);
+            fourthComplementary.ifPresent(validIngredients::add);
         }
 
         protected static void clear(){
