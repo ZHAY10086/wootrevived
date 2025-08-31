@@ -2,31 +2,38 @@ package wootrevived.woot.recipes.fluid_infuser;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.util.ExtraCodecs;
-import net.minecraft.world.Container;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.recipes.WootContainer;
-import wootrevived.woot.util.recipes.WootRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FluidInfuserRecipe extends WootRecipe {
+public class FluidInfuserRecipe implements Recipe<WootContainer> {
     public static final MapCodec<FluidInfuserRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             ExtraCodecs.NON_NEGATIVE_INT.fieldOf("energy").forGetter(FluidInfuserRecipe::getEnergy),
-            Ingredient.CODEC.listOf().fieldOf("inputIngredients").forGetter(FluidInfuserRecipe::getInputItems),
-            FluidStack.CODEC.listOf().fieldOf("inputFluids").forGetter(FluidInfuserRecipe::getInputFluids),
-            FluidStack.CODEC.fieldOf("outputFluid").forGetter(FluidInfuserRecipe::getOutputFluid)
+            FluidStack.CODEC.fieldOf("input_fluid").forGetter(FluidInfuserRecipe::getInputFluid),
+            Ingredient.CODEC.fieldOf("ingredient").forGetter(FluidInfuserRecipe::getIngredient),
+            FluidStack.CODEC.fieldOf("output_fluid").forGetter(FluidInfuserRecipe::getOutputFluid)
     ).apply(inst, FluidInfuserRecipe::new));
 
-    public FluidInfuserRecipe(int energy, @Nullable List<Ingredient> inputItems, @Nullable List<FluidStack> inputFluids, @Nullable FluidStack outputFluid) {
-        super(energy, inputItems, inputFluids, null, outputFluid);
+    private final int energy;
+    private final FluidStack inputFluid;
+    private final Ingredient ingredient;
+    private final FluidStack outputFluid;
+
+    public FluidInfuserRecipe(int energy, @NotNull FluidStack inputFluid, @NotNull Ingredient ingredient, @NotNull FluidStack outputFluid) {
+        this.energy = energy;
+        this.inputFluid = inputFluid;
+        this.ingredient = ingredient;
+        this.outputFluid = outputFluid;
     }
 
     @Override
@@ -40,33 +47,42 @@ public class FluidInfuserRecipe extends WootRecipe {
     }
 
     public FluidStack getInputFluid(){
-        return this.inputFluids.get(0);
+        return this.inputFluid.copy();
     }
 
-    public Ingredient getInputIngredient(){
-        return this.inputItems.get(0);
+    public Ingredient getIngredient(){
+        return this.ingredient;
     }
 
     public FluidStack getOutputFluid(){
-        return this.outputFluid;
+        return this.outputFluid.copy();
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public int ingredientCount(Item item){
+        for(ItemStack stack : ingredient.getItems()){
+            if(stack.is(item))
+                return stack.getCount();
+        }
+
+        return 0;
     }
 
     @Override
-    public boolean matches(@NotNull Container container, @NotNull Level level) {
-        if(container instanceof WootContainer wootContainer){
-            if(!getInputFluid().isFluidEqual(wootContainer.getFluid(0)))
-                return false;
+    public boolean matches(@NotNull WootContainer container, @NotNull Level level) {
+        if(!getInputFluid().isFluidEqual(container.getFluid(0)))
+            return false;
 
-            return getInputIngredient().test(container.getItem(1));
-        }
-
-        return false;
+        return getIngredient().test(container.getItem(1));
     }
 
     public static void loadRecipes(@NotNull RecipeManager manager){
         Validator.clear();
         for(RecipeHolder<FluidInfuserRecipe> recipeHolder : manager.getAllRecipesFor(RecipesRegistry.FLUID_INFUSER_RECIPE_TYPE.get())) {
-            Validator.add(recipeHolder.value().getInputItems(), recipeHolder.value().getInputFluids());
+            Validator.add(recipeHolder.value().ingredient, recipeHolder.value().inputFluid);
         }
     }
 
@@ -90,14 +106,34 @@ public class FluidInfuserRecipe extends WootRecipe {
             return false;
         }
 
-        protected static void add(List<Ingredient> items, List<FluidStack> fluids){
-            validIngredients.add(items.get(0));
-            validFluids.add(fluids.get(0));
+        protected static void add(Ingredient ingredient, FluidStack fluid){
+            validIngredients.add(ingredient);
+            validFluids.add(fluid);
         }
 
         protected static void clear(){
             validIngredients.clear();
             validFluids.clear();
         }
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(@NotNull WootContainer container, @NotNull RegistryAccess registryAccess) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int i, int i1) {
+        return true;
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
     }
 }

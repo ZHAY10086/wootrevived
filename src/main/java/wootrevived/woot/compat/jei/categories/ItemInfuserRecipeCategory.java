@@ -92,7 +92,7 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ItemInfuserRecipe recipe, @NotNull IFocusGroup focuses) {
-        FluidStack inputFluid = recipe.getInputFluid();
+        FluidStack inputFluid = recipe.getFluid();
 
         builder.addSlot(RecipeIngredientRole.INPUT, INPUT_FLUID_X + 3, INPUT_FLUID_Y + 3)
                 .addFluidStack(inputFluid.getFluid(), inputFluid.getAmount())
@@ -102,14 +102,14 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
                .addItemStack(inputFluid.getFluid().getBucket().getDefaultInstance());
 
         builder.addSlot(RecipeIngredientRole.INPUT, INGREDIENT_SLOT_X + 1, INGREDIENT_SLOT_Y + 1)
-               .addIngredients(recipe.getInputIngredient());
+               .addIngredients(recipe.getIngredient());
 
-        if(!recipe.getAugmentIngredient().isEmpty()){
+        if(recipe.getAugment().isPresent()){
             builder.addSlot(RecipeIngredientRole.INPUT, AUGMENT_SLOT_X + 1, AUGMENT_SLOT_Y + 1)
-                   .addIngredients(recipe.getAugmentIngredient());
+                   .addIngredients(recipe.getAugment().get());
         }
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_SLOT_X + 1, OUTPUT_SLOT_Y + 1)
-               .addItemStack(recipe.getOutputItem());
+               .addItemStack(recipe.getOutput());
     }
 }

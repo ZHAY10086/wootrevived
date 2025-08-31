@@ -10,10 +10,10 @@ import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import wootrevived.woot.compat.kubejs.components.WootComponents;
 
 public interface FluidInfuserRecipeJS {
-    RecipeKey<InputFluid[]> INPUT_FLUID = WootComponents.INPUT_FLUID_ARRAY.key("inputFluids");
-    RecipeKey<InputItem[]> INPUT_ITEM = ItemComponents.INPUT_ARRAY.key("inputIngredients");
-    RecipeKey<OutputFluid> OUTPUT_FLUID = WootComponents.OUTPUT_FLUID.key("outputFluid");
+    RecipeKey<OutputFluid> OUTPUT_FLUID = WootComponents.OUTPUT_FLUID.key("output_fluid");
     RecipeKey<Integer> ENERGY = NumberComponent.INT.key("energy");
+    RecipeKey<InputFluid> INPUT_FLUID = WootComponents.INPUT_FLUID.key("input_fluid");
+    RecipeKey<InputItem> INGREDIENT = ItemComponents.INPUT.key("ingredient");
 
-    RecipeSchema SCHEMA = new RecipeSchema(INPUT_FLUID, INPUT_ITEM, OUTPUT_FLUID, ENERGY);
+    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT_FLUID, ENERGY, INPUT_FLUID, INGREDIENT);
 }

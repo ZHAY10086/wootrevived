@@ -1,7 +1,6 @@
 package wootrevived.woot.compat.jei.categories;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
-import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -12,7 +11,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerScreen;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
@@ -101,10 +99,8 @@ public class DyeLiquifierRecipeCategory implements IRecipeCategory<DyeLiquifierR
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, DyeLiquifierRecipe recipe, @NotNull IFocusGroup focuses) {
-        IRecipeSlotBuilder input = builder.addSlot(RecipeIngredientRole.INPUT, INPUT_SLOT_X + 1, INPUT_SLOT_Y + 1);
-        for(Ingredient ingredient : recipe.getInputItems()) {
-            input.addIngredients(ingredient);
-        }
+        builder.addSlot(RecipeIngredientRole.INPUT, INPUT_SLOT_X + 1, INPUT_SLOT_Y + 1)
+                .addIngredients(recipe.getIngredient());
 
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT)
                 .addFluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), 1)

@@ -1,18 +1,16 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "inputIngredients": [
-    {
-      "item": "minecraft:prismarine_shard"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "woot_revived:stygian_ingot"
-    }
-  ],
-  "outputItem": {
+  "base": {
+    "item": "minecraft:prismarine_shard"
+  },
+  "first_complementary": {
+    "item": "minecraft:quartz"
+  },
+  "output": {
     "Count": 1,
     "id": "woot_revived:shard_mold"
+  },
+  "second_complementary": {
+    "item": "woot_revived:stygian_ingot"
   }
 }

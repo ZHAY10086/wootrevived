@@ -14,7 +14,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
 import wootrevived.woot.items.mob_shard.MobShardItem;
@@ -102,12 +101,12 @@ public class StygianAnvilRecipeCategory implements IRecipeCategory<StygianAnvilR
     public void setRecipe(IRecipeLayoutBuilder builder, StygianAnvilRecipe recipe, @NotNull IFocusGroup focuses) {
         IRecipeSlotBuilder baseSlot = builder.addSlot(RecipeIngredientRole.INPUT, BASE_X + 1, BASE_Y + 1)
                 .addTooltipCallback(this);
-        if(recipe.getRecipeBaseIngredient().getItems()[0].getItem() == ItemsRegistry.MOB_SHARD_ITEM.get()){
+        if(recipe.getBase().getItems()[0].getItem() == ItemsRegistry.MOB_SHARD_ITEM.get()){
             ItemStack itemStack = ItemsRegistry.MOB_SHARD_ITEM.get().getDefaultInstance();
             MobShardItem.setJEIShard(itemStack);
             baseSlot.addItemStack(itemStack);
         } else {
-            baseSlot.addIngredients(recipe.getRecipeBaseIngredient());
+            baseSlot.addIngredients(recipe.getBase());
         }
 
         IRecipeSlotBuilder[] slots = {
@@ -117,13 +116,13 @@ public class StygianAnvilRecipeCategory implements IRecipeCategory<StygianAnvilR
                 builder.addSlot(RecipeIngredientRole.INPUT, INGREDIENT_3_X + 1, INGREDIENT_3_Y + 1),
         };
 
-        List<Ingredient> ingredients = recipe.getRecipeIngredients();
-        for(int i = 0; i < ingredients.size(); i++) {
-            slots[i].addIngredients(ingredients.get(i));
-        }
+        recipe.getFirstComplementary().ifPresent(slots[0]::addIngredients);
+        recipe.getSecondComplementary().ifPresent(slots[1]::addIngredients);
+        recipe.getThirdComplementary().ifPresent(slots[2]::addIngredients);
+        recipe.getFourthComplementary().ifPresent(slots[3]::addIngredients);
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, OUTPUT_X + 1, OUTPUT_Y + 1)
-               .addItemStack(recipe.getOutputItem());
+               .addItemStack(recipe.getOutput());
     }
 
     @Override

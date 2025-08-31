@@ -6,8 +6,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import wootrevived.woot.Woot;
 import wootrevived.woot.registries.BlocksRegistry;
 
-import java.util.List;
-
 public class DyeLiquifierRecipeBuilder {
     private int energy;
     private float red;
@@ -63,7 +61,7 @@ public class DyeLiquifierRecipeBuilder {
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
                 ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.DYE_LIQUIFIER_TAG + "/" + path),
-                new DyeLiquifierRecipe(energy, red * multiply, yellow * multiply, blue * multiply, white * multiply, List.of(ingredient)),
+                new DyeLiquifierRecipe(energy, red * multiply, yellow * multiply, blue * multiply, white * multiply, ingredient),
                 null
         );
     }

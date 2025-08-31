@@ -1,13 +1,13 @@
 package wootrevived.woot.blocks.dye_liquifier;
 
 import com.google.common.collect.Maps;
+import com.mojang.datafixers.util.Either;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -34,6 +34,7 @@ import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
 
 import org.jetbrains.annotations.Nullable;
+import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -230,12 +231,10 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
             return;
         }
 
-        DyeLiquifierRecipe finishedRecipe = recipe;
-
-        red += finishedRecipe.getRed();
-        yellow += finishedRecipe.getYellow();
-        blue += finishedRecipe.getBlue();
-        white += finishedRecipe.getWhite();
+        red += recipe.getRed();
+        yellow += recipe.getYellow();
+        blue += recipe.getBlue();
+        white += recipe.getWhite();
 
         red = Mth.clamp(red, 0, DyeLiquifierConfig.RED_TANK_CAPACITY.get());
         yellow = Mth.clamp(yellow, 0, DyeLiquifierConfig.YELLOW_TANK_CAPACITY.get());
@@ -259,7 +258,7 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
 
     private void getRecipe() {
         RecipeHolder<DyeLiquifierRecipe> recipeHolder = level.getRecipeManager().getRecipeFor(RecipesRegistry.DYE_LIQUIFIER_RECIPE_TYPE.get(),
-                new SimpleContainer(inventoryHandler.getStackInSlot(INPUT_SLOT)),
+                new WootContainer(Either.left(inventoryHandler.getStackInSlot(INPUT_SLOT))),
                 level).orElse(null);
         recipe = recipeHolder == null ? null : recipeHolder.value();
     }

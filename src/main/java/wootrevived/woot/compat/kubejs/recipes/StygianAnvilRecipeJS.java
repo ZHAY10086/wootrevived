@@ -8,8 +8,12 @@ import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import wootrevived.woot.compat.kubejs.components.WootComponents;
 
 public interface StygianAnvilRecipeJS {
-    RecipeKey<InputItem[]> INPUT_ITEM = ItemComponents.INPUT_ARRAY.key("inputIngredients");
-    RecipeKey<OutputItem> OUTPUT_ITEM = WootComponents.OUTPUT_ITEM.key("outputItem");
+    RecipeKey<OutputItem> OUTPUT = WootComponents.OUTPUT_ITEM.key("output");
+    RecipeKey<InputItem> BASE = ItemComponents.INPUT.key("base");
+    RecipeKey<InputItem> FIRST_COMPLEMENTARY = ItemComponents.INPUT.key("first_complementary").defaultOptional();
+    RecipeKey<InputItem> SECOND_COMPLEMENTARY = ItemComponents.INPUT.key("second_complementary").defaultOptional();
+    RecipeKey<InputItem> THIRD_COMPLEMENTARY = ItemComponents.INPUT.key("third_complementary").defaultOptional();
+    RecipeKey<InputItem> FOURTH_COMPLEMENTARY = ItemComponents.INPUT.key("fourth_complementary").defaultOptional();
 
-    RecipeSchema SCHEMA = new RecipeSchema(INPUT_ITEM, OUTPUT_ITEM);
+    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, BASE, FIRST_COMPLEMENTARY, SECOND_COMPLEMENTARY, THIRD_COMPLEMENTARY, FOURTH_COMPLEMENTARY);
 }

@@ -1,19 +1,15 @@
 {
   "type": "woot_revived:item_infuser",
+  "augment": [],
   "energy": 1000,
-  "inputFluids": [
-    {
-      "Amount": 1000,
-      "FluidName": "woot_revived:pure_dye_fluid"
-    }
-  ],
-  "inputIngredients": [
-    {
-      "tag": "forge:glass"
-    },
-    []
-  ],
-  "outputItem": {
+  "fluid": {
+    "Amount": 1000,
+    "FluidName": "woot_revived:pure_dye_fluid"
+  },
+  "ingredient": {
+    "tag": "forge:glass"
+  },
+  "output": {
     "Count": 1,
     "id": "woot_revived:prism"
   }

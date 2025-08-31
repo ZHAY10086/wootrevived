@@ -1,24 +1,22 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "inputIngredients": [
-    {
-      "item": "woot_revived:shard_mold"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    }
-  ],
-  "outputItem": {
+  "base": {
+    "item": "woot_revived:shard_mold"
+  },
+  "first_complementary": {
+    "item": "minecraft:copper_ingot"
+  },
+  "fourth_complementary": {
+    "item": "minecraft:copper_ingot"
+  },
+  "output": {
     "Count": 1,
     "id": "woot_revived:copper_shard"
+  },
+  "second_complementary": {
+    "item": "minecraft:copper_ingot"
+  },
+  "third_complementary": {
+    "item": "minecraft:copper_ingot"
   }
 }

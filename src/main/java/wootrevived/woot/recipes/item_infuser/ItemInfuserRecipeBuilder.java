@@ -11,7 +11,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import wootrevived.woot.Woot;
 import wootrevived.woot.registries.BlocksRegistry;
 
-import java.util.List;
+import java.util.Optional;
 
 public class ItemInfuserRecipeBuilder {
     private FluidStack fluid;
@@ -71,7 +71,7 @@ public class ItemInfuserRecipeBuilder {
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
                 ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.ITEM_INFUSER_TAG + "/" + path),
-                new ItemInfuserRecipe(energy, List.of(ingredient, augment), List.of(fluid), output),
+                new ItemInfuserRecipe(energy, fluid, ingredient, Optional.ofNullable(augment), output),
                 null
         );
     }

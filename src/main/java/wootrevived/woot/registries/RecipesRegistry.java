@@ -8,13 +8,15 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import wootrevived.woot.Woot;
+import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipeSerializer;
+import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipeSerializer;
 import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipeSerializer;
 import wootrevived.woot.recipes.enchanted_liquifier.EnchantedLiquifierRecipe;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
-import wootrevived.woot.util.recipes.WootRecipeSerializer;
+import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipeSerializer;
 
 public class RecipesRegistry {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, Woot.MOD_ID);
@@ -28,11 +30,7 @@ public class RecipesRegistry {
     /* Anvil */
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<StygianAnvilRecipe>> ANVIL_RECIPE_TYPE = RECIPE_TYPES.register(BlocksRegistry.STYGIAN_ANVIL_TAG, () -> RecipeType.simple(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.STYGIAN_ANVIL_TAG)));
-    public static final DeferredHolder<RecipeSerializer<?>, WootRecipeSerializer<StygianAnvilRecipe>> ANVIL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.STYGIAN_ANVIL_TAG, () -> new WootRecipeSerializer<StygianAnvilRecipe>(
-            StygianAnvilRecipe.CODEC,
-            (energy, inputItems, inputFluids, outputItem, outputFluid) ->
-                    new StygianAnvilRecipe(inputItems, outputItem)
-    ));
+    public static final DeferredHolder<RecipeSerializer<?>, StygianAnvilRecipeSerializer> ANVIL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.STYGIAN_ANVIL_TAG, () -> new StygianAnvilRecipeSerializer(StygianAnvilRecipe::new));
 
     /* Dye Liquifier */
 
@@ -42,20 +40,12 @@ public class RecipesRegistry {
     /* Fluid Infuser */
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<FluidInfuserRecipe>> FLUID_INFUSER_RECIPE_TYPE = RECIPE_TYPES.register(BlocksRegistry.FLUID_INFUSER_TAG, () -> RecipeType.simple(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.FLUID_INFUSER_TAG)));
-    public static final DeferredHolder<RecipeSerializer<?>, WootRecipeSerializer<FluidInfuserRecipe>> FLUID_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.FLUID_INFUSER_TAG, () ->  new WootRecipeSerializer<>(
-            FluidInfuserRecipe.CODEC,
-            (energy, inputItems, inputFluids, outputItem, outputFluid) ->
-                    new FluidInfuserRecipe(energy, inputItems, inputFluids, outputFluid)
-    ));
+    public static final DeferredHolder<RecipeSerializer<?>, FluidInfuserRecipeSerializer> FLUID_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.FLUID_INFUSER_TAG, () ->  new FluidInfuserRecipeSerializer(FluidInfuserRecipe::new));
 
     /* Item Infuser */
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<ItemInfuserRecipe>> ITEM_INFUSER_RECIPE_TYPE = RECIPE_TYPES.register(BlocksRegistry.ITEM_INFUSER_TAG, () -> RecipeType.simple(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.ITEM_INFUSER_TAG)));
-    public static final DeferredHolder<RecipeSerializer<?>, WootRecipeSerializer<ItemInfuserRecipe>> ITEM_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.ITEM_INFUSER_TAG, () ->  new WootRecipeSerializer<>(
-            ItemInfuserRecipe.CODEC,
-            (energy, inputItems, inputFluids, outputItem, outputFluid) ->
-                    new ItemInfuserRecipe(energy, inputItems, inputFluids, outputItem)
-    ));
+    public static final DeferredHolder<RecipeSerializer<?>, ItemInfuserRecipeSerializer> ITEM_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.ITEM_INFUSER_TAG, () ->  new ItemInfuserRecipeSerializer(ItemInfuserRecipe::new));
 
     /* Enchanted Liquifier (JEI) */
 

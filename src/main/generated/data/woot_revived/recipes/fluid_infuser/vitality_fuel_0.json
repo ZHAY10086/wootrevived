@@ -1,18 +1,14 @@
 {
   "type": "woot_revived:fluid_infuser",
   "energy": 1000,
-  "inputFluids": [
-    {
-      "Amount": 1000,
-      "FluidName": "woot_revived:mob_tears_fluid"
-    }
-  ],
-  "inputIngredients": [
-    {
-      "item": "woot_revived:xp_shard"
-    }
-  ],
-  "outputFluid": {
+  "ingredient": {
+    "item": "woot_revived:xp_shard"
+  },
+  "input_fluid": {
+    "Amount": 1000,
+    "FluidName": "woot_revived:mob_tears_fluid"
+  },
+  "output_fluid": {
     "Amount": 1000,
     "FluidName": "woot_revived:vitality_fuel_fluid"
   }
