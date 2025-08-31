@@ -103,7 +103,7 @@ public class FluidInfuserRecipeCategory implements IRecipeCategory<FluidInfuserR
                 .addItemLike(inputFluid.getFluid().getBucket());
 
         builder.addInputSlot(INPUT_SLOT_X + 1, INPUT_SLOT_Y + 1)
-                .addIngredients(recipe.getInputIngredient());
+                .addIngredients(recipe.getIngredient());
 
         FluidStack outputFluid = recipe.getOutputFluid();
 

@@ -1,19 +1,15 @@
 {
   "type": "woot_revived:item_infuser",
+  "augment": [],
   "energy": 500,
-  "inputFluids": [
-    {
-      "Amount": 500,
-      "FluidName": "woot_revived:pure_dye_fluid"
-    }
-  ],
-  "inputIngredients": [
-    {
-      "item": "woot_revived:pink_dye_casing"
-    },
-    []
-  ],
-  "outputItem": {
+  "fluid": {
+    "Amount": 500,
+    "FluidName": "woot_revived:pure_dye_fluid"
+  },
+  "ingredient": {
+    "item": "woot_revived:pink_dye_casing"
+  },
+  "output": {
     "Count": 1,
     "id": "woot_revived:pink_dye_plate"
   }

@@ -8,10 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import wootrevived.woot.util.recipes.WootRecipeSerializer;
-
-import java.util.ArrayList;
-import java.util.List;
+import wootrevived.woot.util.helper.RecipeHelper;
 
 public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implements RecipeSerializer<T> {
     protected final IFactory<T> factory;
@@ -28,9 +25,9 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
         float blue = GsonHelper.getAsFloat(json, "blue_multiplier", 0);
         float white = GsonHelper.getAsFloat(json, "white_multiplier", 0);
 
-        List<Ingredient> ingredients = WootRecipeSerializer.readInputIngredientsJson(json);
+        Ingredient ingredient = RecipeHelper.IngredientInput.fromJson(json, "ingredient");
 
-        return factory.create(recipeId, energy, red, yellow, blue, white, ingredients);
+        return factory.create(recipeId, energy, red, yellow, blue, white, ingredient);
     }
 
     @Override
@@ -41,13 +38,9 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
         float blue = buffer.readFloat();
         float white = buffer.readFloat();
 
-        int lenInputItems = buffer.readVarInt();
-        ArrayList<Ingredient> inputItems = new ArrayList<>(lenInputItems);
-        for(int i = 0; i < lenInputItems; i++){
-            inputItems.add(Ingredient.fromNetwork(buffer));
-        }
+        Ingredient ingredient = RecipeHelper.IngredientInput.fromNetwork(buffer);
 
-        return factory.create(recipeId, energy, red, yellow, blue, white, inputItems);
+        return factory.create(recipeId, energy, red, yellow, blue, white, ingredient);
     }
 
     @Override
@@ -58,14 +51,10 @@ public class DyeLiquifierRecipeSerializer<T extends DyeLiquifierRecipe> implemen
         buffer.writeFloat(recipe.getBlue());
         buffer.writeFloat(recipe.getWhite());
 
-        int lenInputItems = recipe.getInputItems().size();
-        buffer.writeVarInt(lenInputItems);
-        for(int i = 0; i < lenInputItems; ++i){
-            recipe.getInputItems().get(i).toNetwork(buffer);
-        }
+        RecipeHelper.IngredientInput.toNetwork(buffer, recipe.getInputIngredient());
     }
 
     public interface IFactory<T> {
-        T create(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, @Nullable List<Ingredient> inputItems);
+        T create(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, @NotNull Ingredient ingredient);
     }
 }

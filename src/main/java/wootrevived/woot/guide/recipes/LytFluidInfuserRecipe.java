@@ -39,7 +39,7 @@ public class LytFluidInfuserRecipe extends LytBox {
         append(energy = new LytEnergy(recipe.getEnergy(), FluidInfuserConfig.ENERGY_CAPACITY.get()));
         append(inputFluid = new LytFluid(recipe.getInputFluid(), FluidInfuserConfig.INPUT_TANK_CAPACITY.get()));
         append(outputFluid = new LytFluid(recipe.getOutputFluid(), FluidInfuserConfig.OUTPUT_TANK_CAPACITY.get()));
-        append(inputSlot = new LytSlot(recipe.getInputIngredient()));
+        append(inputSlot = new LytSlot(recipe.getIngredient()));
     }
 
     @Override

@@ -30,8 +30,6 @@ public class WootComponents {
         }
     };
 
-    public static RecipeComponent<InputFluid[]> INPUT_FLUID_ARRAY = INPUT_FLUID.asArray();
-
     public static RecipeComponent<OutputFluid> OUTPUT_FLUID = new RecipeComponentWithParent<>() {
         @Override
         public RecipeComponent<OutputFluid> parentComponent() {
@@ -46,8 +44,6 @@ public class WootComponents {
         }
     };
 
-    public static RecipeComponent<OutputFluid[]> OUTPUT_FLUID_ARRAY = OUTPUT_FLUID.asArray();
-
     public static RecipeComponent<OutputItem> OUTPUT_ITEM = new RecipeComponentWithParent<>() {
         @Override
         public RecipeComponent<OutputItem> parentComponent() {
@@ -60,6 +56,4 @@ public class WootComponents {
             return Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, tag);
         }
     };
-
-    public static RecipeComponent<OutputItem[]> OUTPUT_ITEM_ARRAY = OUTPUT_ITEM.asArray();
 }

@@ -96,24 +96,22 @@ public class ItemInfuserRecipeCategory implements IRecipeCategory<ItemInfuserRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ItemInfuserRecipe recipe, @NotNull IFocusGroup focuses) {
-        FluidStack inputFluid = recipe.getInputFluid();
+        FluidStack inputFluid = recipe.getFluid();
 
         builder.addInputSlot(INPUT_FLUID_X + 3, INPUT_FLUID_Y + 3)
                 .addFluidStack(inputFluid.getFluid(), inputFluid.getAmount())
                 .setCustomRenderer(ForgeTypes.FLUID_STACK, new WootJeiCustomFluidRenderer(ItemInfuserConfig.INPUT_TANK_CAPACITY.get()));
 
         builder.addInvisibleIngredients(RecipeIngredientRole.INPUT)
-               .addItemLike(inputFluid.getFluid().getBucket());
+                .addItemLike(inputFluid.getFluid().getBucket());
 
         builder.addInputSlot(INGREDIENT_SLOT_X + 1, INGREDIENT_SLOT_Y + 1)
-               .addIngredients(recipe.getInputIngredient());
+                .addIngredients(recipe.getIngredient());
 
-        if(!recipe.getAugmentIngredient().isEmpty()){
-            builder.addInputSlot(AUGMENT_SLOT_X + 1, AUGMENT_SLOT_Y + 1)
-                   .addIngredients(recipe.getAugmentIngredient());
-        }
+        builder.addInputSlot(AUGMENT_SLOT_X + 1, AUGMENT_SLOT_Y + 1)
+                .addIngredients(recipe.getAugment());
 
         builder.addOutputSlot(OUTPUT_SLOT_X + 1, OUTPUT_SLOT_Y + 1)
-               .addItemStack(recipe.getOutputItem());
+               .addItemStack(recipe.getOutput());
     }
 }

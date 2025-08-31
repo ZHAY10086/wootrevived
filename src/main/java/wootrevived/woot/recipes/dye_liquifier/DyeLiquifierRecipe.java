@@ -1,27 +1,31 @@
 package wootrevived.woot.recipes.dye_liquifier;
 
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.recipes.WootRecipe;
+import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DyeLiquifierRecipe extends WootRecipe {
+public class DyeLiquifierRecipe implements Recipe<WootContainer> {
+    private final ResourceLocation recipeId;
+    private final Ingredient ingredient;
+    private final int energy;
     private final float red;
     private final float yellow;
     private final float blue;
     private final float white;
 
-    public DyeLiquifierRecipe(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, @Nullable List<Ingredient> inputItems) {
-        super(recipeId, energy, inputItems, null, null, null);
+    public DyeLiquifierRecipe(ResourceLocation recipeId, int energy, float red, float yellow, float blue, float white, @NotNull Ingredient ingredient) {
+        this.recipeId = recipeId;
+        this.ingredient = ingredient;
+        this.energy = energy;
         this.red = red;
         this.yellow = yellow;
         this.blue = blue;
@@ -36,6 +40,10 @@ public class DyeLiquifierRecipe extends WootRecipe {
     @Override
     public @NotNull RecipeType<?> getType() {
         return RecipesRegistry.DYE_LIQUIFIER_RECIPE_TYPE.get();
+    }
+
+    public Ingredient getInputIngredient() {
+        return ingredient;
     }
 
     public int getRed() {
@@ -70,13 +78,13 @@ public class DyeLiquifierRecipe extends WootRecipe {
         return white;
     }
 
+    public int getEnergy() {
+        return energy;
+    }
+
     @Override
-    public boolean matches(Container container, Level level) {
-        for(Ingredient ingredient : inputItems){
-            if(ingredient.test(container.getItem(0)))
-                return true;
-        }
-        return false;
+    public boolean matches(WootContainer container, Level level) {
+        return ingredient.test(container.getItem(0));
     }
 
     public static float maxMultiplier = 0;
@@ -86,7 +94,7 @@ public class DyeLiquifierRecipe extends WootRecipe {
         maxMultiplier = 0;
         for(Recipe<?> recipe : manager.getRecipes()) {
             if(recipe instanceof DyeLiquifierRecipe dyeLiquifierRecipe) {
-                Validator.add(dyeLiquifierRecipe.getInputItems());
+                Validator.add(dyeLiquifierRecipe.getInputIngredient());
                 if(maxMultiplier < dyeLiquifierRecipe.getInternalRed()) maxMultiplier = dyeLiquifierRecipe.getInternalRed();
                 if(maxMultiplier < dyeLiquifierRecipe.getInternalYellow()) maxMultiplier = dyeLiquifierRecipe.getInternalYellow();
                 if(maxMultiplier < dyeLiquifierRecipe.getInternalBlue()) maxMultiplier = dyeLiquifierRecipe.getInternalBlue();
@@ -106,12 +114,37 @@ public class DyeLiquifierRecipe extends WootRecipe {
             return false;
         }
 
-        protected static void add(List<Ingredient> items){
-            validIngredients.addAll(items);
+        protected static void add(Ingredient ingredient){
+            validIngredients.add(ingredient);
         }
 
         protected static void clear(){
             validIngredients.clear();
         }
+    }
+
+    @Override
+    public @NotNull ItemStack assemble(@NotNull WootContainer container, @NotNull RegistryAccess registryAccess) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int i, int i1) {
+        return true;
+    }
+
+    @Override
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public @NotNull ResourceLocation getId() {
+        return recipeId;
     }
 }

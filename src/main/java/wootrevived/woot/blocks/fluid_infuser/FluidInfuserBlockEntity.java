@@ -222,14 +222,13 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
             return;
         }
 
-        FluidInfuserRecipe finishedRecipe = recipe;
-
-        inventoryHandler.extractItem(INPUT_SLOT, 1, false);
-        inputTankHandler.drain(finishedRecipe.getInputFluid().getAmount(),
+        int ingredientAmount = recipe.ingredientCount(inventoryHandler.getStackInSlot(INPUT_SLOT).getItem());
+        inventoryHandler.extractItem(INPUT_SLOT, ingredientAmount, false);
+        inputTankHandler.drain(recipe.getInputFluid().getAmount(),
                 IFluidHandler.FluidAction.EXECUTE);
 
-        outputTankHandler.fill(new FluidStack(finishedRecipe.getOutputFluid(),
-                finishedRecipe.getOutputFluid().getAmount()), IFluidHandler.FluidAction.EXECUTE);
+        outputTankHandler.fill(new FluidStack(recipe.getOutputFluid(),
+                recipe.getOutputFluid().getAmount()), IFluidHandler.FluidAction.EXECUTE);
         setChanged();
     }
 

@@ -8,13 +8,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import wootrevived.woot.Woot;
+import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipeSerializer;
+import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipeSerializer;
 import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipeSerializer;
 import wootrevived.woot.recipes.enchanted_liquifier.EnchantedLiquifierRecipe;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
-import wootrevived.woot.util.recipes.WootRecipeSerializer;
+import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipeSerializer;
 
 public class RecipesRegistry {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Woot.MOD_ID);
@@ -28,7 +30,7 @@ public class RecipesRegistry {
     /* Anvil */
 
     public static final RegistryObject<RecipeType<StygianAnvilRecipe>> ANVIL_RECIPE_TYPE = RECIPE_TYPES.register(BlocksRegistry.STYGIAN_ANVIL_TAG, () -> RecipeType.simple(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.STYGIAN_ANVIL_TAG)));
-    public static final RegistryObject<WootRecipeSerializer<StygianAnvilRecipe>> ANVIL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.STYGIAN_ANVIL_TAG, () -> new WootRecipeSerializer<>(StygianAnvilRecipe::new));
+    public static final RegistryObject<StygianAnvilRecipeSerializer<StygianAnvilRecipe>> ANVIL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.STYGIAN_ANVIL_TAG, () -> new StygianAnvilRecipeSerializer<>(StygianAnvilRecipe::new));
 
     /* Dye Liquifier */
 
@@ -38,12 +40,12 @@ public class RecipesRegistry {
     /* Fluid Infuser */
 
     public static final RegistryObject<RecipeType<FluidInfuserRecipe>> FLUID_INFUSER_RECIPE_TYPE = RECIPE_TYPES.register(BlocksRegistry.FLUID_INFUSER_TAG, () -> RecipeType.simple(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.FLUID_INFUSER_TAG)));
-    public static final RegistryObject<WootRecipeSerializer<FluidInfuserRecipe>> FLUID_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.FLUID_INFUSER_TAG, () ->  new WootRecipeSerializer<>(FluidInfuserRecipe::new));
+    public static final RegistryObject<FluidInfuserRecipeSerializer<FluidInfuserRecipe>> FLUID_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.FLUID_INFUSER_TAG, () ->  new FluidInfuserRecipeSerializer<>(FluidInfuserRecipe::new));
 
     /* Item Infuser */
 
     public static final RegistryObject<RecipeType<ItemInfuserRecipe>> ITEM_INFUSER_RECIPE_TYPE = RECIPE_TYPES.register(BlocksRegistry.ITEM_INFUSER_TAG, () -> RecipeType.simple(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.ITEM_INFUSER_TAG)));
-    public static final RegistryObject<WootRecipeSerializer<ItemInfuserRecipe>> ITEM_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.ITEM_INFUSER_TAG, () ->  new WootRecipeSerializer<>(ItemInfuserRecipe::new));
+    public static final RegistryObject<ItemInfuserRecipeSerializer<ItemInfuserRecipe>> ITEM_INFUSER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(BlocksRegistry.ITEM_INFUSER_TAG, () ->  new ItemInfuserRecipeSerializer<>(ItemInfuserRecipe::new));
 
     /* Enchanted Liquifier (JEI) */
 

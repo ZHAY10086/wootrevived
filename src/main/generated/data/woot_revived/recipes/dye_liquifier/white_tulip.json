@@ -2,11 +2,9 @@
   "type": "woot_revived:dye_liquifier",
   "blue_multiplier": 0.11111111,
   "energy": 500,
-  "inputIngredients": [
-    {
-      "item": "minecraft:white_tulip"
-    }
-  ],
+  "ingredient": {
+    "item": "minecraft:white_tulip"
+  },
   "red_multiplier": 0.11111111,
   "white_multiplier": 0.6666667,
   "yellow_multiplier": 0.11111111

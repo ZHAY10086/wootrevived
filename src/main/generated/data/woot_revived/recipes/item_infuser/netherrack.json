@@ -1,19 +1,15 @@
 {
   "type": "woot_revived:item_infuser",
+  "augment": [],
   "energy": 1000,
-  "inputFluids": [
-    {
-      "Amount": 1000,
-      "FluidName": "minecraft:lava"
-    }
-  ],
-  "inputIngredients": [
-    {
-      "item": "minecraft:cobblestone"
-    },
-    []
-  ],
-  "outputItem": {
+  "fluid": {
+    "Amount": 1000,
+    "FluidName": "minecraft:lava"
+  },
+  "ingredient": {
+    "item": "minecraft:cobblestone"
+  },
+  "output": {
     "Count": 1,
     "id": "minecraft:netherrack"
   }

@@ -1,5 +1,6 @@
 package wootrevived.woot.recipes.fluid_infuser;
 
+import com.google.gson.JsonObject;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -7,12 +8,12 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.Woot;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.recipes.WootFinishedRecipe;
+import wootrevived.woot.util.helper.RecipeHelper;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class FluidInfuserRecipeBuilder {
@@ -69,14 +70,47 @@ public class FluidInfuserRecipeBuilder {
         ));
     }
 
-    public static class Result extends WootFinishedRecipe {
+    public static class Result implements FinishedRecipe {
+        private final ResourceLocation recipeId;
+        private final int energy;
+        private final FluidStack inputFluid;
+        private final Ingredient ingredient;
+        private final FluidStack outputFluid;
+
         protected Result(ResourceLocation recipeId, int energy, FluidStack inputFluid, Ingredient ingredient, FluidStack outputFluid) {
-            super(recipeId, energy, List.of(ingredient), List.of(inputFluid), null, outputFluid);
+            this.recipeId = recipeId;
+            this.energy = energy;
+            this.inputFluid = inputFluid;
+            this.ingredient = ingredient;
+            this.outputFluid = outputFluid;
+        }
+
+        @Override
+        public void serializeRecipeData(JsonObject json) {
+            json.addProperty("energy", energy);
+            json.add("input_fluid", RecipeHelper.FluidInput.toJson(inputFluid));
+            json.add("ingredient", RecipeHelper.IngredientInput.toJson(ingredient));
+            json.add("output_fluid", RecipeHelper.FluidOutput.toJson(outputFluid));
         }
 
         @Override
         public @NotNull RecipeSerializer<?> getType() {
             return RecipesRegistry.FLUID_INFUSER_RECIPE_SERIALIZER.get();
+        }
+
+        @Override
+        public @NotNull ResourceLocation getId() {
+            return recipeId;
+        }
+
+        @Override
+        public @Nullable JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Override
+        public @Nullable ResourceLocation getAdvancementId() {
+            return null;
         }
     }
 }

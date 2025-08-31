@@ -14,7 +14,6 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.compat.jei.WootJeiPluginTypes;
@@ -23,8 +22,6 @@ import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.ItemsRegistry;
 import wootrevived.woot.util.render.WootContainerScreen;
-
-import java.util.List;
 
 import static wootrevived.woot.util.render.WootStyles.DESCRIPTION_STYLE;
 
@@ -106,12 +103,13 @@ public class StygianAnvilRecipeCategory implements IRecipeCategory<StygianAnvilR
     public void setRecipe(IRecipeLayoutBuilder builder, StygianAnvilRecipe recipe, @NotNull IFocusGroup focuses) {
         IRecipeSlotBuilder baseSlot = builder.addInputSlot(BASE_X + 1, BASE_Y + 1)
                 .addRichTooltipCallback(this);
-        if(recipe.getRecipeBaseIngredient().getItems()[0].getItem() == ItemsRegistry.MOB_SHARD_ITEM.get()){
+
+        if(recipe.getBase().getItems()[0].getItem() == ItemsRegistry.MOB_SHARD_ITEM.get()){
             ItemStack itemStack = ItemsRegistry.MOB_SHARD_ITEM.get().getDefaultInstance();
             MobShardItem.setJEIShard(itemStack);
             baseSlot.addItemStack(itemStack);
         } else {
-            baseSlot.addIngredients(recipe.getRecipeBaseIngredient());
+            baseSlot.addIngredients(recipe.getBase());
         }
 
         IRecipeSlotBuilder[] slots = {
@@ -121,13 +119,20 @@ public class StygianAnvilRecipeCategory implements IRecipeCategory<StygianAnvilR
                 builder.addInputSlot(INGREDIENT_3_X + 1, INGREDIENT_3_Y + 1),
         };
 
-        List<Ingredient> ingredients = recipe.getRecipeIngredients();
-        for(int i = 0; i < ingredients.size(); i++) {
-            slots[i].addIngredients(ingredients.get(i));
-        }
+        if(recipe.getFirstComplementary() != null)
+            slots[0].addIngredients(recipe.getFirstComplementary());
+
+        if(recipe.getSecondComplementary() != null)
+            slots[1].addIngredients(recipe.getSecondComplementary());
+
+        if(recipe.getThirdComplementary() != null)
+            slots[2].addIngredients(recipe.getThirdComplementary());
+
+        if(recipe.getFourthComplementary() != null)
+            slots[3].addIngredients(recipe.getFourthComplementary());
 
         builder.addOutputSlot(OUTPUT_X + 1, OUTPUT_Y + 1)
-               .addItemStack(recipe.getOutputItem());
+               .addItemStack(recipe.getOutput());
     }
 
     @Override

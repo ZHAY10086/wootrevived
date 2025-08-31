@@ -1,5 +1,6 @@
 package wootrevived.woot.blocks.stygian_anvil;
 
+import com.mojang.datafixers.util.Either;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -9,7 +10,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +31,7 @@ import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.items.mob_shard.MobShardItem;
+import wootrevived.woot.util.recipes.WootContainer;
 
 public class StygianAnvilBlockEntity extends BlockEntity {
     public StygianAnvilBlockEntity(BlockPos pos, BlockState state) {
@@ -122,17 +123,18 @@ public class StygianAnvilBlockEntity extends BlockEntity {
         }
 
         StygianAnvilRecipe recipe = level.getRecipeManager().getRecipeFor(RecipesRegistry.ANVIL_RECIPE_TYPE.get(),
-                new SimpleContainer(
-                        inventoryHandler.getStackInSlot(BASE_SLOT),
-                        inventoryHandler.getStackInSlot(INGREDIENT_1_SLOT),
-                        inventoryHandler.getStackInSlot(INGREDIENT_2_SLOT),
-                        inventoryHandler.getStackInSlot(INGREDIENT_3_SLOT),
-                        inventoryHandler.getStackInSlot(INGREDIENT_4_SLOT)),
+                new WootContainer(
+                        Either.left(inventoryHandler.getStackInSlot(BASE_SLOT)),
+                        Either.left(inventoryHandler.getStackInSlot(INGREDIENT_1_SLOT)),
+                        Either.left(inventoryHandler.getStackInSlot(INGREDIENT_2_SLOT)),
+                        Either.left(inventoryHandler.getStackInSlot(INGREDIENT_3_SLOT)),
+                        Either.left(inventoryHandler.getStackInSlot(INGREDIENT_4_SLOT))
+                ),
                 level).orElse(null);
         if (recipe == null)
             return;
 
-        ItemStack output = recipe.getOutputItem();
+        ItemStack output = recipe.getOutput();
 
         if (inventoryHandler.getStackInSlot(BASE_SLOT).getItem() == ItemsRegistry.MOB_SHARD_ITEM.get()) {
             CompoundTag mobTag = MobShardItem.getProgrammedMob(inventoryHandler.getStackInSlot(BASE_SLOT));

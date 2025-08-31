@@ -1,5 +1,6 @@
 package wootrevived.woot.recipes.item_infuser;
 
+import com.google.gson.JsonObject;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -10,12 +11,12 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.Woot;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.RecipesRegistry;
-import wootrevived.woot.util.recipes.WootFinishedRecipe;
+import wootrevived.woot.util.helper.RecipeHelper;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class ItemInfuserRecipeBuilder {
@@ -80,14 +81,51 @@ public class ItemInfuserRecipeBuilder {
         ));
     }
 
-    public static class Result extends WootFinishedRecipe {
+    public static class Result implements FinishedRecipe {
+        private final ResourceLocation recipeId;
+        private final int energy;
+        private final FluidStack fluid;
+        private final Ingredient ingredient;
+        private final Ingredient augment;
+        private final ItemStack output;
+
         protected Result(ResourceLocation recipeId, int energy, FluidStack fluid, Ingredient ingredient, Ingredient augment, ItemStack output) {
-            super(recipeId, energy, List.of(ingredient, augment), List.of(fluid), output, null);
+            this.recipeId = recipeId;
+            this.energy = energy;
+            this.fluid = fluid;
+            this.ingredient = ingredient;
+            this.augment = augment;
+            this.output = output;
+        }
+
+        @Override
+        public void serializeRecipeData(JsonObject json) {
+            json.addProperty("energy", energy);
+            json.add("fluid", RecipeHelper.FluidInput.toJson(fluid));
+            json.add("ingredient", RecipeHelper.IngredientInput.toJson(ingredient));
+            if(augment != null)
+                json.add("augment", RecipeHelper.IngredientInput.toJson(augment));
+            json.add("output", RecipeHelper.ItemOutput.toJson(output));
         }
 
         @Override
         public @NotNull RecipeSerializer<?> getType() {
             return RecipesRegistry.ITEM_INFUSER_RECIPE_SERIALIZER.get();
+        }
+
+        @Override
+        public @NotNull ResourceLocation getId() {
+            return recipeId;
+        }
+
+        @Override
+        public @Nullable JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Override
+        public @Nullable ResourceLocation getAdvancementId() {
+            return null;
         }
     }
 }

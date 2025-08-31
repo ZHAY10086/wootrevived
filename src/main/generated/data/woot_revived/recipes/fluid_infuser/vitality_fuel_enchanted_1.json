@@ -1,18 +1,14 @@
 {
   "type": "woot_revived:fluid_infuser",
   "energy": 1000,
-  "inputFluids": [
-    {
-      "Amount": 1000,
-      "FluidName": "woot_revived:enchanted_fluid"
-    }
-  ],
-  "inputIngredients": [
-    {
-      "item": "minecraft:magma_block"
-    }
-  ],
-  "outputFluid": {
+  "ingredient": {
+    "item": "minecraft:magma_block"
+  },
+  "input_fluid": {
+    "Amount": 1000,
+    "FluidName": "woot_revived:enchanted_fluid"
+  },
+  "output_fluid": {
     "Amount": 1250,
     "FluidName": "woot_revived:vitality_fuel_fluid"
   }

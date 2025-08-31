@@ -1,21 +1,17 @@
 {
   "type": "woot_revived:item_infuser",
+  "augment": {
+    "tag": "forge:sand"
+  },
   "energy": 1000,
-  "inputFluids": [
-    {
-      "Amount": 1000,
-      "FluidName": "woot_revived:mob_tears_fluid"
-    }
-  ],
-  "inputIngredients": [
-    {
-      "item": "minecraft:soul_sand"
-    },
-    {
-      "tag": "forge:sand"
-    }
-  ],
-  "outputItem": {
+  "fluid": {
+    "Amount": 1000,
+    "FluidName": "woot_revived:mob_tears_fluid"
+  },
+  "ingredient": {
+    "item": "minecraft:soul_sand"
+  },
+  "output": {
     "Count": 1,
     "id": "minecraft:soul_soil"
   }

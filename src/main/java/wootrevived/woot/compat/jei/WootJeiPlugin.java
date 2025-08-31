@@ -105,7 +105,7 @@ public class WootJeiPlugin implements IModPlugin {
             enchantedLiquifierRecipes.add(
                     new EnchantedLiquifierRecipe(
                             energy,
-                            List.of(ingredient),
+                            ingredient,
                             new FluidStack(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), amount)
                     )
             );

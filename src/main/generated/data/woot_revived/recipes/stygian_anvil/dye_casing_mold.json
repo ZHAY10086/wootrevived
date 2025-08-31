@@ -1,18 +1,16 @@
 {
   "type": "woot_revived:stygian_anvil",
-  "inputIngredients": [
-    {
-      "tag": "forge:dyes"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "woot_revived:stygian_ingot"
-    }
-  ],
-  "outputItem": {
+  "base": {
+    "tag": "forge:dyes"
+  },
+  "first_complementary": {
+    "item": "minecraft:quartz"
+  },
+  "output": {
     "Count": 1,
     "id": "woot_revived:dye_casing_mold"
+  },
+  "second_complementary": {
+    "item": "woot_revived:stygian_ingot"
   }
 }
