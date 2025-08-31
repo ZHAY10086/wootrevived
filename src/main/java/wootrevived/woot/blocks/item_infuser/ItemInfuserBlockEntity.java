@@ -171,6 +171,9 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
         if(tag.contains(WootTags.INPUT_INVENTORY_TAG))
             inputSlotHandler.deserializeNBT(tag.getCompound(WootTags.INPUT_INVENTORY_TAG));
 
+        if(tag.contains(WootTags.AUGMENT_INVENTORY_TAG))
+            augmentSlotHandler.deserializeNBT(tag.getCompound(WootTags.AUGMENT_INVENTORY_TAG));
+
         if(tag.contains(WootTags.OUTPUT_INVENTORY_TAG))
             outputSlotHandler.deserializeNBT(tag.getCompound(WootTags.OUTPUT_INVENTORY_TAG));
     }
@@ -180,6 +183,7 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
         super.saveAdditional(tag);
 
         tag.put(WootTags.INPUT_INVENTORY_TAG, inputSlotHandler.serializeNBT());
+        tag.put(WootTags.AUGMENT_INVENTORY_TAG, augmentSlotHandler.serializeNBT());
 
         tag.put(WootTags.OUTPUT_INVENTORY_TAG, outputSlotHandler.serializeNBT());
     }
