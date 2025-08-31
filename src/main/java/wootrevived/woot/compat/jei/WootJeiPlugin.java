@@ -22,6 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.Woot;
 import wootrevived.woot.compat.jei.categories.*;
+import wootrevived.woot.config.DyeLiquifierConfig;
 import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
@@ -139,13 +140,13 @@ public class WootJeiPlugin implements IModPlugin {
 
         registration.addItemStackInfo(
                 FluidsRegistry.PURE_DYE_FLUID_BUCKET.get().getDefaultInstance(),
-                Component.translatable("jei.woot_revived.pure_dye_fluid")
+                Component.translatable("jei.woot_revived.pure_dye_fluid", DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get())
         );
 
         registration.addIngredientInfo(
                 new FluidStack(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), 1),
                 ForgeTypes.FLUID_STACK,
-                Component.translatable("jei.woot_revived.pure_dye_fluid")
+                Component.translatable("jei.woot_revived.pure_dye_fluid", DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get(), DyeLiquifierConfig.COLOR_PRODUCE_AMOUNT.get())
         );
     }
 
