@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.Woot;
 import wootrevived.woot.init.Registry;
 import wootrevived.woot.util.fluid.WootFluidType;
@@ -106,7 +108,12 @@ public class FluidsRegistry {
     public static final DeferredHolder<Fluid, FlowingFluid> SOURCE_ENCHANTED_FLUID = FLUIDS.register(ENCHANTED_FLUID_TAG, () -> new BaseFlowingFluid.Source(FluidsRegistry.ENCHANTED_FLUID_PROPERTIES));
     public static final DeferredHolder<Fluid, FlowingFluid> FLOWING_ENCHANTED_FLUID = FLUIDS.register(ENCHANTED_FLUID_TAG + "_flowing", () -> new BaseFlowingFluid.Flowing(FluidsRegistry.ENCHANTED_FLUID_PROPERTIES));
     public static final DeferredHolder<Block, LiquidBlock> ENCHANTED_FLUID_BLOCK = BLOCKS.register(ENCHANTED_FLUID_TAG + "_block", () -> new LiquidBlock(SOURCE_ENCHANTED_FLUID, BlockBehaviour.Properties.ofFullCopy(net.minecraft.world.level.block.Blocks.WATER).noLootTable()));
-    public static final DeferredHolder<Item, BucketItem> ENCHANTED_FLUID_BUCKET = ITEMS.register(ENCHANTED_FLUID_TAG + "_bucket", () -> new BucketItem(SOURCE_ENCHANTED_FLUID, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredHolder<Item, BucketItem> ENCHANTED_FLUID_BUCKET = ITEMS.register(ENCHANTED_FLUID_TAG + "_bucket", () -> new BucketItem(SOURCE_ENCHANTED_FLUID, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1)) {
+        @Override
+        public boolean isFoil(@NotNull ItemStack stack) {
+            return true;
+        }
+    });
     public static final BaseFlowingFluid.Properties ENCHANTED_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(ENCHANTED_FLUID_TYPE, SOURCE_ENCHANTED_FLUID, FLOWING_ENCHANTED_FLUID)
             .block(ENCHANTED_FLUID_BLOCK)
             .bucket(ENCHANTED_FLUID_BUCKET);
