@@ -5,7 +5,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import wootrevived.woot.registries.BlocksRegistry;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Patterns {
     public static Pattern TIER_1 = new Tier1();

@@ -10,10 +10,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
-import wootrevived.api.interfaces.WootDropsProperties;
-import wootrevived.api.registrations.WootUpgradeItemRegistration;
 import wootrevived.api.WootUpgradeItem;
 import wootrevived.api.enums.Tier;
+import wootrevived.api.interfaces.WootDropsProperties;
+import wootrevived.api.registrations.WootUpgradeItemRegistration;
 import wootrevived.woot.Woot;
 import wootrevived.woot.registries.ItemsRegistry;
 

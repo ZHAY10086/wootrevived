@@ -17,10 +17,10 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.handlers.WootFluidTankHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class CreativeTankBlockEntity extends BlockEntity implements BlockEntityTicker<BlockEntity> {
     public CreativeTankBlockEntity(BlockPos pos, BlockState state) {

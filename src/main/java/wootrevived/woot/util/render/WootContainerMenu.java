@@ -4,7 +4,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.fluids.FluidStack;
-
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;

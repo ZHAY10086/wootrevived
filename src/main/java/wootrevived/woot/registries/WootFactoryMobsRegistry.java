@@ -4,8 +4,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
-import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.WootFactoryMob;
+import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.registrations.WootFactoryMobRegistration;
 import wootrevived.woot.init.WootPlugins;
 

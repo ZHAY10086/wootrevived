@@ -10,8 +10,8 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import wootrevived.woot.Woot;
-import wootrevived.woot.registries.*;
 import wootrevived.woot.client.sprite.factory_upgrade.FactoryUpgradeDynamicSpriteSource;
+import wootrevived.woot.registries.*;
 
 import java.util.ArrayList;
 import java.util.List;

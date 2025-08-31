@@ -6,9 +6,9 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import wootrevived.woot.Woot;
-import wootrevived.woot.registries.ItemsRegistry;
 import wootrevived.woot.items.dye_casing.DyeCasingItem;
 import wootrevived.woot.items.dye_plate.DyePlateItem;
+import wootrevived.woot.registries.ItemsRegistry;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = Woot.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = { Dist.CLIENT })

@@ -14,10 +14,10 @@ import wootrevived.woot.init.Registry;
 import wootrevived.woot.items.basic.BasicItem;
 import wootrevived.woot.items.dye_casing.DyeCasingItem;
 import wootrevived.woot.items.dye_plate.DyePlateItem;
-import wootrevived.woot.items.stygian_hammer.StygianHammerItem;
 import wootrevived.woot.items.mob_shard.MobShardItem;
 import wootrevived.woot.items.mob_shard.MobShardProjectile;
 import wootrevived.woot.items.mold.MoldItem;
+import wootrevived.woot.items.stygian_hammer.StygianHammerItem;
 import wootrevived.woot.items.xp.XpItem;
 
 public class ItemsRegistry {

@@ -9,9 +9,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
+import wootrevived.api.WootUpgradeItem;
 import wootrevived.api.interfaces.WootGenerationProperties;
 import wootrevived.api.registrations.WootUpgradeItemRegistration;
-import wootrevived.api.WootUpgradeItem;
 import wootrevived.woot.Woot;
 
 import javax.annotation.Nullable;

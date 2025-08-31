@@ -1,8 +1,8 @@
 package wootrevived.api.registrations;
 
 import net.minecraft.world.entity.EntityType;
-import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.WootFactoryMob;
+import wootrevived.api.interfaces.WootDropsProperties;
 
 import java.util.function.Consumer;
 

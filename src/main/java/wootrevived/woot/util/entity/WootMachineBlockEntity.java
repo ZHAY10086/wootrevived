@@ -26,6 +26,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import wootrevived.woot.blocks.dye_liquifier.DyeLiquifierBlockEntity;
+import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerMenu;
 import wootrevived.woot.network.NetworkChannel;
 import wootrevived.woot.network.WootMachineUpdate;
 import wootrevived.woot.util.common.MachineSide;
@@ -34,8 +36,6 @@ import wootrevived.woot.util.common.RedstoneMode;
 import wootrevived.woot.util.handlers.WootEnergyStorage;
 import wootrevived.woot.util.handlers.WootFluidTankHandler;
 import wootrevived.woot.util.render.WootContainerData;
-import wootrevived.woot.blocks.dye_liquifier.DyeLiquifierBlockEntity;
-import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerMenu;
 
 import java.util.List;
 import java.util.Map;

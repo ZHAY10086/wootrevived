@@ -2,11 +2,11 @@ package wootrevived.woot.compat.jei;
 
 import mezz.jei.api.recipe.RecipeType;
 import wootrevived.woot.Woot;
-import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.recipes.enchanted_liquifier.EnchantedLiquifierRecipe;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
+import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 
 public class WootJeiPluginTypes {

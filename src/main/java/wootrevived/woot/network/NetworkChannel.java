@@ -1,10 +1,10 @@
 package wootrevived.woot.network;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import wootrevived.woot.Woot;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Objects;
 import java.util.Optional;

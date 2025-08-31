@@ -12,10 +12,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
-import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.util.render.WootContainerMenu;
-import wootrevived.woot.util.helper.EnchantmentHelper;
 import wootrevived.woot.blocks.enchanted_liquifier.EnchantedLiquifierBlockEntity;
+import wootrevived.woot.registries.BlocksRegistry;
+import wootrevived.woot.util.helper.EnchantmentHelper;
+import wootrevived.woot.util.render.WootContainerMenu;
 import wootrevived.woot.util.render.WootSlot;
 
 public class EnchantedLiquifierContainerMenu extends WootContainerMenu {

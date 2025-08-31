@@ -25,12 +25,12 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.blocks.fake_spawner.FakeSpawnerBlockEntity;
+import wootrevived.woot.items.mob_shard.MobShardItem;
+import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.ItemsRegistry;
-import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.entity.WootTags;
-import wootrevived.woot.items.mob_shard.MobShardItem;
 import wootrevived.woot.util.recipes.WootContainer;
 
 public class StygianAnvilBlockEntity extends BlockEntity {

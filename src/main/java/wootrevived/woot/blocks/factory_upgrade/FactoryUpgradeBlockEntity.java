@@ -17,12 +17,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.api.WootUpgradeItem;
 import wootrevived.woot.client.model.factory_upgrade.FactoryUpgradeBakedModel;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.UpgradeItemsRegistry;
-
-import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.util.block.FactoryBlockBaseEntity;
 import wootrevived.woot.util.entity.WootTags;
 

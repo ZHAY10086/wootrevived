@@ -15,13 +15,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import wootrevived.api.WootFactoryMob;
-import wootrevived.woot.registries.WootFactoryMobsRegistry;
-import wootrevived.woot.util.entity.WootTags;
-import wootrevived.woot.blocks.factory.FactoryBlockItem;
-import wootrevived.woot.util.common.WootTier;
-
 import org.jetbrains.annotations.Nullable;
+import wootrevived.api.WootFactoryMob;
+import wootrevived.woot.blocks.factory.FactoryBlockItem;
+import wootrevived.woot.registries.WootFactoryMobsRegistry;
+import wootrevived.woot.util.common.WootTier;
+import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.helper.ModNameHelper;
 
 import java.util.List;

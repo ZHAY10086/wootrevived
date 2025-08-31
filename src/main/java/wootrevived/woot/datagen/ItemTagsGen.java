@@ -11,11 +11,11 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import org.jetbrains.annotations.NotNull;
-import wootrevived.woot.Woot;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
+import wootrevived.woot.Woot;
 
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;

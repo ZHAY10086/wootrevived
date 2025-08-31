@@ -7,7 +7,7 @@ import guideme.document.block.LytHBox;
 import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
 import wootrevived.woot.config.EnchantedLiquifierConfig;
 
-import java.util.*;
+import java.util.Set;
 
 public class EnchantedRecipeCompiler extends BlockTagCompiler {
     @Override

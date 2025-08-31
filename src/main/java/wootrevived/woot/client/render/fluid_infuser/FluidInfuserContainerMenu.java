@@ -13,8 +13,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.blocks.fluid_infuser.FluidInfuserBlockEntity;
-import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
+import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.util.render.WootContainerMenu;
 import wootrevived.woot.util.render.WootSlot;
 

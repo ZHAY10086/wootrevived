@@ -8,14 +8,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import wootrevived.woot.Woot;
-import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipeSerializer;
-import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipeSerializer;
-import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipeSerializer;
 import wootrevived.woot.recipes.enchanted_liquifier.EnchantedLiquifierRecipe;
 import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipe;
+import wootrevived.woot.recipes.fluid_infuser.FluidInfuserRecipeSerializer;
 import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
+import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipeSerializer;
+import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipe;
 import wootrevived.woot.recipes.stygian_anvil.StygianAnvilRecipeSerializer;
 
 public class RecipesRegistry {
