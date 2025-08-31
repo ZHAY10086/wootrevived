@@ -13,7 +13,7 @@ import wootrevived.woot.util.render.WootContainerScreen;
 import java.util.List;
 import java.util.Optional;
 
-import static wootrevived.woot.util.render.WootStyles.*;
+import static wootrevived.woot.util.render.WootStyles.MACHINE_STYLE;
 
 public class WootSidePropertyButton extends WootButton {
     protected final OnPress onPress;

@@ -12,10 +12,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
-import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
-import wootrevived.woot.util.render.WootContainerMenu;
 import wootrevived.woot.blocks.dye_liquifier.DyeLiquifierBlockEntity;
+import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
+import wootrevived.woot.registries.BlocksRegistry;
+import wootrevived.woot.util.render.WootContainerMenu;
 import wootrevived.woot.util.render.WootSlot;
 
 public class DyeLiquifierContainerMenu extends WootContainerMenu {

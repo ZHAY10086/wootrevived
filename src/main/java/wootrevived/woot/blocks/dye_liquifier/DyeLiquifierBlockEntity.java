@@ -21,19 +21,20 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.client.render.dye_liquifier.DyeLiquifierContainerMenu;
 import wootrevived.woot.config.DyeLiquifierConfig;
+import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.recipes.dye_liquifier.DyeLiquifierRecipe;
 import wootrevived.woot.registries.RecipesRegistry;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.*;
-import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
-
-import org.jetbrains.annotations.Nullable;
+import wootrevived.woot.util.entity.WootTags;
+import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
+import wootrevived.woot.util.handlers.WootItemHandlerWrapper;
+import wootrevived.woot.util.handlers.WootItemStackHandler;
 import wootrevived.woot.util.recipes.WootContainer;
 
 import java.util.ArrayList;

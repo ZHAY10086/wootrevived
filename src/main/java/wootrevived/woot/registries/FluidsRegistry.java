@@ -16,12 +16,12 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import wootrevived.woot.Woot;
-import wootrevived.woot.util.fluid.WootFluidType;
 import wootrevived.woot.init.Registry;
+import wootrevived.woot.util.fluid.WootFluidType;
 
 public class FluidsRegistry {
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, Woot.MOD_ID);

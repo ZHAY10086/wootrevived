@@ -12,8 +12,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.woot.Woot;
-import wootrevived.woot.drops.simulator.DropSimulatorDimension;
 import wootrevived.woot.drops.simulator.DropSimulator;
+import wootrevived.woot.drops.simulator.DropSimulatorDimension;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
 
 import java.util.ArrayList;

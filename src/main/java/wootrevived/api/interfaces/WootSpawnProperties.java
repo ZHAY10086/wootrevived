@@ -5,9 +5,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.enums.Tier;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Provides access to the spawn properties of a mob before it is simulated

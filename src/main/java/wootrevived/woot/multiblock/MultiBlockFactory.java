@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.api.enums.Tier;
-import wootrevived.woot.util.block.FactoryBlockBase;
 import wootrevived.woot.multiblock.patterns.Patterns;
+import wootrevived.woot.util.block.FactoryBlockBase;
 
 import java.util.function.Supplier;
 

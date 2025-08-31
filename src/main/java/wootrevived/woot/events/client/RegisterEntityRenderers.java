@@ -11,9 +11,9 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.woot.Woot;
 import wootrevived.woot.blocks.stygian_anvil.StygianAnvilBlockEntity;
-import wootrevived.woot.client.render.stygian_anvil.StygianAnvilBlockEntityRenderer;
 import wootrevived.woot.client.render.factory.FactoryBlockEntityRenderer;
 import wootrevived.woot.client.render.mob_shard.MobShardProjectileRenderer;
+import wootrevived.woot.client.render.stygian_anvil.StygianAnvilBlockEntityRenderer;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.ItemsRegistry;
 

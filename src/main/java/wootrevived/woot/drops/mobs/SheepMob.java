@@ -6,8 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.WootFactoryMob;
+import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.registrations.WootFactoryMobRegistration;
 
 import java.util.List;

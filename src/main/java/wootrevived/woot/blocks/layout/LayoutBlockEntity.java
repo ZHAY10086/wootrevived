@@ -16,11 +16,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.api.enums.Tier;
+import wootrevived.woot.multiblock.patterns.Pattern;
+import wootrevived.woot.multiblock.patterns.Patterns;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.util.block.FactoryBlockBase;
 import wootrevived.woot.util.common.WootTier;
-import wootrevived.woot.multiblock.patterns.Pattern;
-import wootrevived.woot.multiblock.patterns.Patterns;
 
 import java.util.Arrays;
 

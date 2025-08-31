@@ -4,17 +4,18 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
-import wootrevived.woot.registries.BlocksRegistry;
-import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
-import wootrevived.woot.util.render.WootContainerMenu;
 import wootrevived.woot.blocks.item_infuser.ItemInfuserBlockEntity;
+import wootrevived.woot.recipes.item_infuser.ItemInfuserRecipe;
+import wootrevived.woot.registries.BlocksRegistry;
+import wootrevived.woot.util.render.WootContainerMenu;
 import wootrevived.woot.util.render.WootSlot;
 
 

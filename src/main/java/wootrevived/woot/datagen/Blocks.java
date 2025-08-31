@@ -14,10 +14,10 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import wootrevived.woot.Woot;
-import wootrevived.woot.util.fluid.WootFluidType;
+import wootrevived.woot.client.model.factory_upgrade.FactoryUpgradeModelBuilder;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
-import wootrevived.woot.client.model.factory_upgrade.FactoryUpgradeModelBuilder;
+import wootrevived.woot.util.fluid.WootFluidType;
 
 import java.util.Objects;
 

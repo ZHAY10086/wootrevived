@@ -6,9 +6,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import wootrevived.api.enums.Tier;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.api.WootFactoryMob;
+import wootrevived.api.enums.Tier;
 import wootrevived.api.interfaces.WootSpawnProperties;
 import wootrevived.woot.drops.simulator.DropSimulator;
 

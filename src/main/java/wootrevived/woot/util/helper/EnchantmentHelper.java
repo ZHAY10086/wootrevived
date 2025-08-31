@@ -3,7 +3,6 @@ package wootrevived.woot.util.helper;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-
 import org.jetbrains.annotations.Nullable;
 
 /**

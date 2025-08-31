@@ -1,10 +1,10 @@
 package wootrevived.woot;
 
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
 import wootrevived.woot.guide.WootGuide;
 import wootrevived.woot.init.CommonConfig;
 import wootrevived.woot.init.Registry;
-import net.neoforged.fml.common.Mod;
 import wootrevived.woot.init.WootPlugins;
 
 @Mod(Woot.MOD_ID)

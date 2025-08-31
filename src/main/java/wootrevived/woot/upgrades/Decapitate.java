@@ -8,13 +8,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
+import wootrevived.api.WootUpgradeItem;
 import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.interfaces.WootSpawnProperties;
 import wootrevived.api.registrations.WootUpgradeItemRegistration;
-import wootrevived.api.WootUpgradeItem;
 import wootrevived.woot.Woot;
 
 import javax.annotation.Nullable;

@@ -25,19 +25,20 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.woot.client.render.enchanted_liquifier.EnchantedLiquifierContainerMenu;
 import wootrevived.woot.config.EnchantedLiquifierConfig;
 import wootrevived.woot.registries.BlocksRegistry;
 import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.util.common.MachineSide;
 import wootrevived.woot.util.common.MachineSideProperty;
-import wootrevived.woot.util.handlers.*;
-import wootrevived.woot.util.entity.WootTags;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
+import wootrevived.woot.util.entity.WootTags;
+import wootrevived.woot.util.handlers.WootFluidHandlerWrapper;
+import wootrevived.woot.util.handlers.WootItemHandlerWrapper;
+import wootrevived.woot.util.handlers.WootItemStackHandler;
 import wootrevived.woot.util.helper.EnchantmentHelper;
 
-
-import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

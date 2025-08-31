@@ -6,18 +6,18 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import wootrevived.woot.Woot;
 import wootrevived.woot.guide.GuideBookItem;
 import wootrevived.woot.init.Registry;
 import wootrevived.woot.items.basic.BasicItem;
 import wootrevived.woot.items.dye_casing.DyeCasingItem;
 import wootrevived.woot.items.dye_plate.DyePlateItem;
-import wootrevived.woot.items.stygian_hammer.StygianHammerItem;
 import wootrevived.woot.items.mob_shard.MobShardItem;
 import wootrevived.woot.items.mob_shard.MobShardProjectile;
 import wootrevived.woot.items.mold.MoldItem;
+import wootrevived.woot.items.stygian_hammer.StygianHammerItem;
 import wootrevived.woot.items.xp.XpItem;
 
 public class ItemsRegistry {
