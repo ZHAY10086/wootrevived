@@ -17,12 +17,14 @@ public interface IWootPlugin {
      *
      * @param registration the registration helper for upgrade items
      */
-    void registerUpgradeItems(WootUpgradeItemRegistration registration);
+    default void registerUpgradeItems(WootUpgradeItemRegistration registration){
+    }
 
     /**
      * Called during initialization to register custom factory mobs.
      *
      * @param registration the registration helper for factory mobs
      */
-    void registerFactoryMobs(WootFactoryMobRegistration registration);
+    default void registerFactoryMobs(WootFactoryMobRegistration registration){
+    }
 }
