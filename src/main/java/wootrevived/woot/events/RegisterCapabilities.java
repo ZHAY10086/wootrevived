@@ -4,6 +4,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
 import wootrevived.woot.Woot;
 import wootrevived.woot.blocks.cell.CellBlockEntity;
 import wootrevived.woot.blocks.creative_power.CreativePowerBlockEntity;
@@ -15,6 +16,7 @@ import wootrevived.woot.blocks.ingredient_import.IngredientImportBlockEntity;
 import wootrevived.woot.blocks.item_infuser.ItemInfuserBlockEntity;
 import wootrevived.woot.blocks.stygian_anvil.StygianAnvilBlockEntity;
 import wootrevived.woot.registries.BlocksRegistry;
+import wootrevived.woot.registries.FluidsRegistry;
 import wootrevived.woot.util.entity.WootMachineBlockEntity;
 
 @Mod.EventBusSubscriber(modid = Woot.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -60,5 +62,8 @@ public class RegisterCapabilities {
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, BlocksRegistry.GOLD_CELL_BLOCK_ENTITY.get(), CellBlockEntity::getFluidHandlerCapability);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, BlocksRegistry.DIAMOND_CELL_BLOCK_ENTITY.get(), CellBlockEntity::getFluidHandlerCapability);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, BlocksRegistry.NETHERITE_CELL_BLOCK_ENTITY.get(), CellBlockEntity::getFluidHandlerCapability);
+
+        /* Enchanted Liquid Bucket */
+        event.registerItem(Capabilities.FluidHandler.ITEM, (stack, ctx) -> new FluidBucketWrapper(stack), FluidsRegistry.ENCHANTED_FLUID_BUCKET.get());
     }
 }
