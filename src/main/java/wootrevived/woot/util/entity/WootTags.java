@@ -3,6 +3,7 @@ package wootrevived.woot.util.entity;
 public class WootTags {
     public static final String ENERGY_TAG = "Energy";
     public static final String INPUT_INVENTORY_TAG = "InputInventory";
+    public static final String AUGMENT_INVENTORY_TAG = "AugmentInventory";
     public static final String OUTPUT_INVENTORY_TAG = "OutputInventory";
     public static final String OUTPUT_TANK_TAG = "OutputTank";
     public static final String INPUT_TANK_TAG = "InputTank";
