@@ -106,9 +106,9 @@ dependencies {
     implementation "curse.maven:rhino-416294:5296113"
 
     // Optimizations
-    //localRuntime "org.embeddedt:embeddium-${mc_version}:${embeddium_version}"
-    //localRuntime "maven.modrinth:modernfix:${modernfix_version}"
-    //localRuntime "maven.modrinth:ferrite-core:${ferritecore_version}"
+    localRuntime "org.embeddedt:embeddium-${mc_version}:${embeddium_version}"
+    localRuntime "maven.modrinth:modernfix:${modernfix_version}"
+    localRuntime "maven.modrinth:ferrite-core:${ferritecore_version}"
 }
 
 publishing {
