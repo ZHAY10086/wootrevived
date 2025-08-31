@@ -3,14 +3,14 @@ package wootrevived.woot.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class EnchantedLiquifierConfig {
-    public static ForgeConfigSpec.ConfigValue<Integer> PER_ENCHANT_FLUID;
-    public static ForgeConfigSpec.ConfigValue<Integer> PER_ENCHANT_ENERGY;
-    public static ForgeConfigSpec.ConfigValue<Integer> MAX_ENCHANT_LVL;
-
     public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_CAPACITY;
     public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_MAX_TRANSFER;
     public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_PROCESS_TRANSFER;
     public static ForgeConfigSpec.ConfigValue<Integer> OUTPUT_TANK_CAPACITY;
+
+    public static ForgeConfigSpec.ConfigValue<Integer> PER_ENCHANT_FLUID;
+    public static ForgeConfigSpec.ConfigValue<Integer> PER_ENCHANT_ENERGY;
+    public static ForgeConfigSpec.ConfigValue<Integer> MAX_ENCHANT_LVL;
 
     public static void build(ForgeConfigSpec.Builder builder){
         builder.comment("Enchanted Liquifier").push("enchanted_liquifier");
