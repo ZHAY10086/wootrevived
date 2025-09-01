@@ -182,7 +182,6 @@ public class WootFactoryMob<T extends Entity> {
     public static final class Properties {
         boolean blacklist = false;
         boolean disabledSimulation = false;
-        boolean showTooltipNBT = false; // Add (+NBT) to the Mob Shard & Controller entity name tooltip
         int rate = 400; // 20 sec
         int vitalityCost = -1; // mB
         Tier tier = Tier.TIER_1;

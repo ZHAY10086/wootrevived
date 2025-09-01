@@ -1,1 +1,1 @@
-wootrevived.woot.compat.kubejs.KubeJSWootPlugin
+wootrevived.woot.compat.kubejs.WootKubeJSPlugin
