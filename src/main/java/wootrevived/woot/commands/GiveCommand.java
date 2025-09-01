@@ -55,7 +55,13 @@ public class GiveCommand {
 
     private static int giveItem(CommandSourceStack source, ServerPlayer target, ResourceLocation resourceLocation, CompoundTag tag) {
         EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(resourceLocation);
+
+        if(entityType == null || !WootFactoryMobsRegistry.hasFactoryMob(entityType))
+            return 1;
+
         WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(entityType);
+        if(mob.isBlacklisted())
+            return 1;
 
         tag.putString("id", resourceLocation.toString());
 
