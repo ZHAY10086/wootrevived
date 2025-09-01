@@ -1,6 +1,5 @@
 package wootrevived.woot.events.client;
 
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,6 +14,6 @@ import wootrevived.woot.registries.BlocksRegistry;
 public class RegisterGeometryLoaders {
     @SubscribeEvent
     public static void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.FACTORY_UPGRADE_TAG), FactoryUpgradeUnbakedModel.Loader.INSTANCE);
+        event.register(Woot.location(BlocksRegistry.FACTORY_UPGRADE_TAG), FactoryUpgradeUnbakedModel.Loader.INSTANCE);
     }
 }

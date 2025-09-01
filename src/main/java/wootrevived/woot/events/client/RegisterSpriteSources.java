@@ -1,7 +1,6 @@
 package wootrevived.woot.events.client;
 
 import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,6 +21,6 @@ public class RegisterSpriteSources {
 
     @SubscribeEvent
     public static void registerSpriteSourceTypes(RegisterSpriteSourceTypesEvent event){
-        upgradeLoader = event.register(ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.FACTORY_UPGRADE_TAG), FactoryUpgradeDynamicSpriteSource.CODEC);
+        upgradeLoader = event.register(Woot.location(BlocksRegistry.FACTORY_UPGRADE_TAG), FactoryUpgradeDynamicSpriteSource.CODEC);
     }
 }

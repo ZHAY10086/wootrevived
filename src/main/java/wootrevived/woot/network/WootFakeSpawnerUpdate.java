@@ -13,7 +13,7 @@ import wootrevived.woot.blocks.fake_spawner.FakeSpawnerBlockEntity;
 import wootrevived.woot.util.common.RedstoneMode;
 
 public record WootFakeSpawnerUpdate(BlockPos blockPos, RedstoneMode redstoneMode) implements CustomPacketPayload {
-    public static final ResourceLocation ID = ResourceLocation.tryBuild(Woot.MOD_ID, "woot_fake_spawner_upload");
+    public static final ResourceLocation ID = Woot.location("woot_fake_spawner_upload");
 
     public static WootFakeSpawnerUpdate read(FriendlyByteBuf buf) {
         return new WootFakeSpawnerUpdate(buf.readBlockPos(), buf.readEnum(RedstoneMode.class));

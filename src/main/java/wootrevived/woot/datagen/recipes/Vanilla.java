@@ -1,7 +1,6 @@
 package wootrevived.woot.datagen.recipes;
 
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -31,7 +30,7 @@ public class Vanilla {
                 .requires(BlocksRegistry.STYGIAN_BLOCK.get())
                 .group(Woot.MOD_ID)
                 .unlockedBy("0", recipes.hasItem(BlocksRegistry.STYGIAN_BLOCK.get()))
-                .save(output, ResourceLocation.tryBuild(Woot.MOD_ID, "stygian_ingot_block"));
+                .save(output, Woot.location("stygian_ingot_block"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemsRegistry.STYGIAN_DUST_ITEM.get(), 2)
                 .requires(Blocks.SOUL_SOIL)
@@ -52,7 +51,7 @@ public class Vanilla {
                         1.0F, 200)
                 .group(Woot.MOD_ID)
                 .unlockedBy("0", recipes.hasItem(ItemsRegistry.STYGIAN_DUST_ITEM.get()))
-                .save(output, ResourceLocation.tryBuild(Woot.MOD_ID, "stygian_ingot_cook"));
+                .save(output, Woot.location("stygian_ingot_cook"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemsRegistry.STYGIAN_HAMMER_ITEM.get())
                 .pattern(" ba")

@@ -21,7 +21,7 @@ import java.util.Map;
 
 public record WootMachineUpdate(BlockPos blockPos, RedstoneMode redstoneMode,
                                 List<Map<MachineSide, MachineSideProperty>> listMachineProperties) implements CustomPacketPayload {
-    public static final ResourceLocation ID = ResourceLocation.tryBuild(Woot.MOD_ID, "woot_machine_update");
+    public static final ResourceLocation ID = Woot.location("woot_machine_update");
 
     public static WootMachineUpdate read(FriendlyByteBuf buf) {
         int size = buf.readVarInt();

@@ -26,8 +26,8 @@ public class Blocks extends BlockStateProvider {
         super(output, Woot.MOD_ID, exFileHelper);
     }
 
-    private final ResourceLocation FACTORY_BASE = ResourceLocation.tryBuild(Woot.MOD_ID, "block/factory_base");
-    private final ResourceLocation CREATIVE_BASE = ResourceLocation.tryBuild(Woot.MOD_ID, "block/creative_base");
+    private final ResourceLocation FACTORY_BASE = Woot.location("block/factory_base");
+    private final ResourceLocation CREATIVE_BASE = Woot.location("block/creative_base");
 
     @Override
     protected void registerStatesAndModels() {

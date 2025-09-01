@@ -1,7 +1,6 @@
 package wootrevived.woot.recipes.fluid_infuser;
 
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -57,7 +56,7 @@ public class FluidInfuserRecipeBuilder {
 
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.FLUID_INFUSER_TAG + "/" + path),
+                Woot.location(BlocksRegistry.FLUID_INFUSER_TAG + "/" + path),
                 new FluidInfuserRecipe(energy, inputFluid, ingredient, outputFluid),
                 null
         );

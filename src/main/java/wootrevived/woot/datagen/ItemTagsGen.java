@@ -22,7 +22,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class ItemTagsGen extends ItemTagsProvider {
-    public static final TagKey<Item> FACTORY_BLOCK = TagKey.create(Registries.ITEM, ResourceLocation.tryBuild(Woot.MOD_ID, "factory_block"));
+    public static final TagKey<Item> FACTORY_BLOCK = TagKey.create(Registries.ITEM, Woot.location("factory_block"));
 
     public ItemTagsGen(PackOutput generator, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> parentProvider, ExistingFileHelper existingFileHelper) {
         super(generator, lookupProvider, parentProvider, Woot.MOD_ID, existingFileHelper);
@@ -39,7 +39,7 @@ public class ItemTagsGen extends ItemTagsProvider {
     {
         String prefix = Tags.Items.DYES.location().getPath().toUpperCase(Locale.ENGLISH) + '_';
         for (DyeColor dyeColor : DyeColor.values()) {
-            ResourceLocation key = ResourceLocation.tryBuild(Woot.MOD_ID, "{color}_dye_plate".replace("{color}", dyeColor.getName()));
+            ResourceLocation key = Woot.location("{color}_dye_plate".replace("{color}", dyeColor.getName()));
             TagKey<Item> iTag = getNeoForgeItemTag(prefix + dyeColor.getName());
             Item item = BuiltInRegistries.ITEM.get(key);
             if (item == null || item == Items.AIR)

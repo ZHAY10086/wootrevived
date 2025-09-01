@@ -2,7 +2,6 @@ package wootrevived.woot.recipes.item_infuser;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -70,7 +69,7 @@ public class ItemInfuserRecipeBuilder {
 
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.ITEM_INFUSER_TAG + "/" + path),
+                Woot.location(BlocksRegistry.ITEM_INFUSER_TAG + "/" + path),
                 new ItemInfuserRecipe(energy, fluid, ingredient, augment.isEmpty() ? Optional.empty() : Optional.of(augment), output),
                 null
         );

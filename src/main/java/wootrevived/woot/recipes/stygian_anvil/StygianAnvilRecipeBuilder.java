@@ -2,7 +2,6 @@ package wootrevived.woot.recipes.stygian_anvil;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -47,7 +46,7 @@ public class StygianAnvilRecipeBuilder {
 
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.STYGIAN_ANVIL_TAG + "/" + path),
+                Woot.location(BlocksRegistry.STYGIAN_ANVIL_TAG + "/" + path),
                 new StygianAnvilRecipe(
                         base,
                         ingredients.isEmpty() ? Optional.empty() : Optional.of(ingredients.get(0)),

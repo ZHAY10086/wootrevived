@@ -41,7 +41,7 @@ import static wootrevived.woot.util.render.WootStyles.UNIT_STYLE;
  */
 
 public abstract class WootContainerScreen<T extends WootContainerMenu> extends AbstractContainerScreen<T> {
-    public static final ResourceLocation GUI = ResourceLocation.tryBuild(Woot.MOD_ID, "textures/gui/atlas.png");
+    public static final ResourceLocation GUI = Woot.location("textures/gui/atlas.png");
 
     protected static final int GUI_XSIZE = 176;
     protected static final int GUI_YSIZE = 184;

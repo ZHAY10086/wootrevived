@@ -1,7 +1,6 @@
 package wootrevived.woot.recipes.dye_liquifier;
 
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import wootrevived.woot.Woot;
 import wootrevived.woot.registries.BlocksRegistry;
@@ -60,7 +59,7 @@ public class DyeLiquifierRecipeBuilder {
 
     public void save(RecipeOutput recipeOutput, String path){
         recipeOutput.accept(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.DYE_LIQUIFIER_TAG + "/" + path),
+                Woot.location(BlocksRegistry.DYE_LIQUIFIER_TAG + "/" + path),
                 new DyeLiquifierRecipe(energy, red * multiply, yellow * multiply, blue * multiply, white * multiply, ingredient),
                 null
         );

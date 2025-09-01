@@ -40,7 +40,7 @@ public record FactoryUpgradeDynamicSpriteSource(ResourceLocation id) implements 
     public void run(@NotNull ResourceManager manager, @NotNull Output output){
         Collection<DeferredHolder<Item, ? extends WootUpgradeItem>> upgradeItems = UpgradeItemsRegistry.getValues();
 
-        ResourceLocation factoryUpgradeResourceLocation = ResourceLocation.tryBuild(Woot.MOD_ID, "textures/block/" + BlocksRegistry.FACTORY_UPGRADE_TAG + ".png");
+        ResourceLocation factoryUpgradeResourceLocation = Woot.location("textures/block/" + BlocksRegistry.FACTORY_UPGRADE_TAG + ".png");
         Resource factoryResource = getResource(manager, factoryUpgradeResourceLocation);
         LazyLoadedImage factoryImage = new LazyLoadedImage(factoryUpgradeResourceLocation, factoryResource, upgradeItems.size());
 
@@ -49,7 +49,7 @@ public record FactoryUpgradeDynamicSpriteSource(ResourceLocation id) implements 
             Resource upgradeItemResource = getResource(manager, upgradeItemResourceLocation);
             LazyLoadedImage upgradeItemImage = new LazyLoadedImage(upgradeItemResourceLocation, upgradeItemResource, 1);
 
-            ResourceLocation spriteLocation = ResourceLocation.tryBuild(Woot.MOD_ID, "block/upgrade_item_" + UpgradeItemsRegistry.getNameFromItem(upgradeItem));
+            ResourceLocation spriteLocation = Woot.location("block/upgrade_item_" + UpgradeItemsRegistry.getNameFromItem(upgradeItem));
 
             output.add(spriteLocation, new UpgradeSpriteSupplier(upgradeItem.get(), factoryImage, upgradeItemImage, spriteLocation));
         }
