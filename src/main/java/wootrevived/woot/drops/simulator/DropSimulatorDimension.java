@@ -5,7 +5,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.Level;
@@ -26,9 +25,9 @@ import java.util.OptionalLong;
 public class DropSimulatorDimension {
     public static final String DROP_SIMULATOR_TAG = "drop_simulator";
 
-    public static final ResourceKey<DimensionType> DROP_SIMULATOR_DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, ResourceLocation.tryBuild(Woot.MOD_ID, DROP_SIMULATOR_TAG + "_type"));
-    public static final ResourceKey<Level> DROP_SIMULATOR_LEVEL = ResourceKey.create(Registries.DIMENSION, ResourceLocation.tryBuild(Woot.MOD_ID, DROP_SIMULATOR_TAG));
-    public static final ResourceKey<LevelStem> DROP_SIMULATOR_LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM, ResourceLocation.tryBuild(Woot.MOD_ID, DROP_SIMULATOR_TAG));
+    public static final ResourceKey<DimensionType> DROP_SIMULATOR_DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, Woot.location(DROP_SIMULATOR_TAG + "_type"));
+    public static final ResourceKey<Level> DROP_SIMULATOR_LEVEL = ResourceKey.create(Registries.DIMENSION, Woot.location(DROP_SIMULATOR_TAG));
+    public static final ResourceKey<LevelStem> DROP_SIMULATOR_LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM, Woot.location(DROP_SIMULATOR_TAG));
 
     public static void bootstrapType(BootstapContext<DimensionType> context) {
         context.register(DROP_SIMULATOR_DIMENSION_TYPE, new DimensionType(

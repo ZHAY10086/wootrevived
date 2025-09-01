@@ -42,7 +42,7 @@ import java.util.Map;
 public class WootJeiPlugin implements IModPlugin {
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return ResourceLocation.tryBuild(Woot.MOD_ID, "jei");
+        return Woot.location("jei");
     }
 
     @Override

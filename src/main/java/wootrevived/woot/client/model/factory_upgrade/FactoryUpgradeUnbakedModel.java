@@ -48,7 +48,7 @@ public class FactoryUpgradeUnbakedModel implements IUnbakedGeometry<FactoryUpgra
 
             TextureAtlasSprite texture = spriteGetter.apply(new Material(
                     InventoryMenu.BLOCK_ATLAS,
-                    ResourceLocation.tryBuild(Woot.MOD_ID, "block/upgrade_item_" + name)
+                    Woot.location("block/upgrade_item_" + name)
             ));
 
             builder.addParticle(name, texture);

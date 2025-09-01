@@ -76,7 +76,7 @@ public class ItemInfuserRecipeBuilder {
 
     public void save(Consumer<FinishedRecipe> consumer, String path){
         consumer.accept(new Result(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.ITEM_INFUSER_TAG + "/" + path),
+                Woot.location(BlocksRegistry.ITEM_INFUSER_TAG + "/" + path),
                 energy, fluid, ingredient, augment, output
         ));
     }

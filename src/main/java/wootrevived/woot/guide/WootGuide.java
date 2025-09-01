@@ -8,7 +8,7 @@ import wootrevived.woot.Woot;
 import wootrevived.woot.guide.recipes.EnchantedRecipeCompiler;
 
 public class WootGuide {
-    public static ResourceLocation ID = ResourceLocation.tryBuild(Woot.MOD_ID, "guide");
+    public static ResourceLocation ID = Woot.location("guide");
 
     public static void init() {
         Guide.builder(ID)

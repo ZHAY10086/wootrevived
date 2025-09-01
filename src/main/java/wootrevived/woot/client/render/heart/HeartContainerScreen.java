@@ -43,7 +43,7 @@ import static wootrevived.woot.util.render.WootStyles.*;
 
 @OnlyIn(Dist.CLIENT)
 public class HeartContainerScreen extends AbstractContainerScreen<HeartContainerMenu> {
-    public static final ResourceLocation GUI = ResourceLocation.tryBuild(Woot.MOD_ID, "textures/gui/atlas.png");
+    public static final ResourceLocation GUI = Woot.location("textures/gui/atlas.png");
 
     public static final int GUI_XSIZE = 176;
     public static final int GUI_YSIZE = 184;

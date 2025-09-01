@@ -68,7 +68,7 @@ public class DyeLiquifierRecipeBuilder {
 
     public void save(Consumer<FinishedRecipe> consumer, String path){
         consumer.accept(new Result(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.DYE_LIQUIFIER_TAG + "/" + path),
+                Woot.location(BlocksRegistry.DYE_LIQUIFIER_TAG + "/" + path),
                 energy, red * multiply, yellow * multiply, blue * multiply, white * multiply, ingredient
         ));
     }

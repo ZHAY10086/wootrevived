@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class NetworkChannel {
 
-    private static final ResourceLocation resourceLocation = ResourceLocation.tryBuild(Woot.MOD_ID, "net");
+    private static final ResourceLocation resourceLocation = Woot.location("net");
 
     public static void init(){}
 

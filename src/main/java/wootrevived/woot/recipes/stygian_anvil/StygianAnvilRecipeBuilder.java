@@ -53,7 +53,7 @@ public class StygianAnvilRecipeBuilder {
 
     public void save(Consumer<FinishedRecipe> consumer, String path){
         consumer.accept(new Result(
-                ResourceLocation.tryBuild(Woot.MOD_ID, BlocksRegistry.STYGIAN_ANVIL_TAG + "/" + path),
+                Woot.location(BlocksRegistry.STYGIAN_ANVIL_TAG + "/" + path),
                 base, ingredients, output
         ));
     }

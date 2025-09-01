@@ -46,7 +46,7 @@ public enum WootMachineProvider implements IBlockComponentProvider, IServerDataP
 
     @Override
     public ResourceLocation getUid() {
-        return ResourceLocation.tryBuild(Woot.MOD_ID, "machines");
+        return Woot.location("machines");
     }
 
     @Override
