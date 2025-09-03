@@ -84,7 +84,7 @@ public class FakeSpawnerBlockEntity extends FactoryBlockBaseEntity {
     }
 
     public boolean tick(WootFluidTankHandler tank){
-        if(!isActive())
+        if(getMob() == null || getMob().isBlacklisted() || !isActive())
             return false;
 
         if(redstoneMode != RedstoneMode.ONCE && isDisabled())
