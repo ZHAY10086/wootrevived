@@ -51,6 +51,7 @@ public class WootFactoryMobEventJS extends StartupEventJS {
         private final List<FluidStack> importFluids = new ArrayList<>();
         private BiConsumer<String, WootDropsPropertiesJS> modifyDrops = null;
 
+        @SuppressWarnings("unchecked")
         public FactoryMobBuilderJS(WootFactoryMobRegistration registration, EntityType<T> entityType) {
             this.registration = registration;
             this.entityType = entityType;
