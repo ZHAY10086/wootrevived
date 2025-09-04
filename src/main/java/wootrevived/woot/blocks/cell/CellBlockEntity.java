@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +49,9 @@ public class CellBlockEntity extends FactoryBlockBaseEntity {
     }
 
     public static IFluidHandler getFluidHandlerCapability(CellBlockEntity blockEntity, Direction side){
-        return blockEntity.tankHandler;
+        if(blockEntity.getBlockState().getValue(BlockStateProperties.ENABLED))
+            return blockEntity.tankHandler;
+        return null;
     }
 
     @Override
