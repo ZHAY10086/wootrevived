@@ -1,13 +1,17 @@
 package wootrevived.woot.multiblock.patterns;
 
 import com.google.common.collect.Maps;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.AABB;
 import wootrevived.woot.registries.BlocksRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class Patterns {
     public static Pattern TIER_1 = new Tier1();
@@ -51,6 +55,34 @@ public class Patterns {
         return fakeSpawners;
     }
 
+    private static final List<Block> validBlocks = generateValidBlocks();
+
+    public static List<Block> getValidBlocks(){
+        return validBlocks;
+    }
+
+    private static List<Block> generateValidBlocks(){
+        List<Block> validBlocks = new ArrayList<>();
+
+        getValidBlocksForPattern(validBlocks, TIER_1);
+        getValidBlocksForPattern(validBlocks, TIER_2);
+        getValidBlocksForPattern(validBlocks, TIER_3);
+        getValidBlocksForPattern(validBlocks, TIER_4);
+        getValidBlocksForPattern(validBlocks, TIER_5);
+
+        return validBlocks;
+    }
+
+    private static void getValidBlocksForPattern(List<Block> blocks, Pattern pattern){
+        for(Pattern.PatternBlock patternBlock : pattern.patterns.get(Direction.NORTH)){
+            for(Block block : patternBlock.blocks){
+                if(block == Blocks.AIR) continue;
+                if(!blocks.contains(block))
+                    blocks.add(block);
+            }
+        }
+    }
+
     private static List<Pattern.PatternBlock> getBlocks(Direction direction, Block block){
         List<Pattern.PatternBlock> blocks = new ArrayList<>();
 
@@ -75,33 +107,54 @@ public class Patterns {
         }
     }
 
-    private static final int height = generateHeight();
+    private static final int width = generateLength(BlockPos::getX);
+    private static final int height = generateLength(BlockPos::getY);
+    private static final int depth = generateLength(BlockPos::getZ);
+
+    public static int getWidth(){
+        return width;
+    }
 
     public static int getHeight(){
         return height;
     }
 
-    private static int generateHeight(){
-        int heightTier1 = generateHeightForTier(TIER_1);
-        int heightTier2 = generateHeightForTier(TIER_2);
-        int heightTier3 = generateHeightForTier(TIER_3);
-        int heightTier4 = generateHeightForTier(TIER_4);
-        int heightTier5 = generateHeightForTier(TIER_5);
-
-        return Math.max(heightTier1, Math.max(heightTier2, Math.max(heightTier3, Math.max(heightTier4, heightTier5))));
+    public static int getDepth(){
+        return depth;
     }
 
-    private static int generateHeightForTier(Pattern tier){
+    public static AABB getSearchAABB(BlockPos pos){
+        return new AABB(
+                pos.getX() - getWidth(),
+                pos.getY() - getHeight(),
+                pos.getZ() - getDepth(),
+                pos.getX() + getWidth(),
+                pos.getY() + getHeight(),
+                pos.getZ() + getDepth()
+        );
+    }
+
+    private static int generateLength(Function<BlockPos, Integer> function){
+        int tier1 = generateLengthForTier(TIER_1, function);
+        int tier2 = generateLengthForTier(TIER_2, function);
+        int tier3 = generateLengthForTier(TIER_3, function);
+        int tier4 = generateLengthForTier(TIER_4, function);
+        int tier5 = generateLengthForTier(TIER_5, function);
+
+        return Math.max(tier1, Math.max(tier2, Math.max(tier3, Math.max(tier4, tier5))));
+    }
+
+    private static int generateLengthForTier(Pattern tier, Function<BlockPos, Integer> function){
         List<Pattern.PatternBlock> pattern = tier.patterns.get(Direction.NORTH);
 
-        int minHeight = 0;
-        int maxHeight = 0;
+        int minLength = 0;
+        int maxLength = 0;
 
         for(Pattern.PatternBlock block : pattern){
-            if(block.pos.getY() < minHeight) minHeight = block.pos.getY();
-            if(block.pos.getY() > maxHeight) maxHeight = block.pos.getY();
+            if(function.apply(block.pos) < minLength) minLength = function.apply(block.pos);
+            if(function.apply(block.pos) > maxLength) maxLength = function.apply(block.pos);
         }
 
-        return maxHeight - minHeight;
+        return maxLength - minLength;
     }
 }

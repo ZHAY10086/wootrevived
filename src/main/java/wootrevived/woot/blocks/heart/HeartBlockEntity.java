@@ -99,8 +99,6 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
         if(!getBlockState().getValue(BlockStateProperties.ENABLED))
             return;
 
-        super.tick(level, pos, state, blockEntity);
-
         if(tier == Tier.INVALID) {
             resetFactory();
             return;
