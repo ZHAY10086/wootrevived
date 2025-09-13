@@ -32,22 +32,9 @@ public abstract class MultiBlockFactoryEntity extends BlockEntity implements Blo
         }
     }
 
-    private static final int TICK_DELAY = 10;
-
-    private int delayTick = TICK_DELAY;
-
-    @Override
-    public void tick(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull BlockEntity blockEntity) {
-        if(level.isClientSide)
-            return;
-
-        if(delayTick-- != 0)
-            return;
-
-        delayTick = TICK_DELAY;
-
-        Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-        Tier newTier = MultiBlockFactory.updatePattern(level, pos, facing);
+    public void updatePattern(Level level){
+        Direction facing = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Tier newTier = MultiBlockFactory.updatePattern(level, getBlockPos(), facing);
         if(newTier != tier){
             tier = newTier;
             setChanged();
