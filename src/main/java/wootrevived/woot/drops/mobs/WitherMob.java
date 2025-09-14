@@ -33,9 +33,18 @@ public class WitherMob extends WootFactoryMob<WitherBoss> {
             looting = handStack.getEnchantmentLevel(Enchantments.MOB_LOOTING);
         }
 
-        ItemStack stack = Items.WITHER_ROSE.getDefaultInstance();
-        stack.setCount(1 + looting);
-        generatedDrops.add(stack);
+        ItemStack witherRose = Items.WITHER_ROSE.getDefaultInstance();
+        witherRose.setCount(1 + looting);
+        generatedDrops.add(witherRose);
+
+        if(properties.doSimulateChargedCreeper()){
+            for(ItemStack stack : List.copyOf(generatedDrops)){
+                if(stack.is(Items.NETHER_STAR)){
+                    generatedDrops.remove(stack);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -50,9 +59,6 @@ public class WitherMob extends WootFactoryMob<WitherBoss> {
     }
 
     public static void register(WootFactoryMobRegistration registration) {
-        registration.registerFactoryMob(new WitherMob(EntityType.WITHER,
-                new Properties()
-                        .tier(Tier.TIER_5)
-        ));
+        registration.registerFactoryMob(new WitherMob(EntityType.WITHER, new Properties().tier(Tier.TIER_5)));
     }
 }
