@@ -23,6 +23,9 @@ public class SnifferMob extends WootFactoryMob<Sniffer> {
 
     @Override
     public void modifyDrops(Phase phase, WootDropsProperties properties){
+        if(!phase.isBeforeDropCallback())
+            return;
+
         ServerLevel level = properties.getLevel();
         LootTable lootTable = level.getServer().getLootData().getLootTable(BuiltInLootTables.SNIFFER_DIGGING);
         LootParams lootParams = new LootParams.Builder(level)
