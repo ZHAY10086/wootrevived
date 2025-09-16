@@ -66,11 +66,13 @@ public class FactoryUpgradeBakedModel extends BakedModelWrapper<SimpleBakedModel
     }
 
     @Override
-    public @NotNull ModelData getModelData(@NotNull BlockAndTintGetter level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull ModelData modelData) {
+    public @NotNull ModelData getModelData(@Nullable BlockAndTintGetter level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull ModelData modelData) {
         String upgrade = "";
-        BlockEntity entity = level.getBlockEntity(blockPos);
-        if(entity instanceof FactoryUpgradeBlockEntity factoryUpgradeBlockEntity){
-            upgrade = factoryUpgradeBlockEntity.getUpgradeItemName();
+        if(level instanceof BlockAndTintGetter){
+            BlockEntity entity = level.getBlockEntity(blockPos);
+            if(entity instanceof FactoryUpgradeBlockEntity factoryUpgradeBlockEntity){
+                upgrade = factoryUpgradeBlockEntity.getUpgradeItemName();
+            }
         }
         return modelData.derive().with(UPGRADE_PROPERTY, upgrade).build();
     }
