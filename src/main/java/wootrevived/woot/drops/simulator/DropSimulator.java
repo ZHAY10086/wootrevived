@@ -63,10 +63,10 @@ public class DropSimulator {
     }
 
     private void simulate(WootDropsProperties properties){
-        if(dimensionLevel == null)
-            return;
-
         LivingEntity livingEntity = properties.getEntity();
+
+        if(livingEntity == null)
+            return;
 
         ItemStack mainHand = properties.getMainHandItem();
 
