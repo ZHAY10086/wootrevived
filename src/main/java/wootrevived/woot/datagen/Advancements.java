@@ -39,7 +39,7 @@ public class Advancements extends AdvancementProvider {
                             Component.translatable("advancements.woot_revived.root.title"),
                             Component.translatable("advancements.woot_revived.root.description"),
                             background,
-                            AdvancementType.TASK, false, true, false)
+                            AdvancementType.TASK, false, false, false)
                     .addCriterion("killed_something", KilledTrigger.TriggerInstance.playerKilledEntity())
                     .save(saver, getNameId("root"));
 
