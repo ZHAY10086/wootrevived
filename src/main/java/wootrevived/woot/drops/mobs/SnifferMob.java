@@ -30,7 +30,7 @@ public class SnifferMob extends WootFactoryMob<Sniffer> {
         LootTable lootTable = level.getServer().getLootData().getLootTable(BuiltInLootTables.SNIFFER_DIGGING);
         LootParams lootParams = new LootParams.Builder(level)
                 .withParameter(LootContextParams.ORIGIN, BlockPos.ZERO.getCenter())
-                .withParameter(LootContextParams.THIS_ENTITY, null)
+                .withParameter(LootContextParams.THIS_ENTITY, properties.getEntity())
                 .create(LootContextParamSets.GIFT);
         List<ItemStack> items = lootTable.getRandomItems(lootParams);
 
