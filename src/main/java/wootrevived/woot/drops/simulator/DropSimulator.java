@@ -1,7 +1,6 @@
 package wootrevived.woot.drops.simulator;
 
 import com.mojang.authlib.GameProfile;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -21,10 +20,10 @@ import net.minecraft.world.level.dimension.end.EndDragonFight;
 import net.minecraft.world.level.entity.EntityPersistentStorage;
 import net.minecraft.world.level.entity.PersistentEntitySectionManager;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import wootrevived.api.WootFactoryMob;
 import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.woot.Woot;
 import wootrevived.woot.mixin.EnderDragonMixin;
@@ -43,8 +42,8 @@ public class DropSimulator {
     private DamageSource playerSource = null;
     private DamageSource chargedCreeperSource = null;
 
-    public static void simulateDrops(CompoundTag tag, WootDropsProperties properties) {
-        INSTANCE.simulate(tag, properties);
+    public static void simulateDrops(WootDropsProperties properties) {
+        INSTANCE.simulate(properties);
     }
 
     public static @NotNull ServerLevel getLevel() {
@@ -58,25 +57,16 @@ public class DropSimulator {
     public static @NotNull HolderLookup.Provider getLookupProvider(){
         return INSTANCE.dimensionLevel.registryAccess();
     }
+    
+    public static @Nullable LivingEntity loadEntity(WootFactoryMob<?> entity, CompoundTag mobTag) {
+        return entity.loadEntity(mobTag, INSTANCE.dimensionLevel);
+    }
 
-    @SuppressWarnings({"deprecation", "OverrideOnly", "UnstableApiUsage"})
-    private void simulate(CompoundTag tag, WootDropsProperties properties){
+    private void simulate(WootDropsProperties properties){
         if(dimensionLevel == null)
             return;
 
-        Entity entity = EntityType.loadEntityRecursive(tag, dimensionLevel, e -> e);
-
-        if(entity == null)
-            return;
-
-        if(!(entity instanceof LivingEntity livingEntity))
-            return;
-
-        if(entity instanceof Mob mob){
-            var event = new MobSpawnEvent.FinalizeSpawn(mob, dimensionLevel, 0, 0, 0, dimensionLevel.getCurrentDifficultyAt(BlockPos.ZERO), MobSpawnType.SPAWNER, null, null, null);
-            MinecraftForge.EVENT_BUS.post(event);
-            mob.finalizeSpawn(dimensionLevel, dimensionLevel.getCurrentDifficultyAt(BlockPos.ZERO), MobSpawnType.SPAWNER, null, null);
-        }
+        LivingEntity livingEntity = properties.getEntity();
 
         ItemStack mainHand = properties.getMainHandItem();
 

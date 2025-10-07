@@ -1,13 +1,18 @@
 package wootrevived.api;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.api.enums.Tier;
 import wootrevived.api.interfaces.WootDropsProperties;
 
@@ -90,6 +95,40 @@ public class WootFactoryMob<T extends Entity> {
      */
     public boolean isSame(CompoundTag shardTag, CompoundTag mobTag, HolderLookup.Provider lookupProvider){
         return shardTag.getString("id").equals(mobTag.getString("id"));
+    }
+
+    /**
+     * Loads and prepares a {@link LivingEntity} instance from its serialized NBT data for use in simulation.
+     * <p>
+     * Override this method to alter spawn behavior, entity initialization, or to provide special handling
+     * for custom entities that require additional setup during simulation.
+     * <p>
+     * Note: The returned entity is <em>not</em> added to the world automatically, it exists only for
+     * simulated behavior and inspection.
+     *
+     * @param mobTag the serialized entity data (must include an {@code id})
+     * @param level  the server level context to load the entity into
+     * @return the reconstructed {@link LivingEntity}, or {@code null} if loading failed
+     * @since 1.0.4
+     */
+    @SuppressWarnings({"deprecation", "OverrideOnly", "UnstableApiUsage"})
+    @ApiStatus.AvailableSince("1.0.4")
+    public @Nullable LivingEntity loadEntity(CompoundTag mobTag, ServerLevel level){
+        if(level == null || !mobTag.contains("id"))
+            return null;
+
+        Entity entity = EntityType.loadEntityRecursive(mobTag, level, e -> e);
+
+        if(!(entity instanceof LivingEntity livingEntity))
+            return null;
+
+        if(entity instanceof Mob mob){
+            var event = new MobSpawnEvent.FinalizeSpawn(mob, level, 0, 0, 0, level.getCurrentDifficultyAt(BlockPos.ZERO), MobSpawnType.SPAWNER, null, null, null);
+            MinecraftForge.EVENT_BUS.post(event);
+            mob.finalizeSpawn(level, level.getCurrentDifficultyAt(BlockPos.ZERO), MobSpawnType.SPAWNER, null, null);
+        }
+
+        return livingEntity;
     }
 
     /**

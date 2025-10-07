@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -254,10 +255,12 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
                 }
             }
 
-            WootDropsProperties generationProperties = new WootFactoryDropsProperties(spawnProperties);
+            LivingEntity entity = DropSimulator.loadEntity(mob, spawnProperties.getFactoryMobTag());
+
+            WootDropsProperties generationProperties = new WootFactoryDropsProperties(spawnProperties, entity);
 
             if(!mob.isSimulationDisabled())
-                DropSimulator.simulateDrops(spawnProperties.getFactoryMobTag(), generationProperties);
+                DropSimulator.simulateDrops(generationProperties);
 
             mob.modifyDrops(WootFactoryMob.Phase.BEFORE_DROP_CALLBACKS, generationProperties);
 

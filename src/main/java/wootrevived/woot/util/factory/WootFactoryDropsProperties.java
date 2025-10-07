@@ -4,9 +4,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.enums.Tier;
 import wootrevived.api.interfaces.WootDropsProperties;
@@ -20,10 +22,12 @@ public class WootFactoryDropsProperties implements WootDropsProperties {
     private final WootSpawnProperties wootSpawnProperties;
     private final List<ItemStack> itemDrops = new ArrayList<>();
     private final List<FluidStack> fluidDrops = new ArrayList<>();
+    private final LivingEntity entity;
     private int experience = 0;
 
-    public WootFactoryDropsProperties(WootSpawnProperties properties) {
+    public WootFactoryDropsProperties(WootSpawnProperties properties, LivingEntity entity) {
         wootSpawnProperties = properties;
+        this.entity = entity;
     }
 
     @Override
@@ -104,5 +108,10 @@ public class WootFactoryDropsProperties implements WootDropsProperties {
     @Override
     public @NotNull CompoundTag getFactoryMobTag() {
         return wootSpawnProperties.getFactoryMobTag().copy();
+    }
+
+    @Override
+    public @Nullable LivingEntity getEntity() {
+        return entity;
     }
 }
