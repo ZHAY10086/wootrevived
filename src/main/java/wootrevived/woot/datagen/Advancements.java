@@ -38,7 +38,7 @@ public class Advancements extends ForgeAdvancementProvider {
                             Component.translatable("advancements.woot_revived.root.title"),
                             Component.translatable("advancements.woot_revived.root.description"),
                             background,
-                            FrameType.TASK, false, true, false)
+                            FrameType.TASK, false, false, false)
                     .addCriterion("killed_something", KilledTrigger.TriggerInstance.playerKilledEntity())
                     .save(consumer, getNameId("root"));
 
