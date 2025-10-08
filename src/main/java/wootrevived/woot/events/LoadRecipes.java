@@ -3,6 +3,7 @@ package wootrevived.woot.events;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
@@ -31,15 +32,18 @@ public class LoadRecipes {
         loadRecipes(server.getRecipeManager());
     }
 
-    @SubscribeEvent
-    public static void onClientLogin(ClientPlayerNetworkEvent.LoggingIn event){
-        Level level = event.getPlayer().level();
-        loadRecipes(level.getRecipeManager());
-    }
+    @Mod.EventBusSubscriber(modid = Woot.MOD_ID, value = { Dist.CLIENT })
+    public static class ClientSide {
+        @SubscribeEvent
+        public static void onClientLogin(ClientPlayerNetworkEvent.LoggingIn event){
+            Level level = event.getPlayer().level();
+            loadRecipes(level.getRecipeManager());
+        }
 
-    @SubscribeEvent
-    public static void onRecipesUpdated(RecipesUpdatedEvent event) {
-        loadRecipes(event.getRecipeManager());
+        @SubscribeEvent
+        public static void onRecipesUpdated(RecipesUpdatedEvent event) {
+            loadRecipes(event.getRecipeManager());
+        }
     }
 
     private static void loadRecipes(RecipeManager recipeManager) {
