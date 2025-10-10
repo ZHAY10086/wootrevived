@@ -167,6 +167,9 @@ public class Items extends ItemModelProvider {
 
         itemGenerated(Burn.BURN_ITEM);
 
+        itemGenerated(Dimension.NETHER_DIMENSION_ITEM);
+        itemGenerated(Dimension.END_DIMENSION_ITEM);
+
         itemGenerated(ItemsRegistry.MOB_SHARD_ITEM);
         itemGenerated(ItemsRegistry.XP_SHARD_ITEM);
         itemGenerated(ItemsRegistry.XP_SPLINTER_ITEM);

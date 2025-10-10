@@ -2,10 +2,12 @@ package wootrevived.api.interfaces;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -55,4 +57,7 @@ public interface WootDropsProperties {
 
     @ApiStatus.AvailableSince("1.0.4")
     @Nullable LivingEntity getEntity();
+
+    @ApiStatus.AvailableSince("1.0.6")
+    @NotNull ResourceKey<Level> getDimension();
 }

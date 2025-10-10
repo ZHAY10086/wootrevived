@@ -2,10 +2,12 @@ package wootrevived.woot.util.factory;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -113,5 +115,10 @@ public class WootFactoryDropsProperties implements WootDropsProperties {
     @Override
     public @Nullable LivingEntity getEntity() {
         return entity;
+    }
+
+    @Override
+    public @NotNull ResourceKey<Level> getDimension() {
+        return wootSpawnProperties.getDimension();
     }
 }

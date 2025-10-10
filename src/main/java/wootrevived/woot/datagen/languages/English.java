@@ -125,6 +125,11 @@ public class English extends LanguageProvider {
         add(Burn.BURN_ITEM.get(), "Burn Upgrade");
         add("info.woot_revived.upgrade.burn.desc.0", "Apply fire to the simulated mob");
 
+        add(Dimension.NETHER_DIMENSION_ITEM.get(), "Nether Dimension Upgrade");
+        add(Dimension.END_DIMENSION_ITEM.get(), "End Dimension Upgrade");
+        add("info.woot_revived.upgrade.dimension.desc.nether", "Kill the simulated mob in the nether");
+        add("info.woot_revived.upgrade.dimension.desc.end", "Kill the simulated mob in the end");
+
         add(ItemsRegistry.MOB_SHARD_ITEM.get(), "Mob Shard");
         add(ItemsRegistry.MOB_SHARD_PROJECTILE.get(), "Mob Shard");
 

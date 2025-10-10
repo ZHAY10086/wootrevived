@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "woot_revived",
+  "key": {
+    "a": {
+      "item": "minecraft:chorus_fruit"
+    },
+    "b": {
+      "item": "minecraft:shulker_shell"
+    },
+    "c": {
+      "item": "woot_revived:upgrade_base"
+    }
+  },
+  "pattern": [
+    "bab",
+    "aca",
+    "bab"
+  ],
+  "result": {
+    "item": "woot_revived:end_dimension_upgrade"
+  },
+  "show_notification": true
+}

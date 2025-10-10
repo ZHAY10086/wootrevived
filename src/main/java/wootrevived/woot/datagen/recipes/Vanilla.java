@@ -935,6 +935,32 @@ public class Vanilla {
                 .unlockedBy("c", recipes.hasItem(UpgradeItemsRegistry.UPGRADE_BASE_ITEM.get()))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Dimension.NETHER_DIMENSION_ITEM.get())
+                .pattern("bab")
+                .pattern("aca")
+                .pattern("bab")
+                .define('a', Items.GHAST_TEAR)
+                .define('b', Items.BLAZE_ROD)
+                .define('c', UpgradeItemsRegistry.UPGRADE_BASE_ITEM.get())
+                .group(Woot.MOD_ID)
+                .unlockedBy("a", recipes.hasItem(Items.GHAST_TEAR))
+                .unlockedBy("b", recipes.hasItem(Items.BLAZE_ROD))
+                .unlockedBy("c", recipes.hasItem(UpgradeItemsRegistry.UPGRADE_BASE_ITEM.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Dimension.END_DIMENSION_ITEM.get())
+                .pattern("bab")
+                .pattern("aca")
+                .pattern("bab")
+                .define('a', Items.CHORUS_FRUIT)
+                .define('b', Items.SHULKER_SHELL)
+                .define('c', UpgradeItemsRegistry.UPGRADE_BASE_ITEM.get())
+                .group(Woot.MOD_ID)
+                .unlockedBy("a", recipes.hasItem(Items.CHORUS_FRUIT))
+                .unlockedBy("b", recipes.hasItem(Items.SHULKER_SHELL))
+                .unlockedBy("c", recipes.hasItem(UpgradeItemsRegistry.UPGRADE_BASE_ITEM.get()))
+                .save(consumer);
+
         /* Guide Book */
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemsRegistry.GUIDE_BOOK_ITEM.get())

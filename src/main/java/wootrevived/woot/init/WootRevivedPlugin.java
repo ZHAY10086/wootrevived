@@ -11,6 +11,7 @@ public class WootRevivedPlugin implements IWootPlugin {
     public void registerUpgradeItems(WootUpgradeItemRegistration registration) {
         Burn.register(registration);
         Decapitate.register(registration);
+        Dimension.register(registration);
         Efficiency.register(registration);
         Looting.register(registration);
         Mass.register(registration);
