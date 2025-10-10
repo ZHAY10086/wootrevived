@@ -259,6 +259,8 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
 
             WootDropsProperties generationProperties = new WootFactoryDropsProperties(spawnProperties, entity);
 
+            DropSimulator.patchDimension(generationProperties, false);
+
             if(!mob.isSimulationDisabled())
                 DropSimulator.simulateDrops(generationProperties);
 
@@ -281,6 +283,8 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
             }
 
             mob.modifyDrops(WootFactoryMob.Phase.AFTER_UPGRADES, generationProperties);
+
+            DropSimulator.patchDimension(generationProperties, true);
 
             unconcatItems.addAll(generationProperties.getItemDrops());
             unconcatFluids.addAll(generationProperties.getFluidDrops());

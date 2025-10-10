@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "woot_revived:item/end_dimension_upgrade"
+  }
+}

@@ -2,10 +2,12 @@ package wootrevived.woot.util.factory;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.enums.Tier;
@@ -23,6 +25,7 @@ public class WootFactorySpawnProperties implements WootSpawnProperties {
     private boolean isEnderDragonAlreadyKilled = true;
     private boolean isInFire = false;
     private boolean doSimulateChargedCreeper = false;
+    private ResourceKey<Level> dimension = Level.OVERWORLD;
 
     public WootFactorySpawnProperties(Tier factoryTier, WootFactoryMob<?> factoryMob, CompoundTag factoryMobTag) {
         this.factoryTier = factoryTier;
@@ -125,5 +128,15 @@ public class WootFactorySpawnProperties implements WootSpawnProperties {
         if(!tag.getString("id").equals(factoryMobTag.getString("id")))
             return;
         factoryMobTag = tag;
+    }
+
+    @Override
+    public @NotNull ResourceKey<Level> getDimension() {
+        return dimension;
+    }
+
+    @Override
+    public void setDimension(@NotNull ResourceKey<Level> dimension) {
+        this.dimension = dimension;
     }
 }

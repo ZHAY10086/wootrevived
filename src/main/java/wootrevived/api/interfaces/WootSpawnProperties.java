@@ -2,9 +2,12 @@ package wootrevived.api.interfaces;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.enums.Tier;
@@ -53,4 +56,8 @@ public interface WootSpawnProperties {
     @NotNull WootFactoryMob<?> getFactoryMob();
     @NotNull CompoundTag getFactoryMobTag();
     void setFactoryMobTag(CompoundTag tag);
+
+    @ApiStatus.AvailableSince("1.0.6")
+    @NotNull ResourceKey<Level> getDimension();
+    void setDimension(@NotNull ResourceKey<Level> dimension);
 }
