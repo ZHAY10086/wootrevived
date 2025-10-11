@@ -17,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wootrevived.api.WootFactoryMob;
+import wootrevived.woot.config.MobShardConfig;
 import wootrevived.woot.registries.ItemsRegistry;
 import wootrevived.woot.registries.WootFactoryMobsRegistry;
 import wootrevived.woot.util.entity.WootTags;
@@ -133,7 +134,7 @@ public class MobShardItem extends Item {
         if(mobTag == null)
             return false;
 
-        return killCount >= 5;
+        return killCount >= MobShardConfig.NUM_OF_KILLS.get();
     }
 
     public static void setJEIShard(ItemStack itemStack) {
@@ -184,7 +185,7 @@ public class MobShardItem extends Item {
         if(isFull(stack)){
             tooltip.add(Component.translatable("info.woot_revived.mobshard.programmed").setStyle(SHARD_PROGRAM_STYLE));
         } else {
-            tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining", killCount, 5).setStyle(SHARD_PROGRAM_STYLE));
+            tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining", killCount, MobShardConfig.NUM_OF_KILLS.get()).setStyle(SHARD_PROGRAM_STYLE));
             if(mob != null) {
                 tooltip.add(Component.translatable("info.woot_revived.mobshard.remaining.desc", mob.getTooltipKillName(mobTag, level.registryAccess()).setStyle(DESCRIPTION_STYLE)).setStyle(DESCRIPTION_STYLE));
             } else {

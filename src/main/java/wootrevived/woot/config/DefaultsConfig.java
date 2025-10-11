@@ -55,4 +55,8 @@ public class DefaultsConfig {
     public static class Guide {
         public static final boolean GIVE_ON_SPAWN = true;
     }
+
+    public static class MobShard {
+        public static final int NUM_OF_KILLS = 5;
+    }
 }
