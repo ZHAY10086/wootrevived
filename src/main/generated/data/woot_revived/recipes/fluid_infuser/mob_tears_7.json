@@ -1,11 +1,25 @@
 {
   "type": "woot_revived:fluid_infuser",
-  "energy": 1000,
-  "ingredient": {
-    "item": "minecraft:ender_eye"
-  },
+  "energy": 5000,
+  "ingredient": [
+    {
+      "item": "minecraft:zombie_head"
+    },
+    {
+      "item": "minecraft:piglin_head"
+    },
+    {
+      "item": "minecraft:skeleton_skull"
+    },
+    {
+      "item": "minecraft:dragon_head"
+    },
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    }
+  ],
   "input_fluid": {
-    "Amount": 1000,
+    "Amount": 500,
     "FluidName": "minecraft:water"
   },
   "output_fluid": {

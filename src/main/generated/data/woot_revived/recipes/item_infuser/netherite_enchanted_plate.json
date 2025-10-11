@@ -3,7 +3,7 @@
   "augment": {
     "item": "woot_revived:netherite_shard"
   },
-  "energy": 5000,
+  "energy": 25000,
   "fluid": {
     "Amount": 5000,
     "FluidName": "woot_revived:enchanted_fluid"

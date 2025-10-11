@@ -1,15 +1,38 @@
 {
   "type": "woot_revived:fluid_infuser",
-  "energy": 1000,
-  "ingredient": {
-    "item": "minecraft:rotten_flesh"
-  },
+  "energy": 5000,
+  "ingredient": [
+    {
+      "item": "minecraft:chicken"
+    },
+    {
+      "item": "minecraft:cod"
+    },
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:salmon"
+    },
+    {
+      "item": "minecraft:pufferfish"
+    },
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "minecraft:rabbit_hide"
+    }
+  ],
   "input_fluid": {
-    "Amount": 1000,
+    "Amount": 500,
     "FluidName": "minecraft:water"
   },
   "output_fluid": {
-    "Amount": 1000,
+    "Amount": 100,
     "FluidName": "woot_revived:mob_tears_fluid"
   }
 }

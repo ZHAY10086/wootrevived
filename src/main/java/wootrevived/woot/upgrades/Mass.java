@@ -24,12 +24,12 @@ public class Mass extends WootUpgradeItem {
 
     @Override
     public void applyGenerationProperties(WootGenerationProperties properties) {
-        properties.setNumberOfSimulations(1 + getLevel());
+        properties.setNumberOfSimulations(2 * getLevel());
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("info.woot_revived.upgrade.mass.desc.0", getLevel() + 1).setStyle(DESCRIPTION_STYLE));
+        tooltip.add(Component.translatable("info.woot_revived.upgrade.mass.desc.0", 2 * getLevel()).setStyle(DESCRIPTION_STYLE));
     }
 
     /* Upgrade Item registration */

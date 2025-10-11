@@ -1,15 +1,15 @@
 {
   "type": "woot_revived:fluid_infuser",
-  "energy": 1000,
+  "energy": 5000,
   "ingredient": {
-    "item": "woot_revived:xp_shard"
+    "item": "woot_revived:xp_splinter"
   },
   "input_fluid": {
     "Amount": 1000,
     "FluidName": "woot_revived:mob_tears_fluid"
   },
   "output_fluid": {
-    "Amount": 1000,
+    "Amount": 150,
     "FluidName": "woot_revived:vitality_fuel_fluid"
   }
 }

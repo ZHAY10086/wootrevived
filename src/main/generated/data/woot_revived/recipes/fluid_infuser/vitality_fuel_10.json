@@ -1,15 +1,15 @@
 {
   "type": "woot_revived:fluid_infuser",
-  "energy": 1000,
+  "energy": 5000,
   "ingredient": {
-    "item": "woot_revived:diamond_enchanted_plate"
+    "item": "woot_revived:gold_enchanted_plate"
   },
   "input_fluid": {
     "Amount": 1000,
     "FluidName": "woot_revived:mob_tears_fluid"
   },
   "output_fluid": {
-    "Amount": 7000,
+    "Amount": 7500,
     "FluidName": "woot_revived:vitality_fuel_fluid"
   }
 }

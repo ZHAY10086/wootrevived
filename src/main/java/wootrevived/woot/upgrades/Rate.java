@@ -22,16 +22,18 @@ import static wootrevived.woot.util.render.WootStyles.DESCRIPTION_STYLE;
 public class Rate extends WootUpgradeItem {
     public Rate(int level) { super(new Properties(), level); }
 
+    private static final int[] PERCENTAGES = new int[] { 10, 20, 30, 50, 75 };
+
     @Override
     public void applyGenerationProperties(WootGenerationProperties properties) {
         int rate = properties.getSpawnRate();
-        float ratio = 1F - (getLevel() * 0.1F);
+        float ratio = 1F - PERCENTAGES[getLevel()-1] / 100F;
         properties.setSpawnRate((int)Math.ceil(rate * ratio));
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("info.woot_revived.upgrade.rate.desc.0", getLevel() * 10).setStyle(DESCRIPTION_STYLE));
+        tooltip.add(Component.translatable("info.woot_revived.upgrade.rate.desc.0", PERCENTAGES[getLevel()-1]).setStyle(DESCRIPTION_STYLE));
     }
 
     /* Upgrade Item registration */

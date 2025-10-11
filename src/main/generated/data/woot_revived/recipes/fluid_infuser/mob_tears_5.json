@@ -1,15 +1,15 @@
 {
   "type": "woot_revived:fluid_infuser",
-  "energy": 1000,
+  "energy": 5000,
   "ingredient": {
-    "item": "minecraft:blaze_rod"
+    "item": "minecraft:magma_cream"
   },
   "input_fluid": {
-    "Amount": 1000,
+    "Amount": 500,
     "FluidName": "minecraft:water"
   },
   "output_fluid": {
-    "Amount": 2000,
+    "Amount": 1500,
     "FluidName": "woot_revived:mob_tears_fluid"
   }
 }
