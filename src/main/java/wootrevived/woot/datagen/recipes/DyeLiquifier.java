@@ -16,7 +16,7 @@ public class DyeLiquifier {
         for (DyeMakeup d : DyeMakeup.values()) {
             DyeLiquifierRecipeBuilder.dyeLiquifierRecipe()
                     .ingredient(Ingredient.of(d.getTag()))
-                    .energy(2500)
+                    .energy(500)
                     .red(d.getRed())
                     .yellow(d.getYellow())
                     .blue(d.getBlue())
@@ -69,7 +69,7 @@ public class DyeLiquifier {
         for (VanillaDyes d : dyes) {
             DyeLiquifierRecipeBuilder.dyeLiquifierRecipe()
                     .ingredient(Ingredient.of(d.item))
-                    .energy(2500)
+                    .energy(500)
                     .red(d.dyeMakeup.getRed())
                     .yellow(d.dyeMakeup.getYellow())
                     .blue(d.dyeMakeup.getBlue())
