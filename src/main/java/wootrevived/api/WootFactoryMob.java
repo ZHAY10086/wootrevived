@@ -221,7 +221,7 @@ public class WootFactoryMob<T extends Entity> {
     public static final class Properties {
         boolean blacklist = false;
         boolean disabledSimulation = false;
-        int rate = 400; // 20 sec
+        int rate = 300; // 15 sec
         int vitalityCost = -1; // mB
         Tier tier = Tier.TIER_1;
 

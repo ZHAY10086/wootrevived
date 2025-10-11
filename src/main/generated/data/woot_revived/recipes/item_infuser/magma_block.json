@@ -1,6 +1,6 @@
 {
   "type": "woot_revived:item_infuser",
-  "energy": 1000,
+  "energy": 5000,
   "fluid": {
     "Amount": 1000,
     "FluidName": "minecraft:lava"

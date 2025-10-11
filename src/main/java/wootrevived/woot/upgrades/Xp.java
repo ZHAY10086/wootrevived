@@ -23,7 +23,7 @@ import static wootrevived.woot.util.render.WootStyles.DESCRIPTION_STYLE;
 public class Xp extends WootUpgradeItem {
     public Xp(int level) { super(new Properties(), level); }
 
-    private static final int[] PERCENTAGES = new int[] { 100, 125, 150, 175, 200 };
+    private static final int[] PERCENTAGES = new int[] { 50, 75, 100, 125, 150 };
 
     @Override
     public void modifyDrops(WootDropsProperties properties) {

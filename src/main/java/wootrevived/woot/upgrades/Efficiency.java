@@ -22,16 +22,18 @@ import static wootrevived.woot.util.render.WootStyles.DESCRIPTION_STYLE;
 public class Efficiency extends WootUpgradeItem {
     public Efficiency(int level) { super(new Properties(), level); }
 
+    private static final float[] PERCENTAGES = new float[] { 10, 20, 30, 40, 50 };
+
     @Override
     public void applyGenerationProperties(WootGenerationProperties properties) {
         int cost = properties.getVitalityFuelCost();
-        float ratio = 1F - (getLevel() * 0.1F);
+        float ratio = 1F - PERCENTAGES[getLevel()-1] / 100F;
         properties.setVitalityFuelCost((int)Math.ceil(cost * ratio));
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level, List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("info.woot_revived.upgrade.efficiency.desc.0", getLevel() * 10).setStyle(DESCRIPTION_STYLE));
+        tooltip.add(Component.translatable("info.woot_revived.upgrade.efficiency.desc.0", PERCENTAGES[getLevel()-1]).setStyle(DESCRIPTION_STYLE));
     }
 
     /* Upgrade Item registration */

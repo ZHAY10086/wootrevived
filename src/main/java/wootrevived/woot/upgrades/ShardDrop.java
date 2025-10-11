@@ -25,7 +25,7 @@ import static wootrevived.woot.util.render.WootStyles.DESCRIPTION_STYLE;
 public class ShardDrop extends WootUpgradeItem {
     public ShardDrop(int level) { super(new Properties(), level); }
 
-    private static final int[] PERCENTAGES = new int[] { 30, 20, 10, 5 };
+    private static final int[] PERCENTAGES = new int[] { 50, 30, 15, 5 };
 
     @Override
     public void modifyDrops(WootDropsProperties properties) {

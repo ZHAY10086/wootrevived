@@ -1,15 +1,32 @@
 {
   "type": "woot_revived:fluid_infuser",
   "energy": 1000,
-  "ingredient": {
-    "item": "minecraft:bone"
-  },
+  "ingredient": [
+    {
+      "item": "minecraft:cooked_chicken"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "minecraft:cooked_mutton"
+    },
+    {
+      "item": "minecraft:cooked_porkchop"
+    },
+    {
+      "item": "minecraft:cooked_salmon"
+    },
+    {
+      "item": "minecraft:cooked_rabbit"
+    }
+  ],
   "input_fluid": {
     "Amount": 1000,
     "FluidName": "minecraft:water"
   },
   "output_fluid": {
-    "Amount": 1000,
+    "Amount": 200,
     "FluidName": "woot_revived:mob_tears_fluid"
   }
 }

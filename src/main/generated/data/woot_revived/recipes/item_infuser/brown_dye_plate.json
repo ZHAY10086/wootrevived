@@ -1,6 +1,6 @@
 {
   "type": "woot_revived:item_infuser",
-  "energy": 500,
+  "energy": 2500,
   "fluid": {
     "Amount": 500,
     "FluidName": "woot_revived:pure_dye_fluid"

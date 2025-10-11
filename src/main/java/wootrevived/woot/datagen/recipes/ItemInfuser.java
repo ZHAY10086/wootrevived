@@ -20,74 +20,74 @@ public class ItemInfuser {
         ItemInfuserRecipeBuilder.itemInfuserRecipe(ItemsRegistry.PRISM_ITEM.get())
                 .ingredient(Ingredient.of(Tags.Items.GLASS))
                 .fluid(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(Items.SOUL_SOIL)
                 .ingredient(Ingredient.of(Items.SOUL_SAND))
                 .augment(Ingredient.of(Tags.Items.SAND))
                 .fluid(FluidsRegistry.SOURCE_MOB_TEARS_FLUID.get(), 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(Items.CRYING_OBSIDIAN)
                 .ingredient(Ingredient.of(Tags.Items.OBSIDIAN))
                 .fluid(FluidsRegistry.SOURCE_MOB_TEARS_FLUID.get(), 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(Items.FIRE_CHARGE, 3)
                 .ingredient(Ingredient.of(Items.GUNPOWDER))
                 .augment(Ingredient.of(ItemTags.COALS))
                 .fluid(Fluids.LAVA, 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(Items.NETHERRACK)
                 .ingredient(Ingredient.of(Items.COBBLESTONE))
                 .fluid(Fluids.LAVA, 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(Items.MAGMA_BLOCK)
                 .ingredient(Ingredient.of(Items.NETHERRACK))
                 .fluid(Fluids.LAVA, 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(ItemsRegistry.COPPER_ENCHANTED_PLATE_ITEM.get())
                 .ingredient(Ingredient.of(ItemsRegistry.STYGIAN_PLATE_ITEM.get()))
                 .augment(Ingredient.of(ItemsRegistry.COPPER_SHARD_ITEM.get()))
                 .fluid(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), 1000)
-                .energy(1000)
+                .energy(5000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(ItemsRegistry.IRON_ENCHANTED_PLATE_ITEM.get())
                 .ingredient(Ingredient.of(ItemsRegistry.COPPER_ENCHANTED_PLATE_ITEM.get()))
                 .augment(Ingredient.of(ItemsRegistry.IRON_SHARD_ITEM.get()))
                 .fluid(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), 2000)
-                .energy(2000)
+                .energy(10000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(ItemsRegistry.GOLD_ENCHANTED_PLATE_ITEM.get())
                 .ingredient(Ingredient.of(ItemsRegistry.IRON_ENCHANTED_PLATE_ITEM.get()))
                 .augment(Ingredient.of(ItemsRegistry.GOLD_SHARD_ITEM.get()))
                 .fluid(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), 3000)
-                .energy(3000)
+                .energy(15000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(ItemsRegistry.DIAMOND_ENCHANTED_PLATE_ITEM.get())
                 .ingredient(Ingredient.of(ItemsRegistry.GOLD_ENCHANTED_PLATE_ITEM.get()))
                 .augment(Ingredient.of(ItemsRegistry.DIAMOND_SHARD_ITEM.get()))
                 .fluid(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), 4000)
-                .energy(4000)
+                .energy(20000)
                 .save(consumer);
 
         ItemInfuserRecipeBuilder.itemInfuserRecipe(ItemsRegistry.NETHERITE_ENCHANTED_PLATE_ITEM.get())
                 .ingredient(Ingredient.of(ItemsRegistry.DIAMOND_ENCHANTED_PLATE_ITEM.get()))
                 .augment(Ingredient.of(ItemsRegistry.NETHERITE_SHARD_ITEM.get()))
                 .fluid(FluidsRegistry.SOURCE_ENCHANTED_FLUID.get(), 5000)
-                .energy(5000)
+                .energy(25000)
                 .save(consumer);
 
         class Plate {
@@ -122,7 +122,7 @@ public class ItemInfuser {
             ItemInfuserRecipeBuilder.itemInfuserRecipe(p.plate.get())
                     .ingredient(Ingredient.of(p.casing.get()))
                     .fluid(FluidsRegistry.SOURCE_PURE_DYE_FLUID.get(), 500)
-                    .energy(500)
+                    .energy(2500)
                     .save(consumer);
         }
     }

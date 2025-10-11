@@ -35,11 +35,11 @@ public enum Tier implements StringRepresentable {
      * @return the default vitality cost, or {@code 0} for {@link #INVALID}
      */
     public int defaultVitalityCost(){
-        if(this == TIER_1) return 1000;
-        if(this == TIER_2) return 5000;
-        if(this == TIER_3) return 10000;
-        if(this == TIER_4) return 50000;
-        if(this == TIER_5) return 100000;
+        if(this == TIER_1) return 1500;
+        if(this == TIER_2) return 3500;
+        if(this == TIER_3) return 7500;
+        if(this == TIER_4) return 15000;
+        if(this == TIER_5) return 30000;
         return 0;
     }
 
