@@ -114,4 +114,8 @@ public class WootDropsPropertiesJS extends StartupEventJS {
     public boolean isInFire(){
         return properties.isInFire();
     }
+
+    public String getDimension(){
+        return properties.getDimension().location().toString();
+    }
 }
