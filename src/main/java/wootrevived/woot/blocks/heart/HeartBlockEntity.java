@@ -272,6 +272,10 @@ public class HeartBlockEntity extends MultiBlockFactoryEntity implements MenuPro
                 }
             }
 
+            for(Consumer<WootDropsProperties> callback : WootFactoryMobsRegistry.getGlobalDropsModifier()){
+                callback.accept(generationProperties);
+            }
+
             mob.modifyDrops(WootFactoryMob.Phase.AFTER_DROP_CALLBACKS, generationProperties);
 
             for(FactoryUpgradeBlockEntity upgradeBlockEntity : upgrades){

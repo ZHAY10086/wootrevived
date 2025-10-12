@@ -1,6 +1,7 @@
 package wootrevived.api.registrations;
 
 import net.minecraft.world.entity.EntityType;
+import org.jetbrains.annotations.ApiStatus;
 import wootrevived.api.WootFactoryMob;
 import wootrevived.api.interfaces.WootDropsProperties;
 
@@ -34,4 +35,15 @@ public abstract class WootFactoryMobRegistration {
      * @param callback   a function that receives {@link WootDropsProperties} to modify drops
      */
     public abstract void registerDropsModifier(EntityType<?> entityType, Consumer<WootDropsProperties> callback);
+
+    /**
+     * Registers a callback to modify the drops of all entities globally.
+     * <p>
+     * Use this when you want to adjust or extend the default drop behavior across
+     * the entire factory simulation.
+     *
+     * @param callback a function that receives {@link WootDropsProperties} to modify drops
+     */
+    @ApiStatus.AvailableSince("1.1.0")
+    public abstract void registerGlobalDropsModifier(Consumer<WootDropsProperties> callback);
 }
