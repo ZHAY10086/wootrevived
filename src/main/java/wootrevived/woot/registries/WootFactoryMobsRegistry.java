@@ -108,4 +108,15 @@ public class WootFactoryMobsRegistry extends WootFactoryMobRegistration {
     public static boolean hasDropsModifier(EntityType<?> entityType){
         return ITEM_DROPS_REGISTRY.containsKey(entityType);
     }
+
+    private static final List<Consumer<WootDropsProperties>> GLOBAL_ITEM_DROPS_REGISTRY = new ArrayList<>();
+
+    @Override
+    public void registerGlobalDropsModifier(Consumer<WootDropsProperties> callback) {
+        GLOBAL_ITEM_DROPS_REGISTRY.add(callback);
+    }
+
+    public static List<Consumer<WootDropsProperties>> getGlobalDropsModifier(){
+        return GLOBAL_ITEM_DROPS_REGISTRY;
+    }
 }

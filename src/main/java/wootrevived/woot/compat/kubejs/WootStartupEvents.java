@@ -6,7 +6,9 @@ import dev.latvian.mods.kubejs.script.ScriptType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
+import wootrevived.api.interfaces.WootDropsProperties;
 import wootrevived.api.registrations.WootFactoryMobRegistration;
+import wootrevived.woot.compat.kubejs.mobs.WootDropsPropertiesJS;
 import wootrevived.woot.compat.kubejs.mobs.WootFactoryMobEventJS;
 
 public interface WootStartupEvents {
@@ -25,8 +27,11 @@ public interface WootStartupEvents {
     }
 
     EventHandler MOBS = GROUP.startup("registerFactoryMob", () -> WootFactoryMobEventJS.class).extra(MOBS_EXTRA);
+    EventHandler DROPS = GROUP.startup("registerGlobalDropsModifier", () -> WootDropsPropertiesJS.class);
 
     static void postFactoryMobs(WootFactoryMobRegistration registration) {
+        registration.registerGlobalDropsModifier(WootStartupEvents::postGlobalDropsModifier);
+
         MOBS.forEachListener(ScriptType.STARTUP, handler -> {
             ResourceLocation location = ResourceLocation.tryParse(handler.extraId.toString());
             EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(location);
@@ -44,5 +49,9 @@ public interface WootStartupEvents {
                 }
             }
         });
+    }
+
+    static void postGlobalDropsModifier(WootDropsProperties properties){
+        DROPS.post(new WootDropsPropertiesJS(properties));
     }
 }

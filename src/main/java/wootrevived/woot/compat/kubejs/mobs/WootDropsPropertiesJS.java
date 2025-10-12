@@ -1,5 +1,6 @@
 package wootrevived.woot.compat.kubejs.mobs;
 
+import dev.latvian.mods.kubejs.event.StartupEventJS;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.item.OutputItem;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,7 @@ import wootrevived.woot.util.helper.EnchantmentHelper;
 import java.util.Arrays;
 import java.util.List;
 
-public class WootDropsPropertiesJS {
+public class WootDropsPropertiesJS extends StartupEventJS {
     private final WootDropsProperties properties;
 
     public WootDropsProperties getRawProperties(){
