@@ -1,13 +1,13 @@
 modLoader = "javafml"
 loaderVersion = "[${neo_major_version},)"
-issueTrackerURL = "https://github.com/pharuxtan/woot"
+issueTrackerURL = "https://github.com/wootrevived/wootrevived/issues"
 license = "LGPLv3"
 
 [[mods]]
 modId = "${file.modId}"
 version = "${file.jarVersion}"
 displayName = "Woot Revived"
-displayURL = "https://github.com/pharuxtan/woot"
+displayURL = "https://github.com/wootrevived/wootrevived"
 logoFile = "woot_revived.png"
 authors = "pharuxtan"
 credits = "Ipsis"
