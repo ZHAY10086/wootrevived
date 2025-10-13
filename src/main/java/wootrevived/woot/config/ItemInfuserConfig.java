@@ -6,6 +6,7 @@ public class ItemInfuserConfig {
     public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_CAPACITY;
     public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_MAX_TRANSFER;
     public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_PROCESS_TRANSFER;
+    public static ForgeConfigSpec.ConfigValue<Integer> FLUID_TRANSFER;
     public static ForgeConfigSpec.ConfigValue<Integer> INPUT_TANK_CAPACITY;
 
     public static void build(ForgeConfigSpec.Builder builder){
@@ -19,6 +20,9 @@ public class ItemInfuserConfig {
 
             ENERGY_PROCESS_TRANSFER = builder.comment(String.format("The energy transfer rate of the Item Infuser [Default: %d]", DefaultsConfig.ItemInfuser.ENERGY_PROCESS_TRANSFER))
                     .define("energyProcessTransfer", DefaultsConfig.ItemInfuser.ENERGY_PROCESS_TRANSFER);
+
+            FLUID_TRANSFER = builder.comment(String.format("The fluid transfer rate of the Item Infuser [Default: %d]", DefaultsConfig.ItemInfuser.FLUID_TRANSFER))
+                    .define("fluidTransfer", DefaultsConfig.ItemInfuser.FLUID_TRANSFER);
 
             INPUT_TANK_CAPACITY = builder.comment(String.format("The input tank capacity of the Item Infuser [Default: %d]", DefaultsConfig.ItemInfuser.INPUT_TANK_CAPACITY))
                     .define("inputTankCapacity", DefaultsConfig.ItemInfuser.INPUT_TANK_CAPACITY);

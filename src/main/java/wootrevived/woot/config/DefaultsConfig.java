@@ -15,6 +15,7 @@ public class DefaultsConfig {
         public static final int ENERGY_CAPACITY = 25000;
         public static final int ENERGY_MAX_TRANSFER = 1000;
         public static final int ENERGY_PROCESS_TRANSFER = 50;
+        public static final int FLUID_TRANSFER = 500;
         public static final int OUTPUT_TANK_CAPACITY = BUCKET_CAPACITY * 25;
 
         public static final int COLOR_PRODUCE_AMOUNT = 125;
@@ -30,6 +31,7 @@ public class DefaultsConfig {
         public static final int ENERGY_CAPACITY = 100000;
         public static final int ENERGY_MAX_TRANSFER = 1000;
         public static final int ENERGY_PROCESS_TRANSFER = 100;
+        public static final int FLUID_TRANSFER = 500;
         public static final int OUTPUT_TANK_CAPACITY = BUCKET_CAPACITY * 50;
 
         public static final int PER_ENCHANT_FLUID = BUCKET_CAPACITY * 5 / 2;
@@ -41,6 +43,7 @@ public class DefaultsConfig {
         public static final int ENERGY_CAPACITY = 50000;
         public static final int ENERGY_MAX_TRANSFER = 1000;
         public static final int ENERGY_PROCESS_TRANSFER = 250;
+        public static final int FLUID_TRANSFER = 50000;
         public static final int INPUT_TANK_CAPACITY = BUCKET_CAPACITY * 50;
         public static final int OUTPUT_TANK_CAPACITY = BUCKET_CAPACITY * 50;
     }
@@ -49,6 +52,7 @@ public class DefaultsConfig {
         public static final int ENERGY_CAPACITY = 50000;
         public static final int ENERGY_MAX_TRANSFER = 1000;
         public static final int ENERGY_PROCESS_TRANSFER = 250;
+        public static final int FLUID_TRANSFER = 500;
         public static final int INPUT_TANK_CAPACITY = BUCKET_CAPACITY * 25;
     }
 

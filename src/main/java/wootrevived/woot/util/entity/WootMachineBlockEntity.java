@@ -317,16 +317,14 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
     public abstract int getInputTankCapacity();
     public abstract boolean hasInputFluidCapability();
 
-    private static final int FLUID_TICK_RATE = 50000;
-
-    protected void tickFluid(WootFluidTankHandler fluidTank, BlockPos pos, Function<Direction, MachineSideProperty> getProperty) {
+    protected void tickFluid(WootFluidTankHandler fluidTank, BlockPos pos, int tickRate, Function<Direction, MachineSideProperty> getProperty) {
         for(Direction side : Direction.values()){
             if(getProperty.apply(side) == MachineSideProperty.PUSH){
                 BlockEntity be = level.getBlockEntity(pos.relative(side));
 
                 if(be == null) continue;
                 be.getCapability(ForgeCapabilities.FLUID_HANDLER, side.getOpposite()).ifPresent(handler -> {
-                    FluidStack simulation = FluidUtil.tryFluidTransfer(handler, fluidTank, FLUID_TICK_RATE, false);
+                    FluidStack simulation = FluidUtil.tryFluidTransfer(handler, fluidTank, tickRate, false);
                     if(!simulation.isEmpty())
                         FluidUtil.tryFluidTransfer(handler, fluidTank, simulation.getAmount(), true);
                 });
@@ -334,7 +332,7 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
                 BlockEntity be = level.getBlockEntity(pos.relative(side));
                 if(be == null) continue;
                 be.getCapability(ForgeCapabilities.FLUID_HANDLER, side.getOpposite()).ifPresent(handler -> {
-                    FluidStack simulation = FluidUtil.tryFluidTransfer(fluidTank, handler, FLUID_TICK_RATE, false);
+                    FluidStack simulation = FluidUtil.tryFluidTransfer(fluidTank, handler, tickRate, false);
                     if(!simulation.isEmpty())
                         FluidUtil.tryFluidTransfer(fluidTank, handler, simulation.getAmount(), true);
                 });
