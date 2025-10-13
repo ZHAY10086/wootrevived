@@ -234,6 +234,9 @@ public class FluidInfuserBlockEntity extends WootMachineBlockEntity implements M
         if (recipe == null)
             return false;
 
+        if(!outputTankHandler.isEmpty() && outputTankHandler.getFluid().getFluid() != recipe.getOutputFluid().getFluid())
+            return false;
+
         if(outputTankHandler.getFluidAmount() + recipe.getOutputFluid().getAmount() > outputTankHandler.getCapacity())
             return false;
 
