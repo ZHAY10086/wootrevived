@@ -315,7 +315,7 @@ public abstract class WootMachineBlockEntity extends BlockEntity implements Bloc
     public abstract int getInputTankCapacity();
     public abstract boolean hasInputFluidCapability();
 
-    private static final int FLUID_TICK_RATE = 500;
+    private static final int FLUID_TICK_RATE = 50000;
 
     protected void tickFluid(WootFluidTankHandler fluidTank, BlockPos pos, Function<Direction, MachineSideProperty> getProperty) {
         for(Direction side : Direction.values()){
