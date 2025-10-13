@@ -6,6 +6,7 @@ public class DyeLiquifierConfig {
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_CAPACITY;
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_MAX_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_PROCESS_TRANSFER;
+    public static ModConfigSpec.ConfigValue<Integer> FLUID_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> OUTPUT_TANK_CAPACITY;
 
     public static ModConfigSpec.ConfigValue<Integer> COLOR_PRODUCE_AMOUNT;
@@ -27,6 +28,9 @@ public class DyeLiquifierConfig {
 
             ENERGY_PROCESS_TRANSFER = builder.comment(String.format("The energy transfer rate of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.ENERGY_PROCESS_TRANSFER))
                     .define("energyProcessTransfer", DefaultsConfig.DyeLiquifier.ENERGY_PROCESS_TRANSFER);
+
+            FLUID_TRANSFER = builder.comment(String.format("The fluid transfer rate of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.FLUID_TRANSFER))
+                    .define("fluidTransfer", DefaultsConfig.DyeLiquifier.FLUID_TRANSFER);
 
             OUTPUT_TANK_CAPACITY = builder.comment(String.format("The output tank capacity of the Dye Liquifier [Default: %d]", DefaultsConfig.DyeLiquifier.OUTPUT_TANK_CAPACITY))
                     .define("outputTankCapacity", DefaultsConfig.DyeLiquifier.OUTPUT_TANK_CAPACITY);

@@ -6,6 +6,7 @@ public class EnchantedLiquifierConfig {
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_CAPACITY;
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_MAX_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_PROCESS_TRANSFER;
+    public static ModConfigSpec.ConfigValue<Integer> FLUID_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> OUTPUT_TANK_CAPACITY;
 
     public static ModConfigSpec.ConfigValue<Integer> PER_ENCHANT_FLUID;
@@ -23,6 +24,9 @@ public class EnchantedLiquifierConfig {
 
             ENERGY_PROCESS_TRANSFER = builder.comment(String.format("The energy transfer rate of the Enchanted Liquifier [Default: %d]", DefaultsConfig.EnchantedLiquifier.ENERGY_PROCESS_TRANSFER))
                     .define("energyProcessTransfer", DefaultsConfig.EnchantedLiquifier.ENERGY_PROCESS_TRANSFER);
+
+            FLUID_TRANSFER = builder.comment(String.format("The fluid transfer rate of the Enchanted Liquifier [Default: %d]", DefaultsConfig.EnchantedLiquifier.FLUID_TRANSFER))
+                    .define("fluidTransfer", DefaultsConfig.EnchantedLiquifier.FLUID_TRANSFER);
 
             OUTPUT_TANK_CAPACITY = builder.comment(String.format("The output tank capacity of the Enchanted Liquifier [Default: %d]", DefaultsConfig.EnchantedLiquifier.OUTPUT_TANK_CAPACITY))
                     .define("outputTankCapacity", DefaultsConfig.EnchantedLiquifier.OUTPUT_TANK_CAPACITY);

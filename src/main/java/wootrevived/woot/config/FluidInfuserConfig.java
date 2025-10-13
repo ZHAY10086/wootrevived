@@ -6,6 +6,7 @@ public class FluidInfuserConfig {
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_CAPACITY;
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_MAX_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> ENERGY_PROCESS_TRANSFER;
+    public static ModConfigSpec.ConfigValue<Integer> FLUID_TRANSFER;
     public static ModConfigSpec.ConfigValue<Integer> INPUT_TANK_CAPACITY;
     public static ModConfigSpec.ConfigValue<Integer> OUTPUT_TANK_CAPACITY;
 
@@ -20,6 +21,9 @@ public class FluidInfuserConfig {
 
             ENERGY_PROCESS_TRANSFER = builder.comment(String.format("The energy transfer rate of the Fluid Infuser [Default: %d]", DefaultsConfig.FluidInfuser.ENERGY_PROCESS_TRANSFER))
                     .define("energyProcessTransfer", DefaultsConfig.FluidInfuser.ENERGY_PROCESS_TRANSFER);
+
+            FLUID_TRANSFER = builder.comment(String.format("The fluid transfer rate of the Fluid Infuser [Default: %d]", DefaultsConfig.FluidInfuser.FLUID_TRANSFER))
+                    .define("fluidTransfer", DefaultsConfig.FluidInfuser.FLUID_TRANSFER);
 
             INPUT_TANK_CAPACITY = builder.comment(String.format("The input tank capacity of the Fluid Infuser [Default: %d]", DefaultsConfig.FluidInfuser.INPUT_TANK_CAPACITY))
                     .define("inputTankCapacity", DefaultsConfig.FluidInfuser.INPUT_TANK_CAPACITY);
