@@ -32,6 +32,18 @@ public class WootEnergyStorage extends EnergyStorage implements INBTSerializable
         return res;
     }
 
+    public int internalExtractEnergy(int maxExtract, boolean simulate)
+    {
+        if (maxExtract <= 0) {
+            return 0;
+        }
+
+        int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
+        if (!simulate)
+            energy -= energyExtracted;
+        return energyExtracted;
+    }
+
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();

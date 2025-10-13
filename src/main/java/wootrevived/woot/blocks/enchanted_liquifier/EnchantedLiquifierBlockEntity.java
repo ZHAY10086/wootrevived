@@ -179,7 +179,7 @@ public class EnchantedLiquifierBlockEntity extends WootMachineBlockEntity implem
 
     @Override
     protected int useEnergy(){
-        return energyHandler.extractEnergy(getEnergyProcessTransfer(), false);
+        return energyHandler.internalExtractEnergy(getEnergyProcessTransfer(), false);
     }
 
     @Override
