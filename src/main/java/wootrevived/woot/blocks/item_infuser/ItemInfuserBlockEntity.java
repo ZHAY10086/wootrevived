@@ -244,7 +244,7 @@ public class ItemInfuserBlockEntity extends WootMachineBlockEntity implements Me
 
     @Override
     protected int useEnergy(){
-        return energyHandler.extractEnergy(getEnergyProcessTransfer(), false);
+        return energyHandler.internalExtractEnergy(getEnergyProcessTransfer(), false);
     }
 
     @Override

@@ -212,7 +212,7 @@ public class DyeLiquifierBlockEntity extends WootMachineBlockEntity implements M
 
     @Override
     protected int useEnergy(){
-        return energyHandler.extractEnergy(getEnergyProcessTransfer(), false);
+        return energyHandler.internalExtractEnergy(getEnergyProcessTransfer(), false);
     }
 
     @Override
