@@ -1,5 +1,6 @@
 package wootrevived.woot.items.mob_shard;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -173,6 +174,9 @@ public class MobShardItem extends Item {
             tooltip.add(Component.translatable("info.woot_revived.mobshard.unprogrammed.desc").setStyle(DESCRIPTION_STYLE));
             return;
         }
+
+        if(level == null)
+            level = Minecraft.getInstance().level;
 
         WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(mobTag);
         if(mob != null) {
