@@ -55,8 +55,9 @@ public class IngredientImportBlockEntity extends FactoryBlockBaseEntity {
                     ItemStack stack = neighborItemHandler.getStackInSlot(i);
                     ItemStack result = itemHandler.insertItem(i, stack, true);
                     if(result.getCount() < stack.getCount()){
-                        neighborItemHandler.extractItem(i, stack.getCount() - result.getCount(), false);
-                        itemHandler.insertItem(i, stack, false);
+                        ItemStack extracted = neighborItemHandler.extractItem(i, stack.getCount() - result.getCount(), false);
+                        if(!extracted.isEmpty())
+                            itemHandler.insertItem(i, extracted, false);
                     }
                 }
             }
@@ -67,8 +68,9 @@ public class IngredientImportBlockEntity extends FactoryBlockBaseEntity {
                     FluidStack stack = neighborFluidHandler.getFluidInTank(i);
                     int filled = fluidHandler.fill(stack, IFluidHandler.FluidAction.SIMULATE);
                     if(filled > 0){
-                        neighborFluidHandler.drain(new FluidStack(stack.getFluid(), filled), IFluidHandler.FluidAction.EXECUTE);
-                        fluidHandler.fill(stack, IFluidHandler.FluidAction.EXECUTE);
+                        FluidStack drained = neighborFluidHandler.drain(new FluidStack(stack.getFluid(), filled), IFluidHandler.FluidAction.EXECUTE);
+                        if(!drained.isEmpty())
+                            fluidHandler.fill(drained, IFluidHandler.FluidAction.EXECUTE);
                     }
                 }
             }
