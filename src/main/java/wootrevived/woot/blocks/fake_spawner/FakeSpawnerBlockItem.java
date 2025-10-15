@@ -1,5 +1,6 @@
 package wootrevived.woot.blocks.fake_spawner;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -38,6 +39,9 @@ public class FakeSpawnerBlockItem extends FactoryBlockItem {
         CompoundTag tag = stack.getTagElement("BlockEntityTag");
         if(tag != null && tag.contains(WootTags.MOB_TAG)) {
             CompoundTag mobTag = tag.getCompound(WootTags.MOB_TAG);
+
+            if(level == null)
+                level = Minecraft.getInstance().level;
 
             WootFactoryMob<?> mob = WootFactoryMobsRegistry.getFactoryMob(mobTag);
             if(mob != null) {
